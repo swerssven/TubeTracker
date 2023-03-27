@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="row">
+    <form [formGroup]="formLogin" (ngSubmit)="Login()" class="col-lg-3">
+      <div class="mb-3">
+        <label for="user" class="form-label">{{ "FORM.USER NAME" | translate}}:</label>
+        <input type="text" class="form-control" name="user" formControlName="user" placeholder="{{ 'FORM.USER NAME' | translate}}">
+      </div>
+      <div class="mb-3">
+        <label for="Password" class="form-label">{{ 'FORM.PASSWORD' | translate}}:</label>
+        <input type="password" class="form-control" name="Password" formControlName="password" placeholder="{{ 'FORM.PASSWORD' | translate}}">
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" [disabled]="!formLogin.valid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

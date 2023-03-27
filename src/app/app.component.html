@@ -1,32 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+    <a class="navbar-brand col-md-3 order-0" href="#">
+      TUBE
+      <i class="bi bi-film"></i>
+      TRACKER
+    </a>
+    <button class="navbar-toggler order-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+      <ul class="navbar-nav gap-lg-4">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{{"NAV.HOME" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">{{"NAV.HOME" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{"NAV.EXPLORE" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/explore']" [routerLinkActive]="['active']">{{"NAV.EXPLORE" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{"NAV.POPULAR" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/popular']" [routerLinkActive]="['active']">{{"NAV.POPULAR" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{"NAV.MY FAVORITES" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/favorites']" [routerLinkActive]="['active']">{{"NAV.FAVORITES" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{"NAV.CINECONNECT" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/social']" [routerLinkActive]="['active']">{{"NAV.SOCIAL" | translate}}</a>
         </li>
       </ul>
+      <div class="col-md-3 text-white text-end order-1" href="#">
+        <a class="nav-link" [routerLink]="['/user']">
+          <img src="" alt="*">
+          USER name
+        </a>
+      </div>
     </div>
   </div>
 </nav>
 
 <div class="container-fluid">
-  <router-outlet>Hello</router-outlet>
+  <router-outlet></router-outlet>
 </div>

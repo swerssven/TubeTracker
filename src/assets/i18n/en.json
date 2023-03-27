@@ -3,7 +3,12 @@
     "HOME": "Home",
     "EXPLORE": "Explore",
     "POPULAR": "Popular",
-    "MY FAVORITES": "My favorites",
-    "CINECONNECT": "CineConnect"
+    "FAVORITES": "Favorites",
+    "SOCIAL": "Social"
+  },
+
+  "FORM":{
+    "USER NAME": "User name",
+    "PASSWORD": "Password"
   }
 }
