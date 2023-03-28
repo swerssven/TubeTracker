@@ -1,3 +1,5 @@
 export interface ILoginResponse {
-  response: string;
+  token: string;
+  expiresIn: number;
+  tokenType: string;
 }

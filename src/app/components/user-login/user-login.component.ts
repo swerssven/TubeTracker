@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ILogin } from 'src/app/models/i-login';
 import { ILoginResponse } from 'src/app/models/i-login-response';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-user-login',
@@ -13,15 +14,15 @@ import { ILoginResponse } from 'src/app/models/i-login-response';
 })
 export class UserLoginComponent {
   formLogin!: FormGroup;
-  subRef$ = Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private userService: UserServiceService
   ) {
     this.formLogin = formBuilder.group({
-      user: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -30,9 +31,17 @@ export class UserLoginComponent {
 
   Login() {
     const userLogin: ILogin = {
-      user: this.formLogin.value.user,
+      username: this.formLogin.value.username,
       password: this.formLogin.value.password,
     };
+
+    console.log(userLogin);
+
+    this.userService.getToken(userLogin).subscribe(
+      (res) => {
+        console.log(res);
+      }
+    )
 
     /*this.subRef$ = this.http
       .post<ILoginResponse>('urlAPI', userLogin, { observe: 'response' }) // here we send user and password to backend and receive a token.
