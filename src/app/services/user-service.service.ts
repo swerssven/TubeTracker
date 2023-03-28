@@ -13,7 +13,6 @@ export class UserServiceService {
 
   getToken(userLogin: ILogin): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>('https://localhost:7203/api/Auth', userLogin).pipe(
-      retry(3),
       map((resp) => {
         return resp;
       })

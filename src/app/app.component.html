@@ -9,7 +9,7 @@
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav gap-lg-4">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">{{"NAV.HOME" | translate}}</a>
@@ -26,13 +26,13 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/social']" [routerLinkActive]="['active']">{{"NAV.SOCIAL" | translate}}</a>
         </li>
+        <li>
+          <a class="nav-link active" [routerLink]="['/user']">
+            <img src="" alt="*">
+            USER name
+          </a>
+        </li>
       </ul>
-      <div class="col-md-3 text-white text-end order-1" href="#">
-        <a class="nav-link" [routerLink]="['/user']">
-          <img src="" alt="*">
-          USER name
-        </a>
-      </div>
     </div>
   </div>
 </nav>

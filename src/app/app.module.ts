@@ -19,6 +19,7 @@ import { SocialComponent } from './components/social/social.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient){
     SocialComponent,
     UserProfileComponent,
     UserRegisterComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,

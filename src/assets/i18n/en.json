@@ -9,6 +9,10 @@
 
   "FORM":{
     "USER NAME": "User name",
-    "PASSWORD": "Password"
+    "PASSWORD": "Password",
+    "SEARCH": "Search",
+    "SEARCH FOR": "Search for...",
+    "MOVIES": "Movies",
+    "SERIES": "Series"
   }
 }

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent {
-
+  numbers = Array(20).fill(4); // [4,4,4,4,4]
+  movie_serie = "";
 }
