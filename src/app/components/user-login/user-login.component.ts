@@ -39,28 +39,10 @@ export class UserLoginComponent {
 
     this.userService.getToken(userLogin).subscribe(
       (res) => {
-        console.log(res);
+        console.log(res.token);
+        let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
+        console.log(decodedJWT.userId);
       }
     )
-
-    /*this.subRef$ = this.http
-      .post<ILoginResponse>('urlAPI', userLogin, { observe: 'response' }) // here we send user and password to backend and receive a token.
-      .subscribe(
-        (res) => {
-          const token = res.body!.response;
-          console.log('token', token);
-          sessionStorage.setItem('token', token);
-          this.router.navigate(['/home']);
-        },
-        (err) => {
-          console.log('Error trying to login', err);
-        }
-      );*/
   }
-
-  /*ngOnDestroy(): void {
-    if (this.subRef$) {
-      this.subRef$.unSubscribe();
-    }
-  }*/
 }

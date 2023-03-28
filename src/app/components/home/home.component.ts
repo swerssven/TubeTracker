@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  numbers = Array(20).fill(4); // [4,4,4,4,4]
 }
