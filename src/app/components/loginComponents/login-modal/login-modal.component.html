@@ -1,0 +1,41 @@
+<div class="modal-header p-0 m-0">
+  <div>
+    <h6 class="modal-title text-center ms-3">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+  </div>
+  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="Login()" class="row justify-content-center mt-4">
+      <div class="form-group new-event col-10 d-grid gap-2">
+        <div class="row">
+          <h5>{{"LOGIN.WELCOME_STRANGER!" |translate}}</h5>
+          <i>{{"LOGIN.LOGIN_AND_HAVE_SOME_FUN!" |translate}}</i>
+        </div>
+        <div>
+          <label for="email">{{"FORM.EMAIL" | translate}}</label>
+          <input type="text" class="form-control" email="email"
+            placeholder="{{'FORM.EMAIL' | translate}}" required formControlName="email">
+          <div class="alert alert-danger"
+            *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+            Este campo es obligatorio</div>
+        </div>
+        <div>
+          <label for="password">{{"FORM.PASSWORD" | translate}}</label>
+          <input type="password" class="form-control" name="password"
+            placeholder="{{'FORM.PASSWORD' | translate}}" required formControlName="password">
+          <div class="alert alert-danger"
+            *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">Este campo
+            es
+            obligatorio</div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <input class="btn btn-primary mt-3" type="submit" value="{{'LOGIN.CREATE_ACCOUNT' | translate}}" [disabled]="loginForm.invalid">
+        </div>
+        <div>
+          <p>{{"LOGIN.DON'T HAVE AN ACCOUNT?" | translate}} <a class="link-primary" (click)="openRegisterForm()">{{"LOGIN.SIGN_UP_HERE" | translate}}</a>
+          </p>
+        </div>
+      </div>
+    </form>

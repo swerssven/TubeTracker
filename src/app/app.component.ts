@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -9,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'Tube_Tracker';
 
-  constructor(public tranlate: TranslateService) {
+  constructor(public tranlate: TranslateService, public router: Router) {
     // Definimos lenguajes traducción y por defecto.
     this.tranlate.addLangs(['es', 'en']);
     this.tranlate.setDefaultLang('es');

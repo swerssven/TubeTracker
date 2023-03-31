@@ -4,15 +4,40 @@
     "EXPLORE": "Explore",
     "POPULAR": "Popular",
     "FAVORITES": "Favorites",
-    "SOCIAL": "Social"
+    "SOCIAL": {
+      "SOCIAL": "Social",
+      "NEWS_BOARD": "News board",
+      "MY_PROFILE": "My profile",
+      "FIND_FRIENDS": "Find friends",
+      "MESSAGES": "Messages"
+    }
   },
 
   "FORM":{
-    "USER NAME": "User name",
+    "FIRSTNAME": "First name",
+    "LASTNAME": "Last name",
+    "NICKNAME": "Nickname",
     "PASSWORD": "Password",
+    "EMAIL": "Email",
+    "LANGUAGE": "Language",
+    "AVATAR": "Avatar",
     "SEARCH": "Search",
     "SEARCH FOR": "Search for...",
     "MOVIES": "Movies",
-    "SERIES": "Series"
+    "SERIES": "Series",
+    "REQUIRED": "*Fields are required"
+  },
+
+  "LOGIN":{
+    "DON'T HAVE AN ACCOUNT?": "Don't have an account?",
+    "SIGN_UP_HERE": "Sign up here",
+    "ALREADY_HAVE_AN_ACCOUNT?": "Already have an account?",
+    "WELCOME_STRANGER!": "Welcome stranger!",
+    "LOGIN": "Login",
+    "LOGIN_HERE": "Login here",
+    "CREATE_ACCOUNT": "Create Account",
+    "REGISTER_NOW": "Register Now",
+    "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Create your account and enjoy!",
+    "LOGIN_AND_HAVE_SOME_FUN!": "Login and have some fun!"
   }
 }

@@ -15,22 +15,44 @@
           <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">{{"NAV.HOME" | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/explore']" [routerLinkActive]="['active']">{{"NAV.EXPLORE" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/explore']" [routerLinkActive]="['active']">{{"NAV.EXPLORE" |
+            translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/popular']" [routerLinkActive]="['active']">{{"NAV.POPULAR" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/popular']" [routerLinkActive]="['active']">{{"NAV.POPULAR" |
+            translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/favorites']" [routerLinkActive]="['active']">{{"NAV.FAVORITES" | translate}}</a>
+          <a class="nav-link" [routerLink]="['/favorites']" [routerLinkActive]="['active']">{{"NAV.FAVORITES" |
+            translate}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/social']" [routerLinkActive]="['active']">{{"NAV.SOCIAL" | translate}}</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+            [class.active]="router.isActive('/social/news-board', true) || router.isActive('/social/news-board', true)||
+                                              router.isActive('/social/my-profile', true) || router.isActive('/social/my-profile', true)||
+                                              router.isActive('/social/find-friends', true) || router.isActive('/social/find-friends', true)||
+                                              router.isActive('/social/messages', true) || router.isActive('/social/messages', true)" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            {{"NAV.SOCIAL.SOCIAL" | translate}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/social/news-board']"
+                [routerLinkActive]="['active']">{{"NAV.SOCIAL.NEWS_BOARD" | translate}}</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/social/my-profile']"
+                [routerLinkActive]="['active']">{{"NAV.SOCIAL.MY_PROFILE" | translate}}</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/social/find-friends']"
+                [routerLinkActive]="['active']">{{"NAV.SOCIAL.FIND_FRIENDS" | translate}}</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/social/messages']"
+                [routerLinkActive]="['active']">{{"NAV.SOCIAL.MESSAGES" | translate}}</a></li>
+          </ul>
         </li>
-        <li>
+        <li class="d-flex align-items-center">
+          <app-user-login></app-user-login>
+          <!--
           <a class="nav-link active" [routerLink]="['/user']">
             <img src="" alt="*">
             USER name
-          </a>
+          </a>-->
         </li>
       </ul>
     </div>

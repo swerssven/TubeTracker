@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs';
 import { ILogin } from 'src/app/models/i-login';
 import { ILoginResponse } from 'src/app/models/i-login-response';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { SignUpModalComponent } from '../sign-up-modal/sign-up-modal.component';
 
 @Component({
   selector: 'app-user-login',
@@ -19,7 +22,8 @@ export class UserLoginComponent {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private modalService: NgbModal
   ) {
     this.formLogin = formBuilder.group({
       username: ['', Validators.required],
@@ -37,12 +41,18 @@ export class UserLoginComponent {
 
     console.log(userLogin);
 
-    this.userService.getToken(userLogin).subscribe(
-      (res) => {
-        console.log(res.token);
-        let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
-        console.log(decodedJWT.userId);
-      }
-    )
+    this.userService.getToken(userLogin).subscribe((res) => {
+      console.log(res.token);
+      let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
+      console.log(decodedJWT.userId);
+    });
+  }
+
+  openLoginForm(): void {
+    const modalRef = this.modalService.open(LoginModalComponent);
+  }
+
+  openSignUpForm(): void {
+    const modalRef = this.modalService.open(SignUpModalComponent);
   }
 }

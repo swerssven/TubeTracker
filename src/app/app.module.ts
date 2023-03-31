@@ -15,12 +15,16 @@ import { HomeComponent } from './components/home/home.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { PopularComponent } from './components/popular/popular.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { SocialComponent } from './components/social/social.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { UserRegisterComponent } from './components/user-register/user-register.component';
-import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
+import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
+import { MyProfileComponent } from './components/socialComponents/my-profile/my-profile.component';
+import { FindFriendsComponent } from './components/socialComponents/find-friends/find-friends.component';
+import { MessagesComponent } from './components/socialComponents/messages/messages.component';
+import { LoginModalComponent } from './components/loginComponents/login-modal/login-modal.component';
+import { SignUpModalComponent } from './components/loginComponents/sign-up-modal/sign-up-modal.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -34,12 +38,16 @@ export function HttpLoaderFactory(http: HttpClient){
     ExploreComponent,
     PopularComponent,
     FavoritesComponent,
-    SocialComponent,
     UserProfileComponent,
-    UserRegisterComponent,
     UserLoginComponent,
     MovieCardComponent,
-    NewsCardComponent
+    NewsCardComponent,
+    NewsBoardComponent,
+    MyProfileComponent,
+    FindFriendsComponent,
+    MessagesComponent,
+    LoginModalComponent,
+    SignUpModalComponent
   ],
   imports: [
     BrowserModule,
