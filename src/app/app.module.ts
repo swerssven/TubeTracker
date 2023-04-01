@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Librerías traducción.
@@ -25,6 +25,7 @@ import { FindFriendsComponent } from './components/socialComponents/find-friends
 import { MessagesComponent } from './components/socialComponents/messages/messages.component';
 import { LoginModalComponent } from './components/loginComponents/login-modal/login-modal.component';
 import { SignUpModalComponent } from './components/loginComponents/sign-up-modal/sign-up-modal.component';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -62,7 +63,11 @@ export function HttpLoaderFactory(http: HttpClient){
       }
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

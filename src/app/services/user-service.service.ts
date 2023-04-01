@@ -1,21 +1,56 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, retry } from 'rxjs';
-import { ILogin } from '../models/i-login';
-import { ILoginResponse } from '../models/i-login-response';
+import { catchError, map, Observable, retry, throwError } from 'rxjs';
+import { ILogin } from '../interfaces/i-login';
+import { ILoginResponse } from '../interfaces/i-login-response';
+import { IUser } from '../interfaces/i-user';
+import { IUserResponse } from '../interfaces/i-user-response';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserServiceService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
+  // Get user token from server
   getToken(userLogin: ILogin): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('https://localhost:7203/api/Auth', userLogin).pipe(
-      map((resp) => {
-        return resp;
-      })
-    );
+    return this.http
+      .post<ILoginResponse>('https://localhost:7203/api/auth', userLogin)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        }),
+        map((resp) => {
+          return resp;
+        })
+      );
   }
+
+  // Send user data to server to register user in DB.
+  createUser(userData: IUser): Observable<IUser> {
+    return this.http
+      .post<IUser>('https://localhost:7203/api/user', userData)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+
+  // Get user from server.
+  getUser(
+    id: number,
+    typeToken: string,
+    token: string
+  ): Observable<IUserResponse> {
+    return this.http
+      .get<IUserResponse>(`https://localhost:7203/api/user/${id}`)
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      );
+  }
+  /*getUser()
+  return this.http.post<ILoginResponse>('https://localhost:7203/api/Auth', userLogin, { headers: {"Authorization": typeToken + " " + token}}).pipe(*/
 }

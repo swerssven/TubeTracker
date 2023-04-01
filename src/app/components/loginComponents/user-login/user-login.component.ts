@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ILogin } from 'src/app/models/i-login';
-import { ILoginResponse } from 'src/app/models/i-login-response';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
@@ -25,34 +23,22 @@ export class UserLoginComponent {
     private userService: UserServiceService,
     private modalService: NgbModal
   ) {
-    this.formLogin = formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-    });
   }
 
   ngOnInit(): void {}
 
   Login() {
-    const userLogin: ILogin = {
-      username: this.formLogin.value.username,
-      password: this.formLogin.value.password,
-    };
-
-    console.log(userLogin);
-
-    this.userService.getToken(userLogin).subscribe((res) => {
-      console.log(res.token);
-      let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
-      console.log(decodedJWT.userId);
-    });
   }
 
   openLoginForm(): void {
-    const modalRef = this.modalService.open(LoginModalComponent);
+    this.modalService.open(LoginModalComponent);
   }
 
   openSignUpForm(): void {
-    const modalRef = this.modalService.open(SignUpModalComponent);
+    this.modalService.open(SignUpModalComponent);
+  }
+
+  logOut(): void{
+    sessionStorage.removeItem('token');
   }
 }

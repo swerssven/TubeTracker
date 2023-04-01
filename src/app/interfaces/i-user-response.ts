@@ -1,10 +1,9 @@
-export interface Iregister  {
+export interface IUserResponse {
+  id: number;
   firstname: string;
   lastname: string;
   nickname: string;
-  password: string;
   email: string;
   language: string;
   image: string;
-  isAdmin: boolean;
-};
+}
