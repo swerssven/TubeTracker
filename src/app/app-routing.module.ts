@@ -11,6 +11,7 @@ import { NewsBoardComponent } from './components/socialComponents/news-board/new
 import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -18,8 +19,9 @@ const routes: Routes = [
   {path: 'popular', component: PopularComponent},
   {path: 'favorites', component: FavoritesComponent},
   {path: 'movie/:id', component: MovieDetailComponent},
+  {path: 'serie/:id', component: SerieDetailComponent},
   {path: 'social/news-board', component: NewsBoardComponent},
-  {path: 'social/my-profile', component: MyProfileComponent},
+  {path: 'social/profile', component: MyProfileComponent},
   {path: 'social/find-friends', component: FindFriendsComponent},
   {path: 'social/messages', component: MessagesComponent},
   {path: 'user', component: UserProfileComponent},
