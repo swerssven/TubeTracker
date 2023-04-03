@@ -20,7 +20,7 @@ import { UserLoginComponent } from './components/loginComponents/user-login/user
 import { MovieSerieCardComponent } from './components/movie-serie-card/movie-serie-card.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
-import { MyProfileComponent } from './components/socialComponents/my-profile/my-profile.component';
+import { ProfileComponent } from './components/socialComponents/profile/profile.component';
 import { FindFriendsComponent } from './components/socialComponents/find-friends/find-friends.component';
 import { MessagesComponent } from './components/socialComponents/messages/messages.component';
 import { LoginModalComponent } from './components/loginComponents/login-modal/login-modal.component';
@@ -46,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient){
     MovieSerieCardComponent,
     NewsCardComponent,
     NewsBoardComponent,
-    MyProfileComponent,
+    ProfileComponent,
     FindFriendsComponent,
     MessagesComponent,
     LoginModalComponent,

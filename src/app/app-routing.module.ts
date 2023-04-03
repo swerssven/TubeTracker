@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PopularComponent } from './components/popular/popular.component';
 import { FindFriendsComponent } from './components/socialComponents/find-friends/find-friends.component';
 import { MessagesComponent } from './components/socialComponents/messages/messages.component';
-import { MyProfileComponent } from './components/socialComponents/my-profile/my-profile.component';
+import { ProfileComponent } from './components/socialComponents/profile/profile.component';
 import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
 import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'serie/:id', component: SerieDetailComponent},
   {path: 'social/news-board', component: NewsBoardComponent},
-  {path: 'social/profile', component: MyProfileComponent},
+  {path: 'social/profile', component: ProfileComponent},
   {path: 'social/find-friends', component: FindFriendsComponent},
   {path: 'social/messages', component: MessagesComponent},
   {path: 'user', component: UserProfileComponent},
