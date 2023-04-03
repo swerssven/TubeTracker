@@ -30,6 +30,7 @@ export class AuthInterceptorService implements HttpInterceptor{
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if(err.status === 401){
+          sessionStorage.clear();
           this.modalService.dismissAll();  // Close all open modal windows.
           this.router.navigateByUrl('/home');   // Redirect to home and login component.
           this.modalService.open(LoginModalComponent);  // Open login component.

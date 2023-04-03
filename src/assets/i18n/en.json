@@ -39,5 +39,9 @@
     "REGISTER_NOW": "Register Now",
     "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Create your account and enjoy!",
     "LOGIN_AND_HAVE_SOME_FUN!": "Login and have some fun!"
+  },
+
+  "SEARCH":{
+    "NO_RESULTS": "No results"
   }
 }

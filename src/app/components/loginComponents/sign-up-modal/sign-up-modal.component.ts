@@ -26,7 +26,7 @@ export class SignUpModalComponent {
 
   registerForm!: FormGroup;
   imagen!: string;
-  languages = [{ name: 'English', abbrev: 'EN' }, { name: 'Español', abbrev: 'ES' }];
+  languages = [{ name: 'English', abbrev: 'en-US' }, { name: 'Español', abbrev: 'es-ES' }];
   newUser: IUser = {
     firstname: '',
     lastname: '',
@@ -77,7 +77,7 @@ export class SignUpModalComponent {
         '',
         [Validators.required, Validators.pattern(this.expresiones.email)],
       ],
-      language: ['EN', Validators.required],
+      language: ['en-US', Validators.required],
       avatar: null
     });
   }

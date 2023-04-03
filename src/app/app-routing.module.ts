@@ -10,12 +10,14 @@ import { MyProfileComponent } from './components/socialComponents/my-profile/my-
 import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
 import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'explore', component: ExploreComponent},
   {path: 'popular', component: PopularComponent},
   {path: 'favorites', component: FavoritesComponent},
+  {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'social/news-board', component: NewsBoardComponent},
   {path: 'social/my-profile', component: MyProfileComponent},
   {path: 'social/find-friends', component: FindFriendsComponent},

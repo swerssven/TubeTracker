@@ -1,0 +1,16 @@
+<div class="card text-center">
+  <ng-container *ngIf="movie_serie.poster_path else elseTemplate">
+    <img src="{{'https://image.tmdb.org/t/p/w400' + movie_serie.poster_path}}" class="card-img-top shadow-hover" alt="Card image cap">
+  </ng-container>
+  <ng-template #elseTemplate>
+    <img src="../../../assets/No_poster_available.jpg" class="card-img-top shadow-hover" alt="Card image cap">
+  </ng-template>
+  <div class="absolute d-flex justify-content-between mt-2">
+    <i class="icon icon-left bi bi-eye text-white ms-3"></i>
+    <i class="icon icon-right bi bi-camera-reels text-white me-3"></i>
+  </div>
+  <div class="card-body">
+      <h5 class="card-title fs-6">{{movie_serie.title}} ({{date | date: 'yyyy'}})</h5>
+  </div>
+</div>
+

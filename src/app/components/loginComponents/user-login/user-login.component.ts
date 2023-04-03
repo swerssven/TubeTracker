@@ -22,13 +22,11 @@ export class UserLoginComponent {
     private router: Router,
     private userService: UserServiceService,
     private modalService: NgbModal
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {}
 
-  Login() {
-  }
+  Login() {}
 
   openLoginForm(): void {
     this.modalService.open(LoginModalComponent);
@@ -38,7 +36,7 @@ export class UserLoginComponent {
     this.modalService.open(SignUpModalComponent);
   }
 
-  logOut(): void{
-    sessionStorage.removeItem('token');
+  logOut(): void {
+    sessionStorage.clear();
   }
 }

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Librerías traducción.
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -17,7 +17,7 @@ import { PopularComponent } from './components/popular/popular.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
-import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import { MovieSerieCardComponent } from './components/movie-serie-card/movie-serie-card.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
 import { MyProfileComponent } from './components/socialComponents/my-profile/my-profile.component';
@@ -26,6 +26,7 @@ import { MessagesComponent } from './components/socialComponents/messages/messag
 import { LoginModalComponent } from './components/loginComponents/login-modal/login-modal.component';
 import { SignUpModalComponent } from './components/loginComponents/sign-up-modal/sign-up-modal.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -41,20 +42,22 @@ export function HttpLoaderFactory(http: HttpClient){
     FavoritesComponent,
     UserProfileComponent,
     UserLoginComponent,
-    MovieCardComponent,
+    MovieSerieCardComponent,
     NewsCardComponent,
     NewsBoardComponent,
     MyProfileComponent,
     FindFriendsComponent,
     MessagesComponent,
     LoginModalComponent,
-    SignUpModalComponent
+    SignUpModalComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
