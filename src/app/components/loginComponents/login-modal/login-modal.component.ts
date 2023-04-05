@@ -40,14 +40,13 @@ export class LoginModalComponent {
 
     this.userService.getToken(userLogin).subscribe(
       (res) => {
-      sessionStorage.setItem('token', res.token);
+      localStorage.setItem('token', res.token);
       let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
 
       this.userService.getUser(decodedJWT.userId, res.tokenType, res.token).subscribe({
-        next: (user) => console.log(user),
+        next: (user) => localStorage.setItem('user', JSON.stringify(user)),
         error: (error) => console.log(error.status),
         complete: () => {
-          console.log('User loaded correctly');
           this.activeModelService.close();
         },
       });

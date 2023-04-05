@@ -1,3 +1,13 @@
 <div>
-  <a class="link-primary" (click)="openLoginForm()">Login</a> or <a class="link-primary" (click)="openSignUpForm()">Sign up</a> or <a class="link-primary" (click)="logOut()">Logout</a>
+  <div *ngIf="!user">
+    <a class="link-primary" (click)="openLoginForm()">Login</a> or
+    <a class="link-primary" (click)="openSignUpForm()">Sign up</a>
+  </div>
+  <div *ngIf="user">
+    <img src="{{user.image}}" alt="">
+    <h5>{{user.nickname}}</h5>
+  </div>
+  <!--
+  <a class="link-primary" (click)="logOut()">Logout</a>
+-->
 </div>

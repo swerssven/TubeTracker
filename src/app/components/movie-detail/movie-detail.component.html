@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
     <div class="col-4">
-      <h1 *ngIf="movie"><b>{{movie.titleEs ? movie.titleEs : movie.titleEn}}</b></h1>
+      <h2 *ngIf="movie"><b>{{movie.titleEs ? movie.titleEs : movie.titleEn}}</b></h2>
       <div class="d-flex gap-5">
         <h6 *ngIf="movie">{{movie.premiereDate | date: 'yyyy'}}</h6>
         <h6 *ngIf="movie">{{movie.duration | duration}}</h6>

@@ -51,6 +51,4 @@ export class UserServiceService {
         })
       );
   }
-  /*getUser()
-  return this.http.post<ILoginResponse>('https://localhost:7203/api/Auth', userLogin, { headers: {"Authorization": typeToken + " " + token}}).pipe(*/
 }

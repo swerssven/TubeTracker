@@ -16,7 +16,7 @@ export class AuthInterceptorService implements HttpInterceptor{
   // Interceptor includes token in each http request.
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token: string = sessionStorage.getItem('token')!;
+    const token: string = localStorage.getItem('token')!;
 
     let request = req;
 
@@ -30,7 +30,7 @@ export class AuthInterceptorService implements HttpInterceptor{
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if(err.status === 401){
-          sessionStorage.clear();
+          localStorage.clear();
           this.modalService.dismissAll();  // Close all open modal windows.
           this.router.navigateByUrl('/home');   // Redirect to home and login component.
           this.modalService.open(LoginModalComponent);  // Open login component.

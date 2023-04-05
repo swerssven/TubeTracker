@@ -13,19 +13,20 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
 import { MovieResolver } from './resolvers/movie-resolver'
+import { AuthGardGuard } from './guards/auth-gard.guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'explore', component: ExploreComponent},
-  {path: 'popular', component: PopularComponent},
-  {path: 'favorites', component: FavoritesComponent},
-  {path: 'movie/:id', component: MovieDetailComponent, resolve:{movie: MovieResolver}},
-  {path: 'serie/:id', component: SerieDetailComponent},
-  {path: 'social/news-board', component: NewsBoardComponent},
-  {path: 'social/profile', component: ProfileComponent},
-  {path: 'social/find-friends', component: FindFriendsComponent},
-  {path: 'social/messages', component: MessagesComponent},
-  {path: 'user', component: UserProfileComponent},
+  {path: 'explore', canActivate: [AuthGardGuard], component: ExploreComponent},
+  {path: 'popular', canActivate: [AuthGardGuard], component: PopularComponent},
+  {path: 'favorites', canActivate: [AuthGardGuard], component: FavoritesComponent},
+  {path: 'movie/:id', canActivate: [AuthGardGuard], component: MovieDetailComponent, resolve:{movie: MovieResolver}},
+  {path: 'serie/:id', canActivate: [AuthGardGuard], component: SerieDetailComponent},
+  {path: 'social/news-board', canActivate: [AuthGardGuard], component: NewsBoardComponent},
+  {path: 'social/profile', canActivate: [AuthGardGuard], component: ProfileComponent},
+  {path: 'social/find-friends', canActivate: [AuthGardGuard], component: FindFriendsComponent},
+  {path: 'social/messages', canActivate: [AuthGardGuard], component: MessagesComponent},
+  {path: 'user', canActivate: [AuthGardGuard], component: UserProfileComponent},
   {path: 'login', component: UserLoginComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
