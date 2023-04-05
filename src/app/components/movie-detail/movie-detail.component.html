@@ -1,10 +1,10 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
     <div class="col-4">
-      <h1><b>Titanic</b></h1>
+      <h1 *ngIf="movie"><b>{{movie.titleEs ? movie.titleEs : movie.titleEn}}</b></h1>
       <div class="d-flex gap-5">
-        <h6>1997</h6>
-        <h6>3h 14m</h6>
+        <h6 *ngIf="movie">{{movie.premiereDate | date: 'yyyy'}}</h6>
+        <h6 *ngIf="movie">{{movie.duration | duration}}</h6>
       </div>
     </div>
     <div class="col-8 d-flex justify-content-between">
@@ -32,38 +32,32 @@
   </div>
   <div class="row mt-3">
     <div class="col-4">
-      <img class="img-fluid" src="../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg" alt="">
+      <img *ngIf="movie" class="img-fluid" src="{{'https://image.tmdb.org/t/p/w400' + movie.poster}}" alt="">
     </div>
-    <div class="col-8">
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/F478PvRt74Y" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div *ngIf="movie" class="col-8">
+      <iframe width="100%" height="100%" [src]="sanitizeURL()" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col d-flex gap-3 align-items-center">
-      <div class="badge rounded-pill bg-primary p-2">Action</div>
-      <div class="badge rounded-pill bg-primary p-2">Thriller</div>
-      <div class="badge rounded-pill bg-primary p-2">Drama</div>
+    <div *ngIf="movie" class="col d-flex gap-3 align-items-center">
+      <div class="badge rounded-pill bg-primary p-2" *ngFor="let genre of genres">{{genre}}</div>
     </div>
   </div>
   <div class="row mt-4">
     <div class="col-12">
       <h3><b>Description</b></h3>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel praesentium molestias exercitationem, inventore
-        quae magni necessitatibus. Eius, natus dolores! Consequuntur repudiandae odit, eos enim natus nemo asperiores
-        nesciunt dolores fugit suscipit? Architecto quod, repudiandae voluptatem exercitationem quo perspiciatis harum
-        autem quidem, id voluptas nam recusandae animi aperiam facilis ex? Corrupti.</p>
+      <p *ngIf="movie">{{movie.descriptionEs}}</p>
     </div>
     <div class="col-12">
       <div class="d-flex align-items-center gap-3">
         <h6><b>Director/s</b></h6>
-        <h6>Stanley Lee</h6>
+        <h6 *ngIf="movie">{{movie.directors}}</h6>
       </div>
     </div>
     <div class="col-12">
-      <div class="d-flex align-items-center gap-3">
+      <div class="d-flex gap-3">
         <h6><b>Actor/s</b></h6>
-        <h6>Stanley Lee, Glee Leeman, Rachel Depount</h6>
+        <h6 *ngIf="movie">{{movie.actors}}</h6>
       </div>
     </div>
   </div>

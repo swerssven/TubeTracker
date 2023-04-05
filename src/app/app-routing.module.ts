@@ -12,13 +12,14 @@ import { UserLoginComponent } from './components/loginComponents/user-login/user
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
+import { MovieResolver } from './resolvers/movie-resolver'
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'explore', component: ExploreComponent},
   {path: 'popular', component: PopularComponent},
   {path: 'favorites', component: FavoritesComponent},
-  {path: 'movie/:id', component: MovieDetailComponent},
+  {path: 'movie/:id', component: MovieDetailComponent, resolve:{movie: MovieResolver}},
   {path: 'serie/:id', component: SerieDetailComponent},
   {path: 'social/news-board', component: NewsBoardComponent},
   {path: 'social/profile', component: ProfileComponent},

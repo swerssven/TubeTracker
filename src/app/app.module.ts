@@ -28,6 +28,7 @@ import { SignUpModalComponent } from './components/loginComponents/sign-up-modal
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
+import { DurationPipe } from './pipes/DurationPipe';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient){
     LoginModalComponent,
     SignUpModalComponent,
     MovieDetailComponent,
-    SerieDetailComponent
+    SerieDetailComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
