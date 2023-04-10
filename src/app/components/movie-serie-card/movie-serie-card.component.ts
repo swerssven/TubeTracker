@@ -11,7 +11,6 @@ export class MovieSerieCardComponent {
   date!: Date;
 
   ngOnInit(): void {
-    console.log(this.movie_serie)
     this.date = new Date(this.movie_serie.release_date);
   }
 }

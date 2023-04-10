@@ -1,0 +1,478 @@
+<div class="container">
+  <div class="row mt-5">
+    <div *ngIf="user" class="col-2">
+      <ng-container *ngIf="user.image == null; else elseTemplate">
+        <img class="img-fluid" src="../../../../assets/default-avatar.png" alt="Avatar">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <img class="img-fluid" src="{{user.image}}" alt="Avatar">
+      </ng-template>
+    </div>
+    <div class="col">
+      <h1 *ngIf="user" class="col-12"><b>{{user.nickname}}</b></h1>
+      <div class="col-12">
+        <a href="">Profile configuration</a> <br>
+        <a href="" class="link link-primary" (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+  <!--Statistics-->
+  <div class="row text-center d-flex justify-content-around mt-5">
+    <div class="col-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Total time watching series</h5>
+        </div>
+        <div class="card-body">
+          <div class="row d-flex justify-content-center">
+            <div class="col-3">
+              <h1>04</h1>
+              <h6>months</h6>
+            </div>
+            <div class="col-3">
+              <h1>16</h1>
+              <h6>days</h6>
+            </div>
+            <div class="col-3">
+              <h1>07</h1>
+              <h6>hours</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Episodes watched</h5>
+        </div>
+        <div class="card-body">
+          <h1>2450</h1>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Posts</h5>
+        </div>
+        <div class="card-body">
+          <h1>58</h1>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Likes</h5>
+        </div>
+        <div class="card-body">
+          <h1>2450</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Total time watching movies</h5>
+        </div>
+        <div class="card-body">
+          <div class="row d-flex justify-content-center">
+            <div class="col-3">
+              <h1>01</h1>
+              <h6>months</h6>
+            </div>
+            <div class="col-3">
+              <h1>45</h1>
+              <h6>days</h6>
+            </div>
+            <div class="col-3">
+              <h1>15</h1>
+              <h6>hours</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Movies watched</h5>
+        </div>
+        <div class="card-body">
+          <h1>147</h1>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Comments</h5>
+        </div>
+        <div class="card-body">
+          <h1>103</h1>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Friends</h5>
+        </div>
+        <div class="card-body">
+          <h1>74</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
+    <h2 class="ms-5 ps-5">Last movies watched</h2>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card-group d-flex justify-content-center">
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                      background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                    background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                        background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                      background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                    background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+        <div class="card-group">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+
+
+        <div class="card-group">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
+    <h2 class="ms-5 ps-5">Last series watched</h2>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card-group d-flex justify-content-center">
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                      background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                    background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                        background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                      background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="shadow-hover" style="background-image: url('../../../assets/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');
+                    background-size: cover; background-repeat: no-repeat; height: 370px; width: 250px;">
+              <div class="row pt-3">
+                <div class="col pe-2">
+                  <i class="icon bi bi-eye text-white"></i>
+                  <!--<i class="bi bi-eye-fill"></i>-->
+                </div>
+                <div class="col ps-2">
+                  <i class="icon bi bi-camera-reels text-white"></i>
+                  <!--<i class="bi bi-camera-reels-fill"></i>-->
+                </div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <h6>Spiderman</h6>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+        <div class="card-group">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+
+
+        <div class="card-group">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+</div>
+

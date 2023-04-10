@@ -6,6 +6,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ILogin } from 'src/app/interfaces/i-login';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { SignUpModalComponent } from '../sign-up-modal/sign-up-modal.component';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -22,7 +23,8 @@ export class LoginModalComponent {
     private http: HttpClient,
     private router: Router,
     private userService: UserServiceService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private dataService: DataServiceService
   ) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.required],
@@ -44,7 +46,9 @@ export class LoginModalComponent {
       let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
 
       this.userService.getUser(decodedJWT.userId, res.tokenType, res.token).subscribe({
-        next: (user) => localStorage.setItem('user', JSON.stringify(user)),
+        next: (user) => {
+          localStorage.setItem('user', JSON.stringify(user));
+        },
         error: (error) => console.log(error.status),
         complete: () => {
           this.activeModelService.close();

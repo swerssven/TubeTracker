@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IUserResponse } from 'src/app/interfaces/i-user-response';
 
 @Component({
   selector: 'app-my-profile',

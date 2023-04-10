@@ -1,13 +1,9 @@
-<div>
-  <div *ngIf="!user">
-    <a class="link-primary" (click)="openLoginForm()">Login</a> or
-    <a class="link-primary" (click)="openSignUpForm()">Sign up</a>
-  </div>
-  <div *ngIf="user">
-    <img src="{{user.image}}" alt="">
-    <h5>{{user.nickname}}</h5>
-  </div>
-  <!--
-  <a class="link-primary" (click)="logOut()">Logout</a>
--->
+<div class="d-flex align-items-center">
+  <ng-container *ngIf="!logged; else elseTemplate">
+    <a class="link-primary" (click)="openLoginForm()">Login</a>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <img src="" alt="">
+    <a [routerLink]="['/statistics', user.id]">{{user.nickname}}</a>
+  </ng-template>
 </div>

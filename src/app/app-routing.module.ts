@@ -9,11 +9,11 @@ import { MessagesComponent } from './components/socialComponents/messages/messag
 import { ProfileComponent } from './components/socialComponents/profile/profile.component';
 import { NewsBoardComponent } from './components/socialComponents/news-board/news-board.component';
 import { UserLoginComponent } from './components/loginComponents/user-login/user-login.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
 import { MovieResolver } from './resolvers/movie-resolver'
 import { AuthGardGuard } from './guards/auth-gard.guard';
+import { UserStatisticsComponent } from './components/user-statistics/user-statistics.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'social/profile', canActivate: [AuthGardGuard], component: ProfileComponent},
   {path: 'social/find-friends', canActivate: [AuthGardGuard], component: FindFriendsComponent},
   {path: 'social/messages', canActivate: [AuthGardGuard], component: MessagesComponent},
-  {path: 'user', canActivate: [AuthGardGuard], component: UserProfileComponent},
+  {path: 'statistics/:id', canActivate: [AuthGardGuard], component: UserStatisticsComponent},
   {path: 'login', component: UserLoginComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}

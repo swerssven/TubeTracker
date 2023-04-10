@@ -21,7 +21,7 @@ export class SignUpModalComponent {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[._/#?!@$%^&*-]).{8,}$/, // At least one uppercase, one lowercase, one digit and one special caracter. Min length 8.
     email:
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    avatar: /.(gif|jpeg|jpg|png)$/i, // Only accepts gif, jpeg. jpg y png.
+    image: /.(gif|jpeg|jpg|png)$/i, // Only accepts gif, jpeg. jpg y png.
   };
 
   registerForm!: FormGroup;
@@ -78,7 +78,7 @@ export class SignUpModalComponent {
         [Validators.required, Validators.pattern(this.expresiones.email)],
       ],
       language: ['en-US', Validators.required],
-      avatar: null
+      image: null
     });
   }
 
@@ -91,10 +91,9 @@ export class SignUpModalComponent {
       password: this.registerForm.value.password,
       email: this.registerForm.value.email,
       language: this.registerForm.value.language,
-      image: this.registerForm.value.image
+      image: this.imagen
     };
 
-    console.log(this.registerForm);
     this.userService.createUser(this.newUser).subscribe({
       next: (res) => console.log(res),
       error:HttpErrorResponse  => console.error(Error),

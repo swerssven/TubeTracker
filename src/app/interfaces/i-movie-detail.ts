@@ -14,4 +14,5 @@ export interface IMovieDetail {
   poster: string;
   backdrop: string;
   duration: number;
+  movieReviews?: any;
 }

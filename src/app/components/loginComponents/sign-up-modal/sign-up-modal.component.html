@@ -79,11 +79,11 @@
         </select>
     </div>
     <div>
-      <label for="avatar">{{"FORM.AVATAR" | translate}}</label>
-      <input class="form-control" #imageInput type="file" name="avatar" accept="image/*"
-        (change)="changeImage(imageInput)" formControlName="avatar">
+      <label for="image">{{"FORM.AVATAR" | translate}}</label>
+      <input class="form-control" #imageInput type="file" name="image" accept="image/*"
+        (change)="changeImage(imageInput)" formControlName="image">
       <div class="alert alert-danger"
-        *ngIf="registerForm.get('avatar')?.touched && registerForm.get('avatar')?.errors?.['pattern']?.requiredPattern === expresiones.avatar.toString()">
+        *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.errors?.['pattern']?.requiredPattern === expresiones.image.toString()">
         Este campo solo admite extensiones gif, jpeg. jpg y png</div>
     </div>
     <div>
