@@ -1,1 +1,13 @@
-<p>Profile Works!</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
+      <input type="button" class="btn btn-primary" value="Enviar" (click)="createPost()">
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    </div>
+  </div>
+</div>

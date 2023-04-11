@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-// Librerías traducción.
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
-
 import { HomeComponent } from './components/home/home.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { PopularComponent } from './components/popular/popular.component';
@@ -30,6 +25,8 @@ import { SerieDetailComponent } from './components/serie-detail/serie-detail.com
 import { DurationPipe } from './pipes/DurationPipe';
 import { UserStatisticsComponent } from './components/user-statistics/user-statistics.component';
 import { MovieReviewComponent } from './components/movie-review/movie-review.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { PostComponent } from './components/socialComponents/post/post.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -56,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient){
     SerieDetailComponent,
     DurationPipe,
     UserStatisticsComponent,
-    MovieReviewComponent
+    MovieReviewComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient){
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    EditorModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -76,6 +75,9 @@ export function HttpLoaderFactory(http: HttpClient){
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
+  },{
+    provide: TINYMCE_SCRIPT_SRC,
+    useValue: 'tinymce/tinymce.min.js'
   }],
   bootstrap: [AppComponent]
 })
