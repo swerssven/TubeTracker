@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { IMovieDetail } from 'src/app/interfaces/i-movie-detail';
 import { IReview } from 'src/app/interfaces/i-review';
-import { IUser } from 'src/app/interfaces/i-user';
-import { IUserResponse } from 'src/app/interfaces/i-user-response';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
 
 @Component({
@@ -13,21 +12,27 @@ import { MovieServiceService } from 'src/app/services/movie-service.service';
   styleUrls: ['./movie-detail.component.scss'],
 })
 export class MovieDetailComponent {
-  productId!: number;
+  movieApiId!: number;
   movie!: IMovieDetail;
   trailerURL!: SafeResourceUrl;
   genres!: string[];
   reviews!: IReview[];
   review!: string;
   user!: any;
+  reviewForm: FormGroup = this.formBuilder.group({
+    review: ['', [Validators.minLength(20), Validators.required]]
+  });
+
   constructor(
     private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private movieService: MovieServiceService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.productId = +this.route.snapshot.paramMap.get('id')!;
+    this.movieApiId = +this.route.snapshot.paramMap.get('id')!;
 
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
@@ -35,14 +40,14 @@ export class MovieDetailComponent {
     }
 
     this.movieService
-      .getMovieDetails(this.productId, 'es-ES')
+      .getMovieDetails(this.movieApiId, 'es-ES')
       .subscribe((data) => {
         this.movie = data;
         this.genres = data.genresEs!.split(', ');
       });
 
     this.movieService
-      .getMovieReviews(this.productId)
+      .getMovieReviews(this.movieApiId)
       .subscribe((data) => (this.reviews = data));
   }
 
@@ -58,8 +63,8 @@ export class MovieDetailComponent {
       userId: this.user.userId,
       userNickname: '',
       userImage: '',
-      movieApiId: this.productId,
-      content: this.review,
+      movieApiId: this.movieApiId,
+      content: this.reviewForm.value.review,
       creationDate: new Date(),
     };
 

@@ -3,7 +3,20 @@
     <a class="link-primary" (click)="openLoginForm()">Login</a>
   </ng-container>
   <ng-template #elseTemplate>
-    <img src="" alt="">
-    <a [routerLink]="['/statistics', user.id]">{{user.nickname}}</a>
+    <div class="d-flex gap-2">
+      <div>
+        <ng-container *ngIf="user.image; else elseTemplate">
+          <img class="img-fluid" src="{{ user.image }}" alt="avatar">
+        </ng-container>
+        <ng-template #elseTemplate>
+          <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
+        </ng-template>
+
+      </div>
+      <div>
+        <a [routerLink]="['/statistics', user.id]">{{user.nickname}}</a>
+
+      </div>
+    </div>
   </ng-template>
 </div>

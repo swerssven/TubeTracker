@@ -32,6 +32,11 @@ export class UserLoginComponent {
   ) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('user')){
+      let userString = localStorage.getItem('user');
+      this.user = userString ? JSON.parse(userString) : null;
+    }
+    console.log(this.user)
   }
 
   ngDoCheck(): void { // Use ngDoCheck instead of ngOnInit because we need the component to change state when user logs in.
