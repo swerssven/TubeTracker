@@ -3,5 +3,5 @@ export interface IPost {
   userNickname: string,
   userImage: string,
   content: string,
-  creationDate: Date
+  creationDate?: Date
 }

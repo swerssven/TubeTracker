@@ -28,13 +28,18 @@ export class ProfileComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.socialService.getPosts(false, this.user.userId).subscribe((data) => {
+      this.posts = data;
+    });
+  }
+
   createPost(){
     let newPost: IPost = {
       userId: this.user.userId,
       userNickname: "",
       userImage: "",
-      content: this.value,
-      creationDate: new Date()
+      content: this.value
     }
 
     this.socialService.createPost(newPost).subscribe((data) => {
