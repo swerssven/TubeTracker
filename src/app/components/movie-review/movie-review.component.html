@@ -11,8 +11,8 @@
         <span>{{ review.userNickname }}</span>
       </div>
       <div class="d-flex gap-3">
-        <div>{{ review.creationDate + 'Z' | date: 'dd-MM-yyyy' }}</div>
-        <div>{{ review.creationDate + 'Z' | date: 'HH:mm' }}</div>
+        <div>{{ utils.convertDateLocale(review.creationDate) | date: 'dd-MM-yyyy' }}</div>
+        <div>{{ utils.convertDateLocale(review.creationDate) | date: 'HH:mm' }}</div>
       </div>
     </div>
   </div>

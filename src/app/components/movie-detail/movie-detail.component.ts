@@ -53,7 +53,7 @@ export class MovieDetailComponent {
 
   sanitizeURL() {
     this.trailerURL = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://www.youtube.com/embed/' + this.movie.trailer
+      'https://www.youtube.com/embed/' + this.movie.trailerEs
     );
     return this.trailerURL;
   }

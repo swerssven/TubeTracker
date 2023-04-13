@@ -27,6 +27,7 @@ import { UserStatisticsComponent } from './components/user-statistics/user-stati
 import { MovieReviewComponent } from './components/movie-review/movie-review.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { PostComponent } from './components/socialComponents/post/post.component';
+import { FriendCardComponent } from './components/socialComponents/friend-card/friend-card.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -54,7 +55,8 @@ export function HttpLoaderFactory(http: HttpClient){
     DurationPipe,
     UserStatisticsComponent,
     MovieReviewComponent,
-    PostComponent
+    PostComponent,
+    FriendCardComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,8 @@ export interface IMovieDetail {
   genresEn?: string;
   genresEs?: string;
   premiereDate: Date;
-  trailer: string;
+  trailerEn?: string;
+  trailerEs?: string;
   poster: string;
   backdrop: string;
   duration: number;

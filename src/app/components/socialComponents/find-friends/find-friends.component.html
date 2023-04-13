@@ -1,1 +1,22 @@
-<p>find-friends works!</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-8 d-flex justify-content-center">
+      <form [formGroup]="searchFriendForm" (ngSubmit)="searchForFriends()">
+        <div class="d-flex gap-2">
+          <input class="form-control" type="text" placeholder="Find new friends..." formControlName="search">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="alert alert-danger"
+          *ngIf="searchFriendForm.get('review')?.touched && searchFriendForm.get('review')?.errors?.['required']">Campo
+          obligatorio</div>
+      </form>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <div *ngFor="let friend of friends">
+        <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend"></app-friend-card>
+      </div>
+    </div>
+  </div>
+</div>

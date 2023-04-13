@@ -1,0 +1,21 @@
+<div class="card bg-posts shadow bg-friend mt-2">
+  <div class="card-body p-1">
+    <div class="d-flex justify-content-between me-4">
+      <div class="d-flex align-items-center gap-3">
+        <ng-container *ngIf="friend.friendImage; else elseTemplate">
+          <img class="img-fluid" src="{{ friend.friendImage }}" alt="avatar">
+        </ng-container>
+        <ng-template #elseTemplate>
+          <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
+        </ng-template>
+        <span class="fs-3">{{ friend.friendNickname }}</span>
+        <span class="mt-2" *ngIf="friend.friendshipStatus == 3">INVITED YOU TO BECOME FRIENDS</span>
+      </div>
+      <div class="d-flex align-items-center">
+        <span *ngIf="friend.friendshipStatus == 0">INVITATION SEND</span>
+        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()">INVITE</button>
+        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 3" (click)="acceptInvitation()">ACCEPT INVITATION</button>
+      </div>
+    </div>
+  </div>
+</div>
