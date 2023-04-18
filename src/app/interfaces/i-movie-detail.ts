@@ -16,4 +16,5 @@ export interface IMovieDetail {
   backdrop: string;
   duration: number;
   movieReviews?: any;
+  rating?: number;
 }

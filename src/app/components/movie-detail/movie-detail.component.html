@@ -19,12 +19,11 @@
       <div class="col-3 d-flex justify-content-end">
         <div>
           <h6>Rating on Tube Tracker</h6>
-          <div class="d-flex justify-content-end">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star"></i>
+          <div class="star-container">
+            <i *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" class="bi"
+              [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
+              (mouseenter)="auxRating = star" (click)="setMovieRating()">
+            </i>
           </div>
         </div>
       </div>

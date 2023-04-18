@@ -19,6 +19,8 @@ export class MovieDetailComponent {
   reviews!: IReview[];
   review!: string;
   user!: any;
+  auxRating: number = 7;
+  rating!: number;
   reviewForm: FormGroup = this.formBuilder.group({
     review: ['', [Validators.minLength(20), Validators.required]]
   });
@@ -34,21 +36,37 @@ export class MovieDetailComponent {
   ngOnInit(): void {
     this.movieApiId = +this.route.snapshot.paramMap.get('id')!;
 
+    //this.restoreMovieRating();
+
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
 
     this.movieService
-      .getMovieDetails(this.movieApiId, 'es-ES')
+      .getMovieDetails(this.movieApiId, 'es-ES', this.user.userId)
       .subscribe((data) => {
         this.movie = data;
         this.genres = data.genresEs!.split(', ');
+        console.log(data)
       });
 
     this.movieService
       .getMovieReviews(this.movieApiId)
       .subscribe((data) => (this.reviews = data));
+
+    // getmovierating service
+  }
+
+  restoreMovieRating() {
+    this.auxRating = this.rating;
+  }
+
+  setMovieRating() {
+      this.movieService.setMovieRating(this.movieApiId, this.user.userId, this.auxRating).subscribe(
+        (data) => {this.rating = data
+        console.log(data)}
+      );
   }
 
   sanitizeURL() {

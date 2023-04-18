@@ -16,8 +16,12 @@ export class MovieServiceService {
     return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieList?filter=${searchString}&page=1&language=es-ES`);
   }
 
-  getMovieDetails(movieId: number, language: string): Observable<IMovieDetail>{
-    return this.http.get<IMovieDetail>(`https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=es-ES`);
+  getMovieDetails(movieId: number, language: string, userId: number): Observable<IMovieDetail>{
+    return this.http.get<IMovieDetail>(`https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=es-ES&userId=${userId}`);
+  }
+
+  setMovieRating(movieApiId: number, userId: number, rating: number): Observable<number>{
+    return this.http.post<number>(`https://localhost:7203/api/Movie/setMovieRating?movieApiId=${movieApiId}&userId=${userId}&rating=${rating}`, null);
   }
 
   getMovieReviews(movieId: number): Observable<IReview[]>{
@@ -25,6 +29,6 @@ export class MovieServiceService {
   }
 
   createMovieReview(review: IReview): Observable<IReview[]>{
-    return this.http.post<IReview[]>(`https://localhost:7203/api/Movie/createReview`, review);
+    return this.http.post<IReview[]>(`https://localhost:7203/api/Movie/createReview`,review);
   }
 }
