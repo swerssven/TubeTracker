@@ -19,7 +19,7 @@ export class MovieDetailComponent {
   reviews!: IReview[];
   review!: string;
   user!: any;
-  auxRating: number = 7;
+  auxRating: number = 3;
   rating!: number;
   reviewForm: FormGroup = this.formBuilder.group({
     review: ['', [Validators.minLength(20), Validators.required]]

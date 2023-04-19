@@ -8,19 +8,27 @@
       </div>
     </div>
     <div class="col-8 d-flex justify-content-between">
-      <div class="col-3">
-        <h6>User Reviews</h6>
+      <div>
+        <h6>REVIEWS</h6>
         <h6><b>2.3K</b></h6>
       </div>
-      <div class="col-3 d-flex justify-content-around">
-        <i class="bi bi-eye text-white"></i>
-        <i class="bi bi-camera-reels text-white"></i>
+      <div>
+        <i class="bi bi-eye icon"></i>
       </div>
-      <div class="col-3 d-flex justify-content-end">
-        <div>
-          <h6>Rating on Tube Tracker</h6>
-          <div class="star-container">
-            <i *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" class="bi"
+      <div>
+        <i class="bi bi-camera-reels icon"></i>
+      </div>
+      <div class="row">
+        <div class="row">
+          <h6 class="col text-end">TT RATING</h6>
+          <h6 class="col"><b>7.7</b></h6>
+        </div>
+        <div class="row">
+          <div class="col text-end">
+            <h6>YOUR RATING</h6>
+          </div>
+          <div class="star-container col">
+            <i *ngFor="let star of [1,2,3,4,5]" class="bi"
               [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
               (mouseenter)="auxRating = star" (click)="setMovieRating()">
             </i>
@@ -47,18 +55,18 @@
   </div>
   <div class="row mt-4">
     <div class="col-12">
-      <h3><b>Description</b></h3>
+      <h3><b>DESCRIPTION</b></h3>
       <p *ngIf="movie">{{movie.descriptionEs}}</p>
     </div>
     <div class="col-12">
       <div class="d-flex align-items-center gap-3">
-        <h6><b>Director/s</b></h6>
+        <h6><b>DIRECTOR/S</b></h6>
         <h6 *ngIf="movie">{{movie.directors}}</h6>
       </div>
     </div>
     <div class="col-12">
       <div class="d-flex gap-3">
-        <h6><b>Actor/s</b></h6>
+        <h6><b>ACTOR/S</b></h6>
         <h6 *ngIf="movie">{{movie.actors}}</h6>
       </div>
     </div>
@@ -67,7 +75,7 @@
 
   <div class="row mt-4">
     <div class="col-12">
-      <h3><b>User Reviews</b></h3>
+      <h3><b>USER REVIEWS</b></h3>
       <div class="row">
         <form [formGroup]="reviewForm" (ngSubmit)="createMovieReview()">
           <div class="col-12 form d-flex gap-2 justify-content-start mb-4">
