@@ -11,6 +11,6 @@ export class SerieServiceService {
   constructor(private http: HttpClient) { }
 
   getSerieSearchList(searchString: string, page: number): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/getSerieSearchList?filter=${searchString}&page=1`);
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSerieSearchList?filter=${searchString}&page=${page}&language=es-ES`);
   }
 }

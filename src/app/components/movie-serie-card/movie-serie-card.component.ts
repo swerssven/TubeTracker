@@ -8,9 +8,14 @@ import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 })
 export class MovieSerieCardComponent {
   @Input() movie_serie!: any;
+  @Input() type!: string;
   date!: Date;
 
   ngOnInit(): void {
-    this.date = new Date(this.movie_serie.release_date);
+    if(this.type == "movies"){
+      this.date = new Date(this.movie_serie.release_date);
+    }else if(this.type == "series"){
+      this.date = new Date(this.movie_serie.first_air_date);
+    }
   }
 }

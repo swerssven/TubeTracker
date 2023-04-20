@@ -2,10 +2,10 @@
   <div class="row mt-5">
     <div *ngIf="user" class="col-2">
       <ng-container *ngIf="user.image == null; else elseTemplate">
-        <img class="img-fluid" src="../../../../assets/default-avatar.png" alt="Avatar">
+        <img class="img-fluid shadow" src="../../../../assets/default-avatar.png" alt="Avatar">
       </ng-container>
       <ng-template #elseTemplate>
-        <img class="img-fluid" src="{{user.image}}" alt="Avatar">
+        <img class="img-fluid shadow" src="{{user.image}}" alt="Avatar">
       </ng-template>
     </div>
     <div class="col">

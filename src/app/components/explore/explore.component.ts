@@ -9,8 +9,6 @@ import { SerieServiceService } from 'src/app/services/serie-service.service';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent {
-  numbers = Array(20).fill(4); // [4,4,4,4,4]
-  movie_serie = "";
 
   selectedRadio: string = "movies";
   searchString: string = '';
@@ -34,6 +32,7 @@ export class ExploreComponent {
       this.serieService.getSerieSearchList(this.searchString, 1).subscribe(
         series => {
           this.movies_series = series;
+          this.isLoading = false;
         }
       )
     }

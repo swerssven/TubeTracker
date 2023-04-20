@@ -19,8 +19,9 @@ export class MovieDetailComponent {
   reviews!: IReview[];
   review!: string;
   user!: any;
-  auxRating: number = 3;
+  auxRating!: number;
   rating!: number;
+  ttRating!: number;
   reviewForm: FormGroup = this.formBuilder.group({
     review: ['', [Validators.minLength(20), Validators.required]]
   });
@@ -55,7 +56,9 @@ export class MovieDetailComponent {
       .getMovieReviews(this.movieApiId)
       .subscribe((data) => (this.reviews = data));
 
-    // getmovierating service
+    this.movieService.getMovieRatings(this.movieApiId, this.user.userId)
+    .subscribe((data) => {this.auxRating = data.userRating;
+    this.ttRating = data.averageRating})
   }
 
   restoreMovieRating() {
@@ -64,8 +67,8 @@ export class MovieDetailComponent {
 
   setMovieRating() {
       this.movieService.setMovieRating(this.movieApiId, this.user.userId, this.auxRating).subscribe(
-        (data) => {this.rating = data
-        console.log(data)}
+        (data) => {this.auxRating = data.userRating
+          this.ttRating = data.averageRating}
       );
   }
 

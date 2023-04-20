@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IMovieDetail } from '../interfaces/i-movie-detail';
 import { IReview } from '../interfaces/i-review';
+import { IRatings } from '../interfaces/i-ratings';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,12 @@ export class MovieServiceService {
     return this.http.get<IMovieDetail>(`https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=es-ES&userId=${userId}`);
   }
 
-  setMovieRating(movieApiId: number, userId: number, rating: number): Observable<number>{
-    return this.http.post<number>(`https://localhost:7203/api/Movie/setMovieRating?movieApiId=${movieApiId}&userId=${userId}&rating=${rating}`, null);
+  setMovieRating(movieApiId: number, userId: number, rating: number): Observable<IRatings>{
+    return this.http.post<IRatings>(`https://localhost:7203/api/Movie/setMovieRating?movieApiId=${movieApiId}&userId=${userId}&rating=${rating}`, null);
+  }
+
+  getMovieRatings(movieApiId: number, userId: number): Observable<IRatings>{
+    return this.http.get<IRatings>(`https://localhost:7203/api/Movie/getMovieRatings?userId=${userId}&movieApiId=${movieApiId}`);
   }
 
   getMovieReviews(movieId: number): Observable<IReview[]>{
