@@ -28,6 +28,8 @@ import { MovieReviewComponent } from './components/movie-review/movie-review.com
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { PostComponent } from './components/socialComponents/post/post.component';
 import { FriendCardComponent } from './components/socialComponents/friend-card/friend-card.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -65,6 +67,8 @@ export function HttpLoaderFactory(http: HttpClient){
     ReactiveFormsModule,
     FormsModule,
     EditorModule,
+    CarouselModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

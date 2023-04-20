@@ -43,5 +43,14 @@
 
   "SEARCH":{
     "NO_RESULTS": "No results"
+  },
+
+  "POPULAR":{
+    "RECOMMENDED_MOVIES": "Recommended movies",
+    "RECOMMENDED_SERIES": "Recommended series",
+    "POPULAR_MOVIES": "Popular movies",
+    "POPULAR_SERIES": "Popular series",
+    "TOP_RATED_MOVIES": "Top rated movies",
+    "TOP_RATED_SERIES": "Top rated series"
   }
 }

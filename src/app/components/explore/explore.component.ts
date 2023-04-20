@@ -22,14 +22,14 @@ export class ExploreComponent {
   searchMoviesSeries(){
     this.isLoading = true;
     if(this.selectedRadio === "movies"){
-      this.movieService.getMovieSearchList(this.searchString, 1).subscribe(
+      this.movieService.getMovieSearchList(this.searchString, 1, "es-ES").subscribe(
         movies => {
           this.movies_series = movies;
           this.isLoading = false;
         }
       )
     }else if(this.selectedRadio === "series"){
-      this.serieService.getSerieSearchList(this.searchString, 1).subscribe(
+      this.serieService.getSerieSearchList(this.searchString, 1, "es-ES").subscribe(
         series => {
           this.movies_series = series;
           this.isLoading = false;

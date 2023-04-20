@@ -13,12 +13,20 @@ export class MovieServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieSearchList(searchString: string, page: number): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieSearchList?filter=${searchString}&page=1&language=es-ES`);
+  getMovieSearchList(searchString: string, page: number, language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieSearchList?filter=${searchString}&page=${page}&language=${language}`);
+  }
+
+  getMoviePopularList(page: number, language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMoviePopularList?page=${page}&language=${language}`);
+  }
+
+  getMovieTopRatedList(page: number, language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieTopRatedList?page=${page}&language=${language}`);
   }
 
   getMovieDetails(movieId: number, language: string, userId: number): Observable<IMovieDetail>{
-    return this.http.get<IMovieDetail>(`https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=es-ES&userId=${userId}`);
+    return this.http.get<IMovieDetail>(`https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=${language}&userId=${userId}`);
   }
 
   setMovieRating(movieApiId: number, userId: number, rating: number): Observable<IRatings>{
