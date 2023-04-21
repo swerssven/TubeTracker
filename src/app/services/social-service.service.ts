@@ -28,10 +28,10 @@ export class SocialServiceService {
   }
 
   getPosts(forFriend: boolean, userId: number): Observable<IPost[]>{
-    return this.http.get<IPost[]>(`https://localhost:7203/api/Social/getPostsList?forFriends=${forFriend}&userId=${userId}`)
+    return this.http.get<IPost[]>(`https://localhost:7203/api/Social/posts/getPostsList?forFriends=${forFriend}&userId=${userId}`)
   }
 
   createPost(post: IPost): Observable<IPost[]>{
-    return this.http.post<IPost[]>(`https://localhost:7203/api/Social/createPost`, post);
+    return this.http.post<IPost[]>(`https://localhost:7203/api/Social/postscreatePost`, post);
   }
 }

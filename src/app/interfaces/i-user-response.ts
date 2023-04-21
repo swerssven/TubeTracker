@@ -6,4 +6,5 @@ export interface IUserResponse {
   email: string;
   language: string;
   image: string;
+  rolId?: number;
 }

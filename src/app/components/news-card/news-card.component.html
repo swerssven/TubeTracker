@@ -1,17 +1,25 @@
-<div class="card shadow mt-3">
+<div class="card bg-posts shadow mt-2">
   <div class="card-body">
-    <div class="row">
-      <img class="img-fluid" src="" alt="News Image">
-      <h4 class="card-title">Title News</h4>
-    </div>
-    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias ducimus vero voluptatum
-      distinctio aliquam, adipisci consectetur minus tempora ea enim dolore iusto deleniti esse. Rerum, ducimus
-      aspernatur provident nam, obcaecati ratione id commodi sequi aperiam perferendis molestias. Sint sunt, repellat
-      atque maxime assumenda harum fuga nisi nostrum odio illo praesentium.</p>
-
+    <span class="card-text" *ngIf="newsArticle && content || content"
+      [innerHTML]="sanitizer.bypassSecurityTrustHtml(content)"></span>
   </div>
-  <div class="card-footer text-muted d-flex justify-content-between">
-    <span>Sven Swers</span>
-    <span>24/03/2023</span>
+  <div class="card-footer m-0 p-1">
+    <div class="col-12 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <ng-container *ngIf="newsArticle && newsArticle.userImage; else elseTemplate">
+          <img class="img-fluid" src="{{ newsArticle.userImage }}" alt="avatar">
+        </ng-container>
+        <ng-template #elseTemplate>
+          <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
+        </ng-template>
+        <span *ngIf="newsArticle && newsArticle.creatorNickname">{{ newsArticle.creatorNickname }}</span>
+      </div>
+      <div class="d-flex gap-3">
+        <div *ngIf="newsArticle && newsArticle.creationDate">{{ utils.convertDateLocale(newsArticle.creationDate) |
+          date: 'dd-MM-yyyy' }}</div>
+        <div *ngIf="newsArticle && newsArticle.creationDate">{{ utils.convertDateLocale(newsArticle.creationDate) |
+          date: 'HH:mm' }}</div>
+      </div>
+    </div>
   </div>
 </div>

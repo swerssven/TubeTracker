@@ -1,1 +1,9 @@
-/*# sourceMappingURL=news-card.component.css.map */
+.bg-reviews {
+  background-color: rgba(0, 0, 0, 0.171);
+}
+
+img {
+  border-radius: 50%;
+  max-width: 30px;
+  max-height: 30px;
+}/*# sourceMappingURL=news-card.component.css.map */

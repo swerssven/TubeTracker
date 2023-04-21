@@ -14,6 +14,7 @@ import { SerieDetailComponent } from './components/serie-detail/serie-detail.com
 import { MovieResolver } from './resolvers/movie-resolver'
 import { AuthGardGuard } from './guards/auth-gard.guard';
 import { UserStatisticsComponent } from './components/user-statistics/user-statistics.component';
+import { NewsCreatorComponent } from './components/news-creator/news-creator.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'popular', canActivate: [AuthGardGuard], component: PopularComponent},
   {path: 'favorites', canActivate: [AuthGardGuard], component: FavoritesComponent},
   {path: 'movie/:id', canActivate: [AuthGardGuard], component: MovieDetailComponent, resolve:{movie: MovieResolver}},
+  {path: 'news/newArticle', canActivate: [AuthGardGuard], component: NewsCreatorComponent},
   {path: 'serie/:id', canActivate: [AuthGardGuard], component: SerieDetailComponent},
   {path: 'social/news-board', canActivate: [AuthGardGuard], component: NewsBoardComponent},
   {path: 'social/profile', canActivate: [AuthGardGuard], component: ProfileComponent},

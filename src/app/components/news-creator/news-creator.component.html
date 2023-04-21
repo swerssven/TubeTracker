@@ -1,0 +1,14 @@
+<div class="container text-center">
+  <h1>Welcome to the NAC, dear administrator!</h1>
+  <h3>(News Article Creator)</h3>
+  <p>INSTRUCTIONS: First enter the article in English >> Press next language >> Enter article in Spanish >> Press send to save in data base.</p>
+</div>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
+      <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
+      <input *ngIf="language == 'en-EN'" type="button" class="btn btn-primary" value="NEXT LANGUAGE" (click)="createNewsArticle()">
+      <input *ngIf="language == 'es-ES'" type="button" class="btn btn-primary" value="SEND" (click)="createNewsArticle()">
+    </div>
+  </div>
+</div>
