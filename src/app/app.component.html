@@ -26,6 +26,11 @@
           <a class="nav-link" [routerLink]="['/favorites']" [routerLinkActive]="['active']">{{"NAV.FAVORITES" |
             translate}}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/social']" [routerLinkActive]="['active']">{{"NAV.SOCIAL.SOCIAL" |
+            translate}}</a>
+        </li>
+        <!--
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"
             [class.active]="router.isActive('/social/news-board', true) || router.isActive('/social/news-board', true)||
@@ -46,13 +51,9 @@
                 [routerLinkActive]="['active']">{{"NAV.SOCIAL.MESSAGES" | translate}}</a></li>
           </ul>
         </li>
+        -->
         <li class="d-flex align-items-center">
           <app-user-login></app-user-login>
-          <!--
-          <a class="nav-link active" [routerLink]="['/user']">
-            <img src="" alt="*">
-            USER name
-          </a>-->
         </li>
       </ul>
     </div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <nav class="row justify-content-center">
+      <ul class="nav d-flex justify-content-center gap-5 gap-md-4">
+        <li class="nav-item">
+          <a class="nav-link d-flex gap-2" [routerLink]="['/social/news-board']" [class.active]="router.isActive('/social', true)" [routerLinkActive]="['active']">
+            <i class="bi bi-house-fill"></i>
+            <div class="d-none d-md-block">{{"NAV.SOCIAL.NEWS_BOARD" | translate}}</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex gap-2" [routerLink]="['/social/profile']" [routerLinkActive]="['active']">
+            <i class="bi bi-person-square"></i>
+            <div class="d-none d-md-block">{{"NAV.SOCIAL.MY_PROFILE" | translate}}</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex flex-sm-nowrap gap-2" [routerLink]="['/social/find-friends']" [routerLinkActive]="['active']">
+            <i class="bi bi-people-fill"></i>
+            <div class="d-none d-md-block">{{"NAV.SOCIAL.FIND_FRIENDS" | translate}}</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex gap-2" [routerLink]="['/social/messages']" [routerLinkActive]="['active']">
+            <i class="bi bi-chat-square-text-fill"></i>
+            <div class="d-none d-md-block">{{"NAV.SOCIAL.MESSAGES" | translate}}</div>
+          </a>
+        </li>
+      </ul>
+  </nav>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

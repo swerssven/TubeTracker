@@ -31,6 +31,7 @@ import { FriendCardComponent } from './components/socialComponents/friend-card/f
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsCreatorComponent } from './components/news-creator/news-creator.component';
+import { SocialHomeComponent } from './components/socialComponents/social-home/social-home.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -60,7 +61,8 @@ export function HttpLoaderFactory(http: HttpClient){
     MovieReviewComponent,
     PostComponent,
     FriendCardComponent,
-    NewsCreatorComponent
+    NewsCreatorComponent,
+    SocialHomeComponent
   ],
   imports: [
     BrowserModule,
