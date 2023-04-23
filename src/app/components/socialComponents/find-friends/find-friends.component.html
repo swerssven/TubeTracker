@@ -3,6 +3,7 @@
     <div class="col-8 d-flex justify-content-center">
       <form [formGroup]="searchFriendForm" (ngSubmit)="searchForFriends()">
         <div class="d-flex gap-2">
+          <button class="btn btn-primary" *ngIf="friendsSearchList" (click)="emptyFriendSearchList()">&#8592;</button>
           <input class="form-control" type="text" placeholder="Find new friends..." formControlName="search">
           <button class="btn btn-primary" type="submit">Search</button>
         </div>
@@ -14,8 +15,17 @@
   </div>
   <div class="row d-flex justify-content-center">
     <div class="col-8">
-      <div *ngFor="let friend of friends">
-        <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend"></app-friend-card>
+      <div *ngIf="friendsSearchList && friendsSearchList.length > 0">
+        <h6 class="mt-3">YOUR_SEARCH</h6>
+        <div *ngFor="let friendSearch of friendsSearchList">
+          <app-friend-card *ngIf="friendSearch.userId != user.userId" [friend]="friendSearch"></app-friend-card>
+        </div>
+      </div>
+      <div *ngIf="friends && !friendsSearchList">
+        <h6 class="mt-3">FRIENDS</h6>
+        <div *ngFor="let friend of friends">
+          <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend"></app-friend-card>
+        </div>
       </div>
     </div>
   </div>

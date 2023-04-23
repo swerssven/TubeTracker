@@ -1,0 +1,9 @@
+.bg-friend {
+  background-color: rgba(0, 0, 0, 0.171);
+}
+
+img {
+  border-radius: 50%;
+  max-width: 80px;
+  max-height: 80px;
+}/*# sourceMappingURL=friend-list-message-card.component.css.map */

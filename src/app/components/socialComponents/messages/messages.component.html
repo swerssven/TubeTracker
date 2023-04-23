@@ -1,1 +1,9 @@
-<p>messages works!</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
+      <div *ngFor="let message of messages">
+        <app-message-card [message]="message" [sender]="sender.userId"></app-message-card>
+      </div>
+    </div>
+  </div>
+</div>

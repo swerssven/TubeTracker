@@ -16,6 +16,7 @@ import { AuthGardGuard } from './guards/auth-gard.guard';
 import { UserStatisticsComponent } from './components/user-statistics/user-statistics.component';
 import { NewsCreatorComponent } from './components/news-creator/news-creator.component';
 import { SocialHomeComponent } from './components/socialComponents/social-home/social-home.component';
+import { FriendsWithMessaggesListComponent } from './components/socialComponents/friends-with-messagges-list/friends-with-messagges-list.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -31,7 +32,8 @@ const routes: Routes = [
       {path: 'news-board', canActivate: [AuthGardGuard], component: NewsBoardComponent},
       {path: 'profile', canActivate: [AuthGardGuard], component: ProfileComponent},
       {path: 'find-friends', canActivate: [AuthGardGuard], component: FindFriendsComponent},
-      {path: 'messages', canActivate: [AuthGardGuard], component: MessagesComponent},
+      {path: 'friends-messages-list', canActivate: [AuthGardGuard], component: FriendsWithMessaggesListComponent},
+      {path: 'messages/:id', canActivate: [AuthGardGuard], component: MessagesComponent},
     ]},
   {path: 'statistics/:id', canActivate: [AuthGardGuard], component: UserStatisticsComponent},
   {path: 'login', component: UserLoginComponent},

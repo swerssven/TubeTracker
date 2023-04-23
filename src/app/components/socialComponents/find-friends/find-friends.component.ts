@@ -15,6 +15,7 @@ export class FindFriendsComponent {
   });
   user!: any;
   friends!: IFriend[];
+  friendsSearchList!: IFriend[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,13 +27,11 @@ export class FindFriendsComponent {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
-    this.socialService
-      .getFriends(this.user.userId)
-      .subscribe((data) => {
+    this.socialService.getFriends(this.user.userId).subscribe((data) => {
+      this.friends = data;
 
-        this.friends = data
-
-        console.log(this.friends)});
+      console.log(this.friends);
+    });
   }
 
   searchForFriends() {
@@ -41,6 +40,12 @@ export class FindFriendsComponent {
         this.user.userId,
         this.searchFriendForm.value.search
       )
-      .subscribe((data) => (this.friends = data));
+      .subscribe((data) => {this.friendsSearchList = data
+      this.searchFriendForm.reset()});
+  }
+
+  emptyFriendSearchList() {
+    let SearchList!: IFriend[];
+    this.friendsSearchList = SearchList;
   }
 }

@@ -1,0 +1,5 @@
+<div class="card my-2">
+  <div class="card-body" [ngClass]="message.senderUserId == sender ? 'text-end bg-success' : 'text-start bg-secondary'">
+    {{ message.content }}
+  </div>
+</div>

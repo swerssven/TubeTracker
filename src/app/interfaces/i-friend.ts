@@ -3,5 +3,6 @@ export interface IFriend {
   friendUserId: number,
   friendNickname: string,
   friendImage: string,
-  friendshipStatus: number
+  friendshipStatus: number,
+  newMessagesCount?: number
 }

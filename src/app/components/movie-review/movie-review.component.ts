@@ -10,8 +10,5 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
 export class MovieReviewComponent {
   @Input() review!: IReview;
 
-  /**
-   *
-   */
   constructor(public utils: UtilsServiceService) {}
 }

@@ -1,0 +1,3 @@
+<div *ngFor="let friend of friendsMessageList">
+  <app-friend-list-message-card *ngIf="friend.userId != user.userId" [friend]="friend"></app-friend-list-message-card>
+</div>

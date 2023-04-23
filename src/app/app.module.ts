@@ -32,6 +32,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsCreatorComponent } from './components/news-creator/news-creator.component';
 import { SocialHomeComponent } from './components/socialComponents/social-home/social-home.component';
+import { FriendsWithMessaggesListComponent } from './components/socialComponents/friends-with-messagges-list/friends-with-messagges-list.component';
+import { MessageCardComponent } from './components/socialComponents/message-card/message-card.component';
+import { FriendListMessageCardComponent } from './components/socialComponents/friend-list-message-card/friend-list-message-card.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -62,7 +65,10 @@ export function HttpLoaderFactory(http: HttpClient){
     PostComponent,
     FriendCardComponent,
     NewsCreatorComponent,
-    SocialHomeComponent
+    SocialHomeComponent,
+    FriendsWithMessaggesListComponent,
+    MessageCardComponent,
+    FriendListMessageCardComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,6 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
 export class FriendCardComponent {
   @Input() friend!: IFriend;
   user!: any;
-  friends!: IFriend[];
 
   constructor(private socialService: SocialServiceService) {}
 
