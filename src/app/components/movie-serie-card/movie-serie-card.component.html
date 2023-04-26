@@ -18,8 +18,12 @@
     </ng-template>
   </a>
   <div class="absolute d-flex justify-content-between mt-2">
-    <i class="icon icon-left bi bi-eye text-white ms-3"></i>
-    <i class="icon icon-right bi bi-camera-reels text-white me-3"></i>
+    <div class="icon icon-left text-white ms-3" title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()">
+      <i class="bi" [ngClass]="movie_serie.watched ? 'bi-eye-fill' : 'bi-eye' "></i>
+    </div>
+    <div class="icon icon-right text-white me-3" title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}">
+      <i class="bi bi-camera-reels"></i>
+    </div>
   </div>
   <div class="card-body">
     <h5 class="card-title fs-6">{{movie_serie.title || movie_serie.name}} ({{date | date: 'yyyy'}})</h5>

@@ -13,16 +13,16 @@ export class MovieServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieSearchList(searchString: string, page: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieSearchList?filter=${searchString}&page=${page}&language=${language}`);
+  getMovieSearchList(searchString: string, page: number, language: string, userId: number): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieSearchList?filter=${searchString}&page=${page}&language=${language}&userId=${userId}`);
   }
 
-  getMoviePopularList(page: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMoviePopularList?page=${page}&language=${language}`);
+  getMoviePopularList(language: string, userId: number): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMoviePopularList?language=${language}&userId=${userId}`);
   }
 
-  getMovieTopRatedList(page: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieTopRatedList?page=${page}&language=${language}`);
+  getMovieTopRatedList(language: string, userId: number): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getMovieTopRatedList?language=${language}&userId=${userId}`);
   }
 
   getMovieDetails(movieId: number, language: string, userId: number): Observable<IMovieDetail>{
@@ -43,5 +43,9 @@ export class MovieServiceService {
 
   createMovieReview(review: IReview): Observable<IReview[]>{
     return this.http.post<IReview[]>(`https://localhost:7203/api/Movie/createReview`,review);
+  }
+
+  setMovieWatched(movieApiId: number, userId: number, language: string, watched: boolean): Observable<boolean>{
+    return this.http.post<boolean>(`https://localhost:7203/api/Movie/setMovieWatched?movieApiId=${movieApiId}&userId=${userId}&language=${language}&watched=${watched}`, null);
   }
 }

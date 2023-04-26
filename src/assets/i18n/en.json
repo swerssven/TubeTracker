@@ -52,5 +52,10 @@
     "POPULAR_SERIES": "Popular series",
     "TOP_RATED_MOVIES": "Top rated movies",
     "TOP_RATED_SERIES": "Top rated series"
+  },
+
+  "MOVIE_SERIE_CARD":{
+    "WATCHED": "Mark watched",
+    "FAVORITE": "Mark favorite"
   }
 }

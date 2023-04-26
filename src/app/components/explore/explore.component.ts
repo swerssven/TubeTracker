@@ -14,15 +14,23 @@ export class ExploreComponent {
   searchString: string = '';
   isLoading = false;
   movies_series!: any;
+  user!: any;
 
   constructor(private movieService: MovieServiceService, private serieService: SerieServiceService) {
 
   }
 
+  ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      let userString = localStorage.getItem('user');
+      this.user = userString ? JSON.parse(userString) : null;
+    }
+  }
+
   searchMoviesSeries(){
     this.isLoading = true;
     if(this.selectedRadio === "movies"){
-      this.movieService.getMovieSearchList(this.searchString, 1, "es-ES").subscribe(
+      this.movieService.getMovieSearchList(this.searchString, 1, this.user.language, this.user.userId).subscribe(
         movies => {
           this.movies_series = movies;
           this.isLoading = false;

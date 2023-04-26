@@ -14,11 +14,11 @@ export class SerieServiceService {
     return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSerieSearchList?filter=${searchString}&page=${page}&language=${language}`);
   }
 
-  getSeriePopularList(page: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSeriePopularList?page=${page}&language=${language}`);
+  getSeriePopularList(language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSeriePopularList?language=${language}`);
   }
 
-  getSerieTopRatedList(page: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSerieTopRatedList?page=${page}&language=${language}`);
+  getSerieTopRatedList(language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Serie/getSerieTopRatedList?language=${language}`);
   }
 }
