@@ -1,28 +1,37 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
     <div class="col-4">
-      <h1><b>Friends</b></h1>
+      <h2 *ngIf="serie"><b>{{title}}</b></h2>
       <div class="d-flex gap-5">
-        <h6>1989</h6>
-        <h6>134 Episodes</h6>
+        <h6 *ngIf="serie">{{serie.premiereDate | date: 'yyyy'}}</h6>
+        <h6 *ngIf="serie">134 Episodes</h6>
       </div>
     </div>
     <div class="col-8 d-flex justify-content-between">
-      <div class="col-3">
-        <h6>User Reviews</h6>
-        <h6><b>2.3K</b></h6>
+      <div class="col">
+        <h6>REVIEWS</h6>
+        <h6 *ngIf="reviews"><b>{{reviews.numReviews}}</b></h6>
       </div>
-      <div class="col-3 d-flex justify-content-around">
+      <div class="col d-flex justify-content-center align-items-center">
+        <i *ngIf="serie" class="bi icon" [ngClass]="serie.watched ? 'bi-eye-fill' : 'bi-eye' " title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
       </div>
-      <div class="col-3 d-flex justify-content-end">
-        <div>
-          <h6>Rating on Tube Tracker</h6>
-          <div class="d-flex justify-content-end">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star"></i>
+      <div class="col d-flex justify-content-center align-items-center">
+        <i *ngIf="serie" class="bi icon" [ngClass]="serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' " title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
+      </div>
+      <div class="row">
+        <div class="row">
+          <h6 class="col text-end">TT RATING</h6>
+          <h6 class="col"><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
+        </div>
+        <div class="row">
+          <div class="col text-end">
+            <h6>YOUR RATING</h6>
+          </div>
+          <div class="star-container col">
+            <i *ngFor="let star of [1,2,3,4,5]" class="bi"
+              [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
+              (mouseenter)="auxRating = star" (click)="setSerieRating()">
+            </i>
           </div>
         </div>
       </div>
@@ -30,8 +39,7 @@
   </div>
   <div class="row mt-3">
     <div class="col-4">
-      <img class="img-fluid" src="../../../assets/Friendsposter.jpeg" alt="">
-    </div>
+      <img *ngIf="serie" class="img-fluid shadow" src="{{'https://image.tmdb.org/t/p/w400' + serie.poster}}" alt="">    </div>
     <!--Episodes Component-->
     <div class="col-8">
       <div class="row">
@@ -48,6 +56,7 @@
             <div class="d-flex justify-content-between">
               <span>1</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -58,6 +67,7 @@
             <div class="d-flex justify-content-between">
               <span>2</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -68,6 +78,7 @@
             <div class="d-flex justify-content-between">
               <span>3</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -78,6 +89,7 @@
             <div class="d-flex justify-content-between">
               <span>4</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -88,6 +100,7 @@
             <div class="d-flex justify-content-between">
               <span>5</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -98,6 +111,7 @@
             <div class="d-flex justify-content-between">
               <span>6</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -108,6 +122,7 @@
             <div class="d-flex justify-content-between">
               <span>7</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -118,6 +133,7 @@
             <div class="d-flex justify-content-between">
               <span>8</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -128,6 +144,7 @@
             <div class="d-flex justify-content-between">
               <span>9</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -138,6 +155,7 @@
             <div class="d-flex justify-content-between">
               <span>10</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -148,6 +166,7 @@
             <div class="d-flex justify-content-between">
               <span>11</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -158,6 +177,7 @@
             <div class="d-flex justify-content-between">
               <span>12</span>
               <span>Episode Title</span>
+              <span>20min</span>
               <span>Launch Date 02-05-1989</span>
               <i class="bi bi-eye text-white"></i>
             </div>
@@ -167,154 +187,57 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col d-flex gap-3">
-      <div class="badge rounded-pill bg-primary">Comedy</div>
-      <div class="badge rounded-pill bg-primary">Drama</div>
+    <div *ngIf="serie" class="col d-flex gap-3 align-items-center">
+      <div class="badge rounded-pill bg-primary p-2" *ngFor="let genre of genres">{{genre}}</div>
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col-7">
-      <div class="col-12">
-        <h3><b>Description</b></h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel praesentium molestias exercitationem, inventore
-          quae magni necessitatibus. Eius, natus dolores! Consequuntur repudiandae odit, eos enim natus nemo asperiores
-          nesciunt dolores fugit suscipit? Architecto quod, repudiandae voluptatem exercitationem quo perspiciatis harum
-          autem quidem, id voluptas nam recusandae animi aperiam facilis ex? Corrupti.</p>
-      </div>
-      <div class="col-12 mt-5">
-        <div class="d-flex align-items-center gap-3">
-          <h6><b>Creator/s</b></h6>
-          <h6>Stanley Lee</h6>
-        </div>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="d-flex align-items-center gap-3">
-          <h6><b>Actor/s</b></h6>
-          <h6>Stanley Lee, Glee Leeman, Rachel Depount</h6>
-        </div>
+    <div class="col-12">
+      <h3><b>DESCRIPTION</b></h3>
+      <p *ngIf="serie">{{description}}</p>
+    </div>
+    <div class="col-12">
+      <div class="d-flex align-items-center gap-3">
+        <h6><b>DIRECTOR/S</b></h6>
+        <h6 *ngIf="serie">{{serie.creators}}</h6>
       </div>
     </div>
-    <div class="col-5">
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IEEbUzffzrk" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="col-12">
+      <div class="d-flex gap-3">
+        <h6><b>ACTOR/S</b></h6>
+        <h6 *ngIf="serie">{{serie.actors}}</h6>
+      </div>
     </div>
   </div>
 
 
   <div class="row mt-4">
     <div class="col-12">
-      <h3><b>User Reviews</b></h3>
-      <div class="">
-        <div class="row">
-          <div class="col-12 form d-flex gap-2 mb-4">
-            <textarea class="form-control" placeholder="Write your own review here"></textarea>
-            <div class="d-flex align-items-end">
-              <button class="btn btn-primary">Send</button>
+      <h3><b>USER REVIEWS</b></h3>
+      <div class="row">
+        <form [formGroup]="reviewForm" (ngSubmit)="createSerieReview()">
+          <div class="col-12 form d-flex gap-2 justify-content-start mb-4">
+            <div class="col-7">
+              <textarea class="form-control" name="review" placeholder="Write your own review here" required
+                formControlName="review"></textarea>
+              <div class="alert alert-danger"
+                *ngIf="reviewForm.get('review')?.touched && reviewForm.get('review')?.errors?.['minlength']">Mínimo 20
+                caracteres</div>
+            </div>
+            <div class="d-flex align-items-start">
+              <input type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid">
             </div>
           </div>
+        </form>
+      </div>
+      <div class="container-fluid m-0 p-0">
+        <div *ngIf="reviews" class="row">
+          <!--User reviews component-->
+          <ng-container *ngFor="let review of reviews.reviews">
+            <app-movie-review class="col-6 mt-2 mb-3" [review]="review"></app-movie-review>
+          </ng-container>
         </div>
-        <div class="row">
-          <!--User review component-->
-          <div class="col-6 mt-2 mb-3">
-            <div class="card bg-darker">
-              <div class="card-header">
-                <div class="col-12 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-content-center">
-                    <img src="" alt="avatar">
-                    <h6>User Name</h6>
-                  </div>
-                  <i class="bi bi-hand-thumbs-up"></i>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum tenetur officia
-                  fugiat neque quibusdam velit labore aliquam earum! At obcaecati quod nihil autem laborum blanditiis et
-                  quas incidunt, suscipit doloremque officiis explicabo omnis consectetur commodi minus? Consequuntur
-                  eveniet quam error! Ratione blanditiis saepe similique quo harum molestias deleniti asperiores.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 mt-2 mb-3">
-            <div class="card bg-darker">
-              <div class="card-header">
-                <div class="col-12 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-content-center">
-                    <img src="" alt="avatar">
-                    <h6>User Name</h6>
-                  </div>
-                  <i class="bi bi-hand-thumbs-up"></i>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum tenetur officia
-                  fugiat neque quibusdam velit labore aliquam earum! At obcaecati quod nihil autem laborum blanditiis et
-                  quas incidunt, suscipit doloremque officiis explicabo omnis consectetur commodi minus? Consequuntur
-                  eveniet quam error! Ratione blanditiis saepe similique quo harum molestias deleniti asperiores.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 mt-2 mb-3">
-            <div class="card bg-darker">
-              <div class="card-header">
-                <div class="col-12 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-content-center">
-                    <img src="" alt="avatar">
-                    <h6>User Name</h6>
-                  </div>
-                  <i class="bi bi-hand-thumbs-up"></i>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum tenetur officia
-                  fugiat neque quibusdam velit labore aliquam earum! At obcaecati quod nihil autem laborum blanditiis et
-                  quas incidunt, suscipit doloremque officiis explicabo omnis consectetur commodi minus? Consequuntur
-                  eveniet quam error! Ratione blanditiis saepe similique quo harum molestias deleniti asperiores.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 mt-2 mb-3">
-            <div class="card bg-darker">
-              <div class="card-header">
-                <div class="col-12 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-content-center">
-                    <img src="" alt="avatar">
-                    <h6>User Name</h6>
-                  </div>
-                  <i class="bi bi-hand-thumbs-up"></i>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum tenetur officia
-                  fugiat neque quibusdam velit labore aliquam earum! At obcaecati quod nihil autem laborum blanditiis et
-                  quas incidunt, suscipit doloremque officiis explicabo omnis consectetur commodi minus? Consequuntur
-                  eveniet quam error! Ratione blanditiis saepe similique quo harum molestias deleniti asperiores.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 mt-2 mb-3">
-            <div class="card bg-darker">
-              <div class="card-header">
-                <div class="col-12 d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-content-center">
-                    <img src="" alt="avatar">
-                    <h6>User Name</h6>
-                  </div>
-                  <i class="bi bi-hand-thumbs-up"></i>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ipsum tenetur officia
-                  fugiat neque quibusdam velit labore aliquam earum! At obcaecati quod nihil autem laborum blanditiis et
-                  quas incidunt, suscipit doloremque officiis explicabo omnis consectetur commodi minus? Consequuntur
-                  eveniet quam error! Ratione blanditiis saepe similique quo harum molestias deleniti asperiores.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div *ngIf="reviews && reviews.numReviews== 0">NO REVIEWS AVAILABLE FROM NO ONE, YOU CAN BE THE FIRST ONE TO WRITE A REVIEW!!!</div>
       </div>
     </div>
   </div>

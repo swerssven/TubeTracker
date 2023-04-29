@@ -1,27 +1,27 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
     <div class="col-4">
-      <h2 *ngIf="movie"><b>{{movie.titleEs ? movie.titleEs : movie.titleEn}}</b></h2>
+      <h2 *ngIf="movie"><b>{{title}}</b></h2>
       <div class="d-flex gap-5">
         <h6 *ngIf="movie">{{movie.premiereDate | date: 'yyyy'}}</h6>
         <h6 *ngIf="movie">{{movie.duration | duration}}</h6>
       </div>
     </div>
     <div class="col-8 d-flex justify-content-between">
-      <div>
+      <div class="col">
         <h6>REVIEWS</h6>
-        <h6><b>2.3K</b></h6>
+        <h6 *ngIf="reviews"><b>{{reviews.numReviews}}</b></h6>
       </div>
-      <div>
-        <i class="bi bi-eye icon"></i>
+      <div class="col d-flex justify-content-center align-items-center">
+        <i *ngIf="movie" class="bi icon" [ngClass]="movie.watched ? 'bi-eye-fill' : 'bi-eye' " title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
       </div>
-      <div>
-        <i class="bi bi-camera-reels icon"></i>
+      <div class="col d-flex justify-content-center align-items-center">
+        <i *ngIf="movie" class="bi icon" [ngClass]="movie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' " title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
       </div>
       <div class="row">
         <div class="row">
           <h6 class="col text-end">TT RATING</h6>
-          <h6 class="col"><b>{{ttRating}}</b></h6>
+          <h6 class="col"><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
         </div>
         <div class="row">
           <div class="col text-end">
@@ -56,7 +56,7 @@
   <div class="row mt-4">
     <div class="col-12">
       <h3><b>DESCRIPTION</b></h3>
-      <p *ngIf="movie">{{movie.descriptionEs}}</p>
+      <p *ngIf="movie">{{description}}</p>
     </div>
     <div class="col-12">
       <div class="d-flex align-items-center gap-3">
@@ -93,12 +93,13 @@
         </form>
       </div>
       <div class="container-fluid m-0 p-0">
-        <div class="row">
+        <div *ngIf="reviews" class="row">
           <!--User reviews component-->
-          <ng-container *ngFor="let review of reviews">
+          <ng-container *ngFor="let review of reviews.reviews">
             <app-movie-review class="col-6 mt-2 mb-3" [review]="review"></app-movie-review>
           </ng-container>
         </div>
+        <div *ngIf="reviews && reviews.numReviews== 0">NO REVIEWS AVAILABLE FROM NO ONE, YOU CAN BE THE FIRST ONE TO WRITE A REVIEW!!!</div>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
+import { SerieServiceService } from 'src/app/services/serie-service.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -13,7 +13,10 @@ export class MovieSerieCardComponent {
   date!: Date;
   user!: any;
 
-  constructor(private movieService: MovieServiceService){}
+  constructor(
+    private movieService: MovieServiceService,
+    private serieService: SerieServiceService
+    ){}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
@@ -36,7 +39,23 @@ export class MovieSerieCardComponent {
       )
     }else if(this.type == "series"){
       let watched = this.movie_serie.watched ? false : true;
-      // api mark watched
+      this.serieService.setSerieWatched(this.movie_serie.id, this.user.userId, this.user.language, watched).subscribe(
+        (data) => {this.movie_serie.watched = data;}
+      )
+    }
+  }
+
+  markFavorite(){
+    if(this.type == "movies"){
+      let favorite = this.movie_serie.favorite ? false : true;
+      this.movieService.setMovieFavorite(this.movie_serie.id, this.user.userId, this.user.language, favorite).subscribe(
+        (data) => {this.movie_serie.favorite = data;}
+      )
+    }else if(this.type == "series"){
+      let favorite = this.movie_serie.favorite ? false : true;
+      this.serieService.setSerieFavorite(this.movie_serie.id, this.user.userId, this.user.language, favorite).subscribe(
+        (data) => {this.movie_serie.favorite = data;}
+      )
     }
   }
 }

@@ -59,11 +59,11 @@ export class PopularComponent {
       (data) => {this.movies_topRated = data;}
     )
 
-    this.serieService.getSeriePopularList(this.user.language).subscribe(
+    this.serieService.getSeriePopularList(this.user.language, this.user.userId).subscribe(
       (data) => {this.series_popular = data;}
     )
 
-    this.serieService.getSerieTopRatedList(this.user.language).subscribe(
+    this.serieService.getSerieTopRatedList(this.user.language, this.user.userId).subscribe(
       (data) => {this.series_topRated = data;}
     )
   }

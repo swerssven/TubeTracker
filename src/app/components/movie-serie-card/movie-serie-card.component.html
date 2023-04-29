@@ -21,8 +21,8 @@
     <div class="icon icon-left text-white ms-3" title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()">
       <i class="bi" [ngClass]="movie_serie.watched ? 'bi-eye-fill' : 'bi-eye' "></i>
     </div>
-    <div class="icon icon-right text-white me-3" title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}">
-      <i class="bi bi-camera-reels"></i>
+    <div class="icon icon-right text-white me-3" title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()">
+      <i class="bi" [ngClass]="movie_serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' "></i>
     </div>
   </div>
   <div class="card-body">

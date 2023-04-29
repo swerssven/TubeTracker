@@ -15,7 +15,7 @@ export class MovieResolver implements IResolver<any> {
     }
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IMovieDetail>{
-    return this.movieService.getMovieDetails(Number(route.paramMap.get('id')), "es-ES", this.user.userId);
+    return this.movieService.getMovieDetails(Number(route.paramMap.get('id')), this.user.language, this.user.userId);
   };
 }
 

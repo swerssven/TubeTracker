@@ -17,6 +17,7 @@ import { UserStatisticsComponent } from './components/user-statistics/user-stati
 import { NewsCreatorComponent } from './components/news-creator/news-creator.component';
 import { SocialHomeComponent } from './components/socialComponents/social-home/social-home.component';
 import { FriendsWithMessaggesListComponent } from './components/socialComponents/friends-with-messagges-list/friends-with-messagges-list.component';
+import SerieResolver from './resolvers/serie-resolver';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path: 'favorites', canActivate: [AuthGardGuard], component: FavoritesComponent},
   {path: 'movie/:id', canActivate: [AuthGardGuard], component: MovieDetailComponent, resolve:{movie: MovieResolver}},
   {path: 'news/newArticle', canActivate: [AuthGardGuard], component: NewsCreatorComponent},
-  {path: 'serie/:id', canActivate: [AuthGardGuard], component: SerieDetailComponent},
+  {path: 'serie/:id', canActivate: [AuthGardGuard], component: SerieDetailComponent, resolve:{serie: SerieResolver}},
   {path: 'social', canActivate: [AuthGardGuard], component: SocialHomeComponent,
     children: [
       {path: '', canActivate: [AuthGardGuard], component: NewsBoardComponent},

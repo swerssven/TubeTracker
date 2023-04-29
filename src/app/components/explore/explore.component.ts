@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
 
@@ -37,7 +36,7 @@ export class ExploreComponent {
         }
       )
     }else if(this.selectedRadio === "series"){
-      this.serieService.getSerieSearchList(this.searchString, 1, "es-ES").subscribe(
+      this.serieService.getSerieSearchList(this.searchString, 1, this.user.language, this.user.userId).subscribe(
         series => {
           this.movies_series = series;
           this.isLoading = false;
