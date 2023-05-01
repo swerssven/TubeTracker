@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IReview, IReviewDto } from '../interfaces/i-review';
 import { ISerieDetail } from '../interfaces/i-serie-detail';
 import { IRatings } from '../interfaces/i-ratings';
+import { ISeasonsEpisodesListDto } from '../interfaces/i-season-episode';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,15 @@ export class SerieServiceService {
     );
   }
 
+  getSeasonsEpisodesList(
+    serieApiId: number,
+    userId: number
+  ): Observable<ISeasonsEpisodesListDto> {
+    return this.http.get<ISeasonsEpisodesListDto>(
+      `https://localhost:7203/api/Serie/getSeasonsEpisodesList?serieApiId=${serieApiId}&userId=${userId}`
+    );
+  }
+
   setSerieRating(
     serieApiId: number,
     userId: number,
@@ -89,6 +99,18 @@ export class SerieServiceService {
   ): Observable<boolean> {
     return this.http.post<boolean>(
       `https://localhost:7203/api/Serie/setSerieWatched?serieApiId=${serieApiId}&userId=${userId}&language=${language}&watched=${watched}`,
+      null
+    );
+  }
+
+  setSeasonEpisodeWatched(
+    serieApiId: number,
+    seasonsEpisodeId: number,
+    userId: number,
+    watched: boolean
+  ): Observable<boolean> {
+    return this.http.post<boolean>(
+      `https://localhost:7203/api/Serie/setSeasonEpisodeWatched?serieApiId=${serieApiId}&seasonsEpisodeId=${seasonsEpisodeId}&userId=${userId}&watched=${watched}`,
       null
     );
   }

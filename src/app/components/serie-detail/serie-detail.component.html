@@ -4,7 +4,8 @@
       <h2 *ngIf="serie"><b>{{title}}</b></h2>
       <div class="d-flex gap-5">
         <h6 *ngIf="serie">{{serie.premiereDate | date: 'yyyy'}}</h6>
-        <h6 *ngIf="serie">134 Episodes</h6>
+        <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{seasonEpisodes.totalNumEpisodes > 1 ? "EPISODES" : "EPISODE"}}</h6>
+        <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{seasonEpisodes.totalNumSeasons > 1 ? "SEASONS" : "SEASON"}}</h6>
       </div>
     </div>
     <div class="col-8 d-flex justify-content-between">
@@ -43,145 +44,15 @@
     <!--Episodes Component-->
     <div class="col-8">
       <div class="row">
-        <div class="col-6 ms-0 ps-0">
-          <select class="form-select" name="seasons" id="">
-            <option value="1">Season 1</option>
-            <option value="2">Season 2</option>
+        <div class="col-6 ms-0 ps-1" *ngIf="seasonEpisodes">
+          <select class="form-select episode-hover" (change)="seleccionarTemporada($event)">
+            <option *ngFor="let season of seasonEpisodes.seasonsList" [value]="season.numSeason">SEASON {{ season.numSeason }} &nbsp; &nbsp; &nbsp; &nbsp; {{season.episodesList[0].premiereDate | date: 'yyyy'}}</option>
           </select>
         </div>
       </div>
-      <div class="row mt-2 overflow-auto" style="max-height: 550px">
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>1</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>2</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>3</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>4</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>5</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>6</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>7</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>8</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>9</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>10</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>11</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card bg-darker mb-1">
-          <div class="card-body p-2">
-            <div class="d-flex justify-content-between">
-              <span>12</span>
-              <span>Episode Title</span>
-              <span>20min</span>
-              <span>Launch Date 02-05-1989</span>
-              <i class="bi bi-eye text-white"></i>
-            </div>
-          </div>
+      <div class="row mt-2 p-1 overflow-auto" style="max-height: 550px" *ngIf="temporadaSeleccionada">
+        <div class="card bg-darker mb-1 episode-hover" *ngFor="let episode of temporadaSeleccionada.episodesList">
+          <app-episode-card [episode]="episode" (checkWatchedEpisodeParent)="checkWatchedEpisodeParent($event)"></app-episode-card>
         </div>
       </div>
     </div>

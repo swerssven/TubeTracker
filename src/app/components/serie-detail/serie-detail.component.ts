@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IReview, IReviewDto } from 'src/app/interfaces/i-review';
+import {
+  IEpisode,
+  ISeasonsEpisodesListDto,
+} from 'src/app/interfaces/i-season-episode';
 import { ISerieDetail } from 'src/app/interfaces/i-serie-detail';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
 
@@ -16,6 +20,9 @@ export class SerieDetailComponent {
   title!: string;
   genres!: string[];
   description!: string;
+  seasonEpisodes!: ISeasonsEpisodesListDto;
+  episodeTitle!: string;
+  temporadaSeleccionada: any = {};
   reviews!: IReviewDto;
   review!: string;
   user!: any;
@@ -46,16 +53,23 @@ export class SerieDetailComponent {
       .getSerieDetails(this.serieApiId, this.user.language, this.user.userId)
       .subscribe((data) => {
         this.serie = data;
-        console.log(data)
-        if(this.user.language == "es-ES"){
+        if (this.user.language == 'es-ES') {
           this.title = data.titleEs!;
           this.genres = data.genresEs!.split(', ');
           this.description = data.descriptionEs!;
-        } else if(this.user.language == "en-EN"){
+        } else if (this.user.language == 'en-EN') {
           this.title = data.titleEn!;
           this.genres = data.genresEn!.split(', ');
           this.description = data.descriptionEn!;
         }
+      });
+
+    this.serieService
+      .getSeasonsEpisodesList(this.serieApiId, this.user.userId)
+      .subscribe((data) => {
+        this.seasonEpisodes = data;
+        this.temporadaSeleccionada = data.seasonsList[0];
+        console.log(data);
       });
 
     this.serieService
@@ -83,6 +97,15 @@ export class SerieDetailComponent {
       });
   }
 
+  seleccionarTemporada(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const numSeason = +target.value;
+    this.temporadaSeleccionada = this.seasonEpisodes.seasonsList.find(
+      (season) => season.numSeason === numSeason
+    );
+    this.temporadaSeleccionada = this.temporadaSeleccionada || null;
+  }
+
   createSerieReview() {
     const newReview: IReview = {
       userId: this.user.userId,
@@ -100,19 +123,44 @@ export class SerieDetailComponent {
     this.review = '';
   }
 
-  markWatched(){
-      let watched = this.serie.watched ? false : true;
-      this.serieService.setSerieWatched(this.serie.serieApiId, this.user.userId, this.user.language, watched).subscribe(
-        (data) => {this.serie.watched = data;}
+  markWatched() {
+    let watched = this.serie.watched ? false : true;
+    this.serieService
+      .setSerieWatched(
+        this.serie.serieApiId,
+        this.user.userId,
+        this.user.language,
+        watched
       )
-
+      .subscribe((data) => {
+        this.serie.watched = data;
+        this.seasonEpisodes.seasonsList.forEach((season) => {
+          season.episodesList.forEach((episode) => {
+            episode.watched = data;
+          });
+        });
+      });
   }
 
-  markFavorite(){
-      let favorite = this.serie.favorite ? false : true;
-      this.serieService.setSerieFavorite(this.serie.serieApiId, this.user.userId, this.user.language, favorite).subscribe(
-        (data) => {this.serie.favorite = data;}
-      )
+  checkWatchedEpisodeParent(episode: IEpisode) {
+    this.serieService
+      .getSerieDetails(this.serieApiId, this.user.language, this.user.userId)
+      .subscribe((data) => {
+        this.serie.watched = data.watched;
+      });
+  }
 
+  markFavorite() {
+    let favorite = this.serie.favorite ? false : true;
+    this.serieService
+      .setSerieFavorite(
+        this.serie.serieApiId,
+        this.user.userId,
+        this.user.language,
+        favorite
+      )
+      .subscribe((data) => {
+        this.serie.favorite = data;
+      });
   }
 }

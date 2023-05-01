@@ -35,6 +35,7 @@ import { SocialHomeComponent } from './components/socialComponents/social-home/s
 import { FriendsWithMessaggesListComponent } from './components/socialComponents/friends-with-messagges-list/friends-with-messagges-list.component';
 import { MessageCardComponent } from './components/socialComponents/message-card/message-card.component';
 import { FriendListMessageCardComponent } from './components/socialComponents/friend-list-message-card/friend-list-message-card.component';
+import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -68,7 +69,8 @@ export function HttpLoaderFactory(http: HttpClient){
     SocialHomeComponent,
     FriendsWithMessaggesListComponent,
     MessageCardComponent,
-    FriendListMessageCardComponent
+    FriendListMessageCardComponent,
+    EpisodeCardComponent
   ],
   imports: [
     BrowserModule,
