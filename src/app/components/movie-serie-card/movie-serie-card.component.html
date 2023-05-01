@@ -25,7 +25,7 @@
       <i class="bi" [ngClass]="movie_serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' "></i>
     </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title fs-6">{{movie_serie.title || movie_serie.name}} ({{date | date: 'yyyy'}})</h5>
+  <div class="card-body px-0">
+    <h5 class="card-title fs-6">{{movie_serie.title || movie_serie.name}} ({{date ? (date | date: 'yyyy') : ""}})</h5>
   </div>
 </div>

@@ -104,4 +104,10 @@ export class MovieServiceService {
       null
     );
   }
+
+  getMovieFavoritesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(
+      `https://localhost:7203/api/Movie/getMovieFavoritesList?userId=${userId}&language=${language}`
+    );
+  }
 }

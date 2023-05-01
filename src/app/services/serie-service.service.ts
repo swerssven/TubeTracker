@@ -126,4 +126,10 @@ export class SerieServiceService {
       null
     );
   }
+
+  getSerieFavoritesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
+    return this.http.get<IMovieSerieCard[]>(
+      `https://localhost:7203/api/Serie/getSeriesFavoritesList?userId=${userId}&language=${language}`
+    );
+  }
 }

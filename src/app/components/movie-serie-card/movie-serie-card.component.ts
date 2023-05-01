@@ -25,9 +25,9 @@ export class MovieSerieCardComponent {
     }
 
     if(this.type == "movies"){
-      this.date = new Date(this.movie_serie.release_date);
+      this.date = this.movie_serie.release_date ? new Date(this.movie_serie.release_date) : new Date();
     }else if(this.type == "series"){
-      this.date = new Date(this.movie_serie.first_air_date);
+      this.date = this.movie_serie.first_air_date ? new Date(this.movie_serie.first_air_date) : new Date();
     }
   }
 

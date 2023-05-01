@@ -4,4 +4,6 @@ export interface IMovieSerieCard {
   name?: string;
   favorite: boolean;
   watched: boolean;
+  dateAddedFavorite?: Date;
+  type?: string;
 }
