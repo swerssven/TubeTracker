@@ -41,6 +41,6 @@ export class SocialServiceService {
   }
 
   createPost(post: IPost): Observable<IPost[]>{
-    return this.http.post<IPost[]>(`https://localhost:7203/api/Social/postscreatePost`, post);
+    return this.http.post<IPost[]>(`https://localhost:7203/api/Social/posts/createPost`, post);
   }
 }
