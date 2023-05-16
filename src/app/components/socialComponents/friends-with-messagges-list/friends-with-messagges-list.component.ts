@@ -19,10 +19,7 @@ export class FriendsWithMessaggesListComponent {
       this.user = userString ? JSON.parse(userString) : null;
     }
     this.socialService.getFriendsWithMessagesList(this.user.userId).subscribe((data) => {
-      console.log(this.friendsMessageList)
       this.friendsMessageList = data;
-
-      console.log(this.friendsMessageList);
     });
   }
 }

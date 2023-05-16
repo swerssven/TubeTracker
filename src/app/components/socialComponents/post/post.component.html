@@ -1,4 +1,3 @@
-
 <div class="card bg-posts shadow mt-2">
   <div class="card-header m-0 p-1">
     <div class="col-12 d-flex align-items-center justify-content-between">
@@ -12,12 +11,37 @@
         <span *ngIf="post && post.userNickname">{{ post.userNickname }}</span>
       </div>
       <div class="d-flex gap-3">
-        <div *ngIf="post && post.creationDate">{{ utils.convertDateLocale(post.creationDate) | date: 'dd-MM-yyyy' }}</div>
+        <div *ngIf="post && post.creationDate">{{ utils.convertDateLocale(post.creationDate) | date: 'dd-MM-yyyy' }}
+        </div>
         <div *ngIf="post && post.creationDate">{{ utils.convertDateLocale(post.creationDate) | date: 'HH:mm' }}</div>
       </div>
     </div>
   </div>
-  <div class="card-body">
-    <span class="card-text" *ngIf="post && post.content" [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.content)"></span>
+  <div class="card-body pb-0">
+    <span class="card-text" *ngIf="post && post.content"
+      [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.content)"></span>
+  </div>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item bg-posts">
+      <div class="text-end me-3 mb-2">
+        <span class="accordion-header" id="flush-headingOne">
+          <button class="collapsed bg-primary btn btn-sm btn-primary" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#' + Id" aria-expanded="false" [attr.aria-controls]="'#' + Id">
+            MESSAGES
+          </button>
+        </span>
+      </div>
+      <div id="{{Id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body ms-5 pt-1 pb-2">
+          <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
+            <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
+            <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
+              <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
+              <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
+                <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
+              </div>
+      </div>
+    </div>
   </div>
 </div>

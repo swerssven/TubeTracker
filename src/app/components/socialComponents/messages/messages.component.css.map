@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"messages.component.css"}
+{"version":3,"sources":["messages.component.scss","messages.component.css"],"names":[],"mappings":"AAAA;EACE,cAAA;EACA,aAAA;EACA,8BAAA;EACA,YAAA;EACA,kBAAA;ACCF;;ADEA;EACE,kBAAA;EACA,eAAA;EACA,gBAAA;ACCF","file":"messages.component.css"}

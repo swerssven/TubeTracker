@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IFriend } from 'src/app/interfaces/i-friend';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-friend-list-message-card',
@@ -10,6 +11,8 @@ export class FriendListMessageCardComponent {
 
   @Input() friend!: IFriend;
   user!: any;
+
+  constructor(private userService: UserServiceService){}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {

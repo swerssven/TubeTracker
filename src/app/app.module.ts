@@ -36,6 +36,7 @@ import { FriendsWithMessaggesListComponent } from './components/socialComponents
 import { MessageCardComponent } from './components/socialComponents/message-card/message-card.component';
 import { FriendListMessageCardComponent } from './components/socialComponents/friend-list-message-card/friend-list-message-card.component';
 import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
+import { DatePipe } from '@angular/common';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -96,7 +97,8 @@ export function HttpLoaderFactory(http: HttpClient){
   },{
     provide: TINYMCE_SCRIPT_SRC,
     useValue: 'tinymce/tinymce.min.js'
-  }],
+  },
+  DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

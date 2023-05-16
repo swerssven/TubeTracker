@@ -5,6 +5,7 @@ import { ILogin } from '../interfaces/i-login';
 import { ILoginResponse } from '../interfaces/i-login-response';
 import { IUser } from '../interfaces/i-user';
 import { IUserResponse } from '../interfaces/i-user-response';
+import { IFriend } from '../interfaces/i-friend';
 
 @Injectable({
   providedIn: 'root',

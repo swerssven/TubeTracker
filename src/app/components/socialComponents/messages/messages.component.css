@@ -1,1 +1,13 @@
-/*# sourceMappingURL=messages.component.css.map */
+.message-scroll {
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 70vh;
+  overflow-x: hidden;
+}
+
+.icon {
+  border-radius: 50%;
+  max-width: 60px;
+  max-height: 60px;
+}/*# sourceMappingURL=messages.component.css.map */

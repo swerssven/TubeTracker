@@ -3,7 +3,7 @@ import { IPost } from '../interfaces/i-post';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IFriend } from '../interfaces/i-friend';
-import { IMessage } from '../interfaces/i-message';
+import { IMessage, IMessageDto } from '../interfaces/i-message';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,12 @@ export class SocialServiceService {
     return this.http.get<IFriend[]>(`https://localhost:7203/api/Social/friends/getFriendsWithMessagesList?userId=${userId}`)
   }
 
-  getMessagesList(senderId: number, receiverId: number): Observable<IMessage[]>{
-    return this.http.get<IMessage[]>(`https://localhost:7203/api/Social/messages/getMessagesList?userId=${senderId}&friendUserId=${receiverId}`)
+  createMessage(message: IMessage): Observable<IMessageDto>{
+    return this.http.post<IMessageDto>(`https://localhost:7203/api/Social/messages/createMessage`, message)
+  }
+
+  getMessagesList(senderId: number, receiverId: number): Observable<IMessageDto>{
+    return this.http.get<IMessageDto>(`https://localhost:7203/api/Social/messages/getMessagesList?userId=${senderId}&friendUserId=${receiverId}`)
   }
 
   createFriendInvitation(userId: number, friendUserId: number): Observable<IFriend>{

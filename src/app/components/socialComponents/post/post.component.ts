@@ -10,6 +10,9 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
 })
 export class PostComponent {
   @Input() post!: IPost;
+  Id: number = 0;
 
-  constructor(public sanitizer: DomSanitizer, public utils: UtilsServiceService){}
+  constructor(public sanitizer: DomSanitizer, public utils: UtilsServiceService){
+    this.Id = Math.random();
+  }
 }

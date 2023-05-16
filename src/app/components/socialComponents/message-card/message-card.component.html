@@ -1,5 +1,21 @@
-<div class="card my-2">
-  <div class="card-body" [ngClass]="message.senderUserId == sender ? 'text-end bg-success' : 'text-start bg-secondary'">
-    {{ message.content }}
+<div class="container-fluid my-2">
+  <div class="row d-flex flex-nowrap">
+    <div class="col-1 px-1 d-flex"
+      [ngClass]="message.senderUserId != sender.userId ? 'order-0 justify-content-end' : 'order-2 justify-content-start'">
+      <div class="align-self-end">
+        <ng-container *ngIf="message.senderUserId == sender.userId; else elseTemplate">
+          <img class="icon" src="{{ sender.image != null ? sender.image : '../assets/default-avatar.png' }}" alt="">
+        </ng-container>
+        <ng-template #elseTemplate>
+          <img class="icon" src="{{ receiverImage != null ? receiverImage : '../assets/default-avatar.png' }}" alt="*">
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-11 mx-0 px-0 card border-0">
+      <div class="col order-1 bubble" [ngClass]="message.senderUserId != sender.userId ? 'left' : 'right'">
+        <div>{{ message.content }}</div>
+        <div class="fs-10" [ngClass]="message.senderUserId != sender.userId ? 'text-light' : 'text-black float-end'">{{utils.convertDateLocale(message.creationDate!) | date: 'HH:mm'}}</div>
+      </div>
+    </div>
   </div>
 </div>

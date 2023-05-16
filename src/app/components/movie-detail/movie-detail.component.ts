@@ -20,7 +20,6 @@ export class MovieDetailComponent {
   genres!: string[];
   description!: string;
   reviews!: IReviewDto;
-  review!: string;
   user!: any;
   auxRating!: number;
   rating!: number;
@@ -108,8 +107,6 @@ export class MovieDetailComponent {
     this.movieService.createMovieReview(newReview).subscribe((data) => {
       this.reviews = data;
     });
-
-    this.review = '';
   }
 
   markWatched() {
