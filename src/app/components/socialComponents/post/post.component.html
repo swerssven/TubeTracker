@@ -11,9 +11,8 @@
         <span *ngIf="post && post.userNickname">{{ post.userNickname }}</span>
       </div>
       <div class="d-flex gap-3">
-        <div *ngIf="post && post.creationDate">{{ utils.convertDateLocale(post.creationDate) | date: 'dd-MM-yyyy' }}
+        <div *ngIf="post && post.creationDate">{{ post.dateString }}
         </div>
-        <div *ngIf="post && post.creationDate">{{ utils.convertDateLocale(post.creationDate) | date: 'HH:mm' }}</div>
       </div>
     </div>
   </div>
@@ -27,20 +26,31 @@
         <span class="accordion-header" id="flush-headingOne">
           <button class="collapsed bg-primary btn btn-sm btn-primary" type="button" data-bs-toggle="collapse"
             [attr.data-bs-target]="'#' + Id" aria-expanded="false" [attr.aria-controls]="'#' + Id">
-            MESSAGES
+            {{ comments && comments.length > 0 ? comments.length : ""}} COMMENTS
           </button>
         </span>
       </div>
-      <div id="{{Id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-        data-bs-parent="#accordionFlushExample">
+      <div id="{{Id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body ms-5 pt-1 pb-2">
-          <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
-            <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
-            <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
-              <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
-              <div class="card mb-2">Contenido placeholder para este acordeón, que pretende demostrar la clase
-                <code>.accordion-flush</code>. Este es el cuerpo de acordeón del primer elemento.</div>
+          <div class="mb-2" *ngFor="let comment of comments">
+            <app-comment-card [comment]="comment"></app-comment-card>
+          </div>
+          <form [formGroup]="commentForm" (ngSubmit)="sendComment()">
+            <div class="col-12 form d-flex gap-2 justify-content-center mt-3 mb-1">
+              <div class="col-9">
+                <textarea class="form-control" name="comment" placeholder="Write your own comment here" required
+                  formControlName="comment"></textarea>
+                <div class="alert alert-danger"
+                  *ngIf="commentForm.get('comment')?.touched && commentForm.get('comment')?.errors?.['minlength']">
+                  Mínimo 20
+                  caracteres</div>
               </div>
+              <div class="d-flex align-items-start">
+                <input type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

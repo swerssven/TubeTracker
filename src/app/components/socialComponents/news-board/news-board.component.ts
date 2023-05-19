@@ -31,19 +31,21 @@ export class NewsBoardComponent {
   ngOnInit(): void {
     this.socialService.getPosts(true, this.user.userId).subscribe((data) => {
       this.posts = data;
+      console.log(this.posts)
     });
   }
 
   createPost(){
     let newPost: IPost = {
       userId: this.user.userId,
-      userNickname: "",
-      userImage: "",
-      content: this.value
+      userNickname: this.user.nickname,
+      userImage: this.user.image,
+      content: this.value,
+      creationDate: new Date
     }
 
-    this.socialService.createPost(newPost).subscribe((data) => {
-      this.posts = data;
-    });
+    this.posts.unshift(newPost)
+
+    this.socialService.createPost(newPost).subscribe();
   }
 }

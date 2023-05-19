@@ -1,0 +1,29 @@
+.bubble {
+  --r: 20px; /* the radius */
+  --t: 15px; /* the size of the tail */
+  max-width: 300px;
+  padding: calc(2 * var(--r) / 3);
+  -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, rgba(0, 0, 0, 0) 98%, #000 102%) var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat, conic-gradient(at var(--r) var(--r), #000 75%, rgba(0, 0, 0, 0) 0) calc(var(--r) / -2) calc(var(--r) / -2) padding-box, radial-gradient(50% 50%, #000 98%, rgba(0, 0, 0, 0) 101%) 0 0/var(--r) var(--r) space padding-box;
+  color: #fff;
+  -webkit-mask: radial-gradient(var(--t) at var(--_d) 0, rgba(0, 0, 0, 0) 98%, #000 102%) var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat, conic-gradient(at var(--r) var(--r), #000 75%, rgba(0, 0, 0, 0) 0) calc(var(--r) / -2) calc(var(--r) / -2) padding-box, radial-gradient(50% 50%, #000 98%, rgba(0, 0, 0, 0) 101%) 0 0/var(--r) var(--r) space padding-box;
+          mask: radial-gradient(var(--t) at var(--_d) 0, rgba(0, 0, 0, 0) 98%, #000 102%) var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat, conic-gradient(at var(--r) var(--r), #000 75%, rgba(0, 0, 0, 0) 0) calc(var(--r) / -2) calc(var(--r) / -2) padding-box, radial-gradient(50% 50%, #000 98%, rgba(0, 0, 0, 0) 101%) 0 0/var(--r) var(--r) space padding-box;
+}
+
+.right {
+  --_d: 100%;
+  border-right: var(--t) solid rgba(0, 0, 0, 0);
+  margin-left: var(--t);
+  place-self: end;
+  background: linear-gradient(135deg, #313131, #414141) border-box;
+  color: #b3b1b1;
+  text-shadow: 5px 0px 40px #ffffff;
+}
+
+.icon {
+  height: 30px;
+  border-radius: 100%;
+}
+
+.fs-10 {
+  font-size: small;
+}/*# sourceMappingURL=comment-card.component.css.map */

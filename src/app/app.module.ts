@@ -37,6 +37,7 @@ import { MessageCardComponent } from './components/socialComponents/message-card
 import { FriendListMessageCardComponent } from './components/socialComponents/friend-list-message-card/friend-list-message-card.component';
 import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
 import { DatePipe } from '@angular/common';
+import { CommentCardComponent } from './components/socialComponents/comment-card/comment-card.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(http: HttpClient){
     FriendsWithMessaggesListComponent,
     MessageCardComponent,
     FriendListMessageCardComponent,
-    EpisodeCardComponent
+    EpisodeCardComponent,
+    CommentCardComponent
   ],
   imports: [
     BrowserModule,

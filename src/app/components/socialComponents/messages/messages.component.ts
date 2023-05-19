@@ -61,6 +61,7 @@ export class MessagesComponent {
     }
   }
 
+  // Method to send new message
   sendMessage(){
     const newMessage: IMessage = {
       senderUserId: this.sender.userId,
@@ -75,6 +76,6 @@ export class MessagesComponent {
       }
     );
 
-    this.messageForm.value.message = '';
+    this.messageForm.reset();
   }
 }

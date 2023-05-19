@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IFriend } from '../interfaces/i-friend';
 import { IMessage, IMessageDto } from '../interfaces/i-message';
+import { IComment } from '../interfaces/i-comment';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,13 @@ export class SocialServiceService {
 
   createPost(post: IPost): Observable<IPost[]>{
     return this.http.post<IPost[]>(`https://localhost:7203/api/Social/posts/createPost`, post);
+  }
+
+  createPostComment(comment: IComment): Observable<IComment[]>{
+    return this.http.post<IComment[]>(`https://localhost:7203/api/Social/posts/createPostComment`, comment);
+  }
+
+  getCommentsList(postId: number): Observable<IComment[]>{
+    return this.http.get<IComment[]>(`https://localhost:7203/api/Social/posts/getCommentsList?postId=${postId}`);
   }
 }

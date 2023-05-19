@@ -1,8 +1,25 @@
-<div class="container">
+<div class="container mt-2">
   <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-9 col-lg-8">
-      <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
-      <input type="button" class="btn btn-primary" value="Enviar" (click)="createPost()">
+    <div class="accordion accordion-flush col-12 col-md-9 col-lg-8" id="accordionFlushExample">
+      <div class="accordion-item bg-posts">
+        <div class="text-end me-3 mb-2">
+          <span class="accordion-header d-flex justify-content-center gap-5" id="flush-headingOne">
+            <button class="align-self-center bg-transparent border-0 d-flex gap-3" type="button"
+              data-bs-toggle="collapse" data-bs-target="#tinymce" aria-expanded="false" aria-controls="#tinymce">
+              <i class="bi bi-pencil-square shadow align-self-center fs-2 text-secondary"></i>
+              <span class="card border-2 rounded-pill p-2 px-3 shadow align-self-center">WANT TO SHARE SOMETHING WITH
+                THE WORLD?</span>
+            </button>
+          </span>
+        </div>
+        <div id="tinymce" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body m-0 p-0">
+            <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
+            <input type="button" class="btn btn-primary" value="Enviar" (click)="createPost()" data-bs-toggle="collapse"
+              data-bs-target="#tinymce">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row d-flex justify-content-center">
