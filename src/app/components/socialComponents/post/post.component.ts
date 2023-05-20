@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { IComment } from 'src/app/interfaces/i-comment';
 import { IPost } from 'src/app/interfaces/i-post';
 import { SocialServiceService } from 'src/app/services/social-service.service';
@@ -20,6 +21,8 @@ export class PostComponent {
     comment: ['', Validators.required],
   });
 
+  private subscriptions: Subscription = new Subscription();
+
   constructor(
     public sanitizer: DomSanitizer,
     public utils: UtilsServiceService,
@@ -34,9 +37,11 @@ export class PostComponent {
   }
 
   ngOnInit(): void {
-    this.socialService
+    this.subscriptions.add(this.socialService
       .getCommentsList(this.post.postId!)
-      .subscribe((data) => (this.comments = data));
+      .subscribe((data) => (this.comments = data)));
+
+    this.post.content = this.post.content.replaceAll("<img ", "<img class=\"img-fluid\"");
 
     const date = new Date(
       this.utils.convertDateLocale(this.post.creationDate!)
@@ -53,12 +58,16 @@ export class PostComponent {
       creationDate: new Date(),
     };
 
-    this.comments.unshift(newComment);
+    this.comments.push(newComment);
 
-    this.socialService.createPostComment(newComment).subscribe((data) => {
+    this.subscriptions.add(this.socialService.createPostComment(newComment).subscribe((data) => {
       this.comments = data;
-    });
+    }));
 
     this.commentForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

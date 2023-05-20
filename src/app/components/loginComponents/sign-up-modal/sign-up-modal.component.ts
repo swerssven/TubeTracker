@@ -6,6 +6,7 @@ import { IUser } from 'src/app/interfaces/i-user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up-modal',
@@ -36,6 +37,7 @@ export class SignUpModalComponent {
     language: '',
     image: ''
   };
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -94,13 +96,13 @@ export class SignUpModalComponent {
       image: this.imagen
     };
 
-    this.userService.createUser(this.newUser).subscribe({
+    this.subscriptions.add(this.userService.createUser(this.newUser).subscribe({
       next: (res) => console.log(res),
       error:HttpErrorResponse  => console.error(Error),
       complete: () => {
         this.openLoginForm();
       },
-    });
+    }));
   }
 
   openLoginForm() {
@@ -119,5 +121,9 @@ export class SignUpModalComponent {
       this.imagen = reader.result as string;
       this.newUser.image = reader.result as string;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

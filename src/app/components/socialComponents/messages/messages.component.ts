@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IMessage, IMessageDto } from 'src/app/interfaces/i-message';
 import { SocialServiceService } from 'src/app/services/social-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
@@ -21,6 +22,7 @@ export class MessagesComponent {
   messageForm: FormGroup = this.formBuilder.group({
     message: ['', Validators.required],
   });
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     public route: ActivatedRoute,
@@ -38,13 +40,13 @@ export class MessagesComponent {
       this.sender = userString ? JSON.parse(userString) : null;
     }
 
-    this.socialService
+    this.subscriptions.add(this.socialService
       .getMessagesList(this.sender.userId, this.receiverId)
       .subscribe((data) => {
         this.messages = data.messagesList;
         this.receiverImage = data.receiverImage;
         this.receiverName = data.receiverName;
-      });
+      }));
   }
 
   // Method for showing date in messages.
@@ -70,12 +72,16 @@ export class MessagesComponent {
       creationDate: new Date
     };
 
-    this.socialService.createMessage(newMessage).subscribe(
+    this.subscriptions.add(this.socialService.createMessage(newMessage).subscribe(
       () => {
         this.messages.push(newMessage);
       }
-    );
+    ));
 
     this.messageForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

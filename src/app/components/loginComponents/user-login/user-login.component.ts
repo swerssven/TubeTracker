@@ -14,16 +14,6 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class UserLoginComponent {
   formLogin!: FormGroup;
-  /*user: IUserResponse = {
-    id: 0,
-    firstname: '',
-    lastname: '',
-    nickname: '',
-    email: '',
-    language: '',
-    image: '',
-  };*/
-
   user!: any;
   logged: boolean = false;
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IReview, IReviewDto } from 'src/app/interfaces/i-review';
 import {
   IEpisode,
@@ -32,6 +33,7 @@ export class SerieDetailComponent {
   reviewForm: FormGroup = this.formBuilder.group({
     review: ['', [Validators.minLength(20), Validators.required]],
   });
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +51,7 @@ export class SerieDetailComponent {
       this.user = userString ? JSON.parse(userString) : null;
     }
 
-    this.serieService
+    this.subscriptions.add(this.serieService
       .getSerieDetails(this.serieApiId, this.user.language, this.user.userId)
       .subscribe((data) => {
         this.serie = data;
@@ -62,26 +64,26 @@ export class SerieDetailComponent {
           this.genres = data.genresEn!.split(', ');
           this.description = data.descriptionEn!;
         }
-      });
+      }));
 
-    this.serieService
+      this.subscriptions.add(this.serieService
       .getSeasonsEpisodesList(this.serieApiId, this.user.userId)
       .subscribe((data) => {
         this.seasonEpisodes = data;
         this.temporadaSeleccionada = data.seasonsList[0];
         console.log(data);
-      });
+      }));
 
-    this.serieService
+      this.subscriptions.add(this.serieService
       .getSerieReviews(this.serieApiId)
-      .subscribe((data) => (this.reviews = data));
+      .subscribe((data) => (this.reviews = data)));
 
-    this.serieService
+      this.subscriptions.add(this.serieService
       .getSerieRatings(this.serieApiId, this.user.userId)
       .subscribe((data) => {
         this.auxRating = data.userRating;
         this.ttRating = data.averageRating;
-      });
+      }));
   }
 
   restoreSerieRating() {
@@ -89,12 +91,12 @@ export class SerieDetailComponent {
   }
 
   setSerieRating() {
-    this.serieService
+    this.subscriptions.add(this.serieService
       .setSerieRating(this.serieApiId, this.user.userId, this.auxRating)
       .subscribe((data) => {
         this.auxRating = data.userRating;
         this.ttRating = data.averageRating;
-      });
+      }));
   }
 
   seleccionarTemporada(event: Event) {
@@ -116,16 +118,16 @@ export class SerieDetailComponent {
       creationDate: new Date(),
     };
 
-    this.serieService.createSerieReview(newReview).subscribe((data) => {
+    this.subscriptions.add(this.serieService.createSerieReview(newReview).subscribe((data) => {
       this.reviews = data;
-    });
+    }));
 
     this.review = '';
   }
 
   markWatched() {
     let watched = this.serie.watched ? false : true;
-    this.serieService
+    this.subscriptions.add(this.serieService
       .setSerieWatched(
         this.serie.serieApiId,
         this.user.userId,
@@ -139,20 +141,20 @@ export class SerieDetailComponent {
             episode.watched = data;
           });
         });
-      });
+      }));
   }
 
   checkWatchedEpisodeParent(episode: IEpisode) {
-    this.serieService
+    this.subscriptions.add(this.serieService
       .getSerieDetails(this.serieApiId, this.user.language, this.user.userId)
       .subscribe((data) => {
         this.serie.watched = data.watched;
-      });
+      }));
   }
 
   markFavorite() {
     let favorite = this.serie.favorite ? false : true;
-    this.serieService
+    this.subscriptions.add(this.serieService
       .setSerieFavorite(
         this.serie.serieApiId,
         this.user.userId,
@@ -161,6 +163,10 @@ export class SerieDetailComponent {
       )
       .subscribe((data) => {
         this.serie.favorite = data;
-      });
+      }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

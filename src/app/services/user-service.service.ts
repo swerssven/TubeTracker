@@ -6,6 +6,7 @@ import { ILoginResponse } from '../interfaces/i-login-response';
 import { IUser } from '../interfaces/i-user';
 import { IUserResponse } from '../interfaces/i-user-response';
 import { IFriend } from '../interfaces/i-friend';
+import { IStatistics } from '../interfaces/i-statistics';
 
 @Injectable({
   providedIn: 'root',
@@ -40,16 +41,21 @@ export class UserServiceService {
 
   // Get user from server.
   getUser(
-    id: number,
+    id: number/*,
     typeToken: string,
-    token: string
+    token: string*/
   ): Observable<IUserResponse> {
     return this.http
-      .get<IUserResponse>(`https://localhost:7203/api/user/${id}`)
+      .get<IUserResponse>(`https://localhost:7203/api/User/${id}`)
       .pipe(
         map((resp) => {
           return resp;
         })
       );
+  }
+
+  // Get user statistics.
+  GetUserStatistics(userId: number): Observable<IStatistics>{
+    return this.http.get<IStatistics>(`https://localhost:7203/api/User/GetUserStatistics?userId=${userId}`);
   }
 }

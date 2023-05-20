@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IFriend } from 'src/app/interfaces/i-friend';
 import { SocialServiceService } from 'src/app/services/social-service.service';
 
@@ -10,6 +11,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
 export class FriendCardComponent {
   @Input() friend!: IFriend;
   user!: any;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private socialService: SocialServiceService) {}
 
@@ -21,15 +23,19 @@ export class FriendCardComponent {
   }
 
   inviteFriend() {
-    this.socialService
+    this.subscriptions.add(this.socialService
       .createFriendInvitation(this.user.userId, this.friend.userId)
-      .subscribe((data) => (this.friend = data));
+      .subscribe((data) => (this.friend = data)));
   }
 
   acceptInvitation() {
-    this.socialService
+    this.subscriptions.add(this.socialService
       .acceptInvitation(this.user.userId, this.friend.userId)
       .subscribe((data) => {this.friend = data
-      console.log(data)});
+      console.log(data)}));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

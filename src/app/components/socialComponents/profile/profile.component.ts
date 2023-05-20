@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { IPost } from 'src/app/interfaces/i-post';
 import { SocialServiceService } from 'src/app/services/social-service.service';
 
@@ -12,6 +13,7 @@ export class ProfileComponent {
   value: string = "";
   user!: any;
   posts: IPost[] = [];
+  private subscriptions: Subscription = new Subscription();
 
   editorConfig = {
     base_url: '/tinymce',
@@ -29,9 +31,9 @@ export class ProfileComponent {
   }
 
   ngOnInit(): void {
-    this.socialService.getPosts(false, this.user.userId).subscribe((data) => {
+    this.subscriptions.add(this.socialService.getPosts(false, this.user.userId).subscribe((data) => {
       this.posts = data;
-    });
+    }));
   }
 
   createPost(){
@@ -45,6 +47,10 @@ export class ProfileComponent {
 
     this.posts.unshift(newPost)
 
-    this.socialService.createPost(newPost).subscribe();
+    this.subscriptions.add(this.socialService.createPost(newPost).subscribe());
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

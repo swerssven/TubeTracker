@@ -1,9 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IFriend } from 'src/app/interfaces/i-friend';
 import { IMessage } from 'src/app/interfaces/i-message';
-import { SocialServiceService } from 'src/app/services/social-service.service';
-import { UserServiceService } from 'src/app/services/user-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
 @Component({
@@ -17,11 +13,6 @@ export class MessageCardComponent {
   @Input() receiverImage!: string;
 
   constructor(
-    public utils: UtilsServiceService,
-    private socialService: SocialServiceService
+    public utils: UtilsServiceService
   ) {}
-
-  ngOnInit(): void {}
-
-  ngAfterContentInit(): void {}
 }

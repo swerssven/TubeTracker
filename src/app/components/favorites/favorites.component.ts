@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
@@ -14,6 +15,7 @@ export class FavoritesComponent {
   isLoading = false;
   movies_series: IMovieSerieCard[] = [];
   user!: any;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private movieService: MovieServiceService,
@@ -26,7 +28,7 @@ export class FavoritesComponent {
       this.user = userString ? JSON.parse(userString) : null;
     }
 
-    this.movieService
+    this.subscriptions.add(this.movieService
       .getMovieFavoritesList(this.user.userId, this.user.language)
       .subscribe((data) => {
         console.log(data);
@@ -34,9 +36,9 @@ export class FavoritesComponent {
           movie.type = 'movies';
         });
         this.movies_series.push(...data);
-      });
+      }));
 
-    this.serieService
+    this.subscriptions.add(this.serieService
       .getSerieFavoritesList(this.user.userId, this.user.language)
       .subscribe((data) => {
         console.log(data);
@@ -44,6 +46,10 @@ export class FavoritesComponent {
           serie.type = 'series';
         });
         this.movies_series.push(...data);
-      });
+      }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

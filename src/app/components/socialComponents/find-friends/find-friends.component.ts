@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { IFriend } from 'src/app/interfaces/i-friend';
 import { IUser } from 'src/app/interfaces/i-user';
 import { SocialServiceService } from 'src/app/services/social-service.service';
@@ -16,6 +17,7 @@ export class FindFriendsComponent {
   user!: any;
   friends!: IFriend[];
   friendsSearchList!: IFriend[];
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,25 +29,27 @@ export class FindFriendsComponent {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
-    this.socialService.getFriends(this.user.userId).subscribe((data) => {
+    this.subscriptions.add(this.socialService.getFriends(this.user.userId).subscribe((data) => {
       this.friends = data;
-
-      console.log(this.friends);
-    });
+    }));
   }
 
   searchForFriends() {
-    this.socialService
+    this.subscriptions.add(this.socialService
       .GetSearchFriendsList(
         this.user.userId,
         this.searchFriendForm.value.search
       )
       .subscribe((data) => {this.friendsSearchList = data
-      this.searchFriendForm.reset()});
+      this.searchFriendForm.reset()}));
   }
 
   emptyFriendSearchList() {
     let SearchList!: IFriend[];
     this.friendsSearchList = SearchList;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

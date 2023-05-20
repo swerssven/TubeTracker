@@ -57,5 +57,9 @@
   "MOVIE_SERIE_CARD":{
     "WATCHED": "Mark watched",
     "FAVORITE": "Mark favorite"
+  },
+
+  "DATETIME":{
+    "NOW": "Now"
   }
 }

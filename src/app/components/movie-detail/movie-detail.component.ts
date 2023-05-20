@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IMovieDetail } from 'src/app/interfaces/i-movie-detail';
 import { IReview, IReviewDto } from 'src/app/interfaces/i-review';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
@@ -27,6 +28,7 @@ export class MovieDetailComponent {
   reviewForm: FormGroup = this.formBuilder.group({
     review: ['', [Validators.minLength(20), Validators.required]],
   });
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +47,7 @@ export class MovieDetailComponent {
       this.user = userString ? JSON.parse(userString) : null;
     }
 
-    this.movieService
+    this.subscriptions.add(this.movieService
       .getMovieDetails(this.movieApiId, this.user.language, this.user.userId)
       .subscribe((data) => {
         this.movie = data;
@@ -60,18 +62,18 @@ export class MovieDetailComponent {
           this.description = data.descriptionEn!;
           this.trailer = data.trailerEn!;
         }
-      });
+      }));
 
-    this.movieService.getMovieReviews(this.movieApiId).subscribe((data) => {
+    this.subscriptions.add(this.movieService.getMovieReviews(this.movieApiId).subscribe((data) => {
       this.reviews = data;
-    });
+    }));
 
-    this.movieService
+    this.subscriptions.add(this.movieService
       .getMovieRatings(this.movieApiId, this.user.userId)
       .subscribe((data) => {
         this.auxRating = data.userRating;
         this.ttRating = data.averageRating;
-      });
+      }));
   }
 
   restoreMovieRating() {
@@ -79,12 +81,12 @@ export class MovieDetailComponent {
   }
 
   setMovieRating() {
-    this.movieService
+    this.subscriptions.add(this.movieService
       .setMovieRating(this.movieApiId, this.user.userId, this.auxRating)
       .subscribe((data) => {
         this.auxRating = data.userRating;
         this.ttRating = data.averageRating;
-      });
+      }));
   }
 
   sanitizeURL() {
@@ -104,14 +106,14 @@ export class MovieDetailComponent {
       creationDate: new Date(),
     };
 
-    this.movieService.createMovieReview(newReview).subscribe((data) => {
+    this.subscriptions.add(this.movieService.createMovieReview(newReview).subscribe((data) => {
       this.reviews = data;
-    });
+    }));
   }
 
   markWatched() {
     let watched = this.movie.watched ? false : true;
-    this.movieService
+    this.subscriptions.add(this.movieService
       .setMovieWatched(
         this.movie.movieApiId,
         this.user.userId,
@@ -120,12 +122,12 @@ export class MovieDetailComponent {
       )
       .subscribe((data) => {
         this.movie.watched = data;
-      });
+      }));
   }
 
   markFavorite() {
     let favorite = this.movie.favorite ? false : true;
-    this.movieService
+    this.subscriptions.add(this.movieService
       .setMovieFavorite(
         this.movie.movieApiId,
         this.user.userId,
@@ -134,6 +136,10 @@ export class MovieDetailComponent {
       )
       .subscribe((data) => {
         this.movie.favorite = data;
-      });
+      }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

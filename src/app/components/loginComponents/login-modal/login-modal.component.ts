@@ -7,6 +7,8 @@ import { ILogin } from 'src/app/interfaces/i-login';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { SignUpModalComponent } from '../sign-up-modal/sign-up-modal.component';
 import { DataServiceService } from 'src/app/services/data-service.service';
+import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-modal',
@@ -15,6 +17,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class LoginModalComponent {
   loginForm!: FormGroup;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -24,7 +27,8 @@ export class LoginModalComponent {
     private router: Router,
     private userService: UserServiceService,
     private modalService: NgbModal,
-    private dataService: DataServiceService
+    private dataService: DataServiceService,
+    private translate: TranslateService
   ) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.required],
@@ -40,25 +44,31 @@ export class LoginModalComponent {
       password: this.loginForm.value.password,
     };
 
-    this.userService.getToken(userLogin).subscribe(
+    this.subscriptions.add(this.userService.getToken(userLogin).subscribe(
       (res) => {
       localStorage.setItem('token', res.token);
       let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
 
-      this.userService.getUser(decodedJWT.userId, res.tokenType, res.token).subscribe({
+      this.subscriptions.add(this.userService.getUser(decodedJWT.userId/*, res.tokenType, res.token*/).subscribe({
         next: (user) => {
           localStorage.setItem('user', JSON.stringify(user));
+          this.translate.use(user.language);
         },
         error: (error) => console.log(error.status),
         complete: () => {
           this.activeModelService.close();
+          window.location.reload();
         },
-      });
-    });
+      }));
+    }));
   }
 
   openRegisterForm(): void {
     this.activeModelService.close();
     this.modalService.open(SignUpModalComponent);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

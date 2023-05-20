@@ -12,8 +12,6 @@ export class FriendListMessageCardComponent {
   @Input() friend!: IFriend;
   user!: any;
 
-  constructor(private userService: UserServiceService){}
-
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');

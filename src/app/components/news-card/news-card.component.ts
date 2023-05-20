@@ -19,6 +19,15 @@ export class NewsCardComponent {
     public utils: UtilsServiceService
   ) {}
   ngOnInit(): void {
+    this.newsArticle.contentEs = this.newsArticle.contentEs.replaceAll(
+      '<img ',
+      '<img class="img-fluid"'
+    );
+    this.newsArticle.contentEn = this.newsArticle.contentEn.replaceAll(
+      '<img ',
+      '<img class="img-fluid"'
+    );
+
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;

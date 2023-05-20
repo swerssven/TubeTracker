@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IFriend } from 'src/app/interfaces/i-friend';
 import { SocialServiceService } from 'src/app/services/social-service.service';
 
@@ -10,6 +11,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
 export class FriendsWithMessaggesListComponent {
   friendsMessageList!: IFriend[];
   user!: any;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private socialService: SocialServiceService) {}
 
@@ -18,8 +20,8 @@ export class FriendsWithMessaggesListComponent {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
-    this.socialService.getFriendsWithMessagesList(this.user.userId).subscribe((data) => {
+    this.subscriptions.add(this.socialService.getFriendsWithMessagesList(this.user.userId).subscribe((data) => {
       this.friendsMessageList = data;
-    });
+    }));
   }
 }

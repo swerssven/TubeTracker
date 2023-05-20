@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IEpisode } from 'src/app/interfaces/i-season-episode';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
 
@@ -11,6 +12,7 @@ export class EpisodeCardComponent {
   @Input() episode!: IEpisode;
   @Output() checkWatchedEpisodeParent = new EventEmitter<IEpisode>();
   user!: any;
+  private subscriptions: Subscription = new Subscription();
 
 constructor(private serieService: SerieServiceService){}
 
@@ -23,7 +25,7 @@ constructor(private serieService: SerieServiceService){}
 
   markWatched() {
     let watched = this.episode.watched ? false : true;
-    this.serieService
+    this.subscriptions.add(this.serieService
       .setSeasonEpisodeWatched(
         this.episode.serieApiId,
         this.episode.seasonsEpisodesId,
@@ -33,6 +35,10 @@ constructor(private serieService: SerieServiceService){}
       .subscribe((data) => {
         this.episode.watched = data;
         this.checkWatchedEpisodeParent.emit(this.episode);
-      });
+      }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

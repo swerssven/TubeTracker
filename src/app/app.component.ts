@@ -9,11 +9,19 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'Tube_Tracker';
+  user!: any;
 
-  constructor(public tranlate: TranslateService, public router: Router) {
+  constructor(public translate: TranslateService, public router: Router) {
     // Definimos lenguajes traducción y por defecto.
-    this.tranlate.addLangs(['es', 'en']);
-    this.tranlate.setDefaultLang('es');
-    this.tranlate.use('en');
+    this.translate.addLangs(['es-ES', 'en-EN']);
+    this.translate.setDefaultLang('en-EN');
+  }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      let userString = localStorage.getItem('user');
+      this.user = userString ? JSON.parse(userString) : null;
+      this.translate.use(this.user.language);
+    }
   }
 }

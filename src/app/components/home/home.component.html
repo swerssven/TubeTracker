@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row d-flex justify-content-center mt-2">
-    <div class="col-lg-10">
+    <div *ngIf="newsArticles" class="col-lg-10">
       <app-news-card *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-card>
     </div>
   </div>

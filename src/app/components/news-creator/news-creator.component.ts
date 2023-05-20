@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { INews } from 'src/app/interfaces/i-news';
 import { NewsServiceService } from 'src/app/services/news-service.service';
 
@@ -28,6 +29,8 @@ export class NewsCreatorComponent {
     content_css: 'dark',
   };
 
+  private subscriptions: Subscription = new Subscription();
+
   constructor(
     public sanitizer: DomSanitizer,
     private newsService: NewsServiceService
@@ -48,10 +51,14 @@ export class NewsCreatorComponent {
       this.article.userId = this.user.userId;
       this.article.contentEs = this.value;
       console.log(this.article);
-      this.newsService.createNewsArticle(this.article).subscribe(
+      this.subscriptions.add(this.newsService.createNewsArticle(this.article).subscribe(
         () => {
         alert('Article uploaded correctly');
-      });
+      }));
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -3,7 +3,7 @@
     <div class="col-8 d-flex justify-content-center">
       <form [formGroup]="searchFriendForm" (ngSubmit)="searchForFriends()">
         <div class="d-flex gap-2">
-          <button class="btn btn-primary" *ngIf="friendsSearchList" (click)="emptyFriendSearchList()">&#8592;</button>
+          <button type="button" class="btn btn-primary" *ngIf="friendsSearchList" (click)="emptyFriendSearchList()">&#8592;</button>
           <input class="form-control" type="text" placeholder="Find new friends..." formControlName="search">
           <button class="btn btn-primary" type="submit">Search</button>
         </div>
