@@ -30,28 +30,6 @@
           <a class="nav-link" [routerLink]="['/social']" [routerLinkActive]="['active']">{{"NAV.SOCIAL.SOCIAL" |
             translate}}</a>
         </li>
-        <!--
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"
-            [class.active]="router.isActive('/social/news-board', true) || router.isActive('/social/news-board', true)||
-                                              router.isActive('/social/my-profile', true) || router.isActive('/social/my-profile', true)||
-                                              router.isActive('/social/find-friends', true) || router.isActive('/social/find-friends', true)||
-                                              router.isActive('/social/messages', true) || router.isActive('/social/messages', true)" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            {{"NAV.SOCIAL.SOCIAL" | translate}}
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['/social/news-board']"
-                [routerLinkActive]="['active']">{{"NAV.SOCIAL.NEWS_BOARD" | translate}}</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/social/profile']"
-                [routerLinkActive]="['active']">{{"NAV.SOCIAL.MY_PROFILE" | translate}}</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/social/find-friends']"
-                [routerLinkActive]="['active']">{{"NAV.SOCIAL.FIND_FRIENDS" | translate}}</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/social/messages']"
-                [routerLinkActive]="['active']">{{"NAV.SOCIAL.MESSAGES" | translate}}</a></li>
-          </ul>
-        </li>
-        -->
         <li class="d-flex align-items-center">
           <app-user-login></app-user-login>
         </li>
