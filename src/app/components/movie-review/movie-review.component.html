@@ -8,7 +8,8 @@
         <ng-template #elseTemplate>
           <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
         </ng-template>
-        <span>{{ review.userNickname }}</span>
+        <span>
+          <a class="d-flex gap-3 align-items-center" [routerLink]="['/statistics', review.userId]">{{ review.userNickname }}</a></span>
       </div>
       <div class="d-flex gap-3">
         <div>{{ utils.convertDateLocale(review.creationDate) | date: 'dd-MM-yyyy' }}</div>

@@ -38,6 +38,7 @@ import { FriendListMessageCardComponent } from './components/socialComponents/fr
 import { EpisodeCardComponent } from './components/episode-card/episode-card.component';
 import { DatePipe } from '@angular/common';
 import { CommentCardComponent } from './components/socialComponents/comment-card/comment-card.component';
+import { MovieSerieFilterPipePipe } from './pipes/movie-serie-filter-pipe.pipe';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -73,7 +74,8 @@ export function HttpLoaderFactory(http: HttpClient){
     MessageCardComponent,
     FriendListMessageCardComponent,
     EpisodeCardComponent,
-    CommentCardComponent
+    CommentCardComponent,
+    MovieSerieFilterPipePipe
   ],
   imports: [
     BrowserModule,

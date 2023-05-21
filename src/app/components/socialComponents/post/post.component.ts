@@ -83,7 +83,7 @@ export class PostComponent {
   }
 
   checkIfUserHasComments(){
-    if(this.comments.some(c => c.userId === this.user.userId)){
+    if(this.comments && this.comments.some(c => c.userId == this.user.userId)){
       return true;
     }
     return false;
