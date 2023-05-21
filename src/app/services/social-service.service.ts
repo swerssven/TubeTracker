@@ -56,4 +56,8 @@ export class SocialServiceService {
   getCommentsList(postId: number): Observable<IComment[]>{
     return this.http.get<IComment[]>(`https://localhost:7203/api/Social/posts/getCommentsList?postId=${postId}`);
   }
+
+  createPostLike(userId: number, postId: number, liked: boolean): Observable<boolean>{
+    return this.http.post<boolean>(`https://localhost:7203/api/Social/posts/createPostLike?userId=${userId}&postId=${postId}&liked=${liked}`, null)
+  }
 }

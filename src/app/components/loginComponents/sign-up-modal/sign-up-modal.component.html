@@ -2,7 +2,7 @@
   <div>
     <h6 class="modal-title text-center ms-3">TUBE <i class="bi bi-film"></i> TRACKER</h6>
   </div>
-  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close btn invisible" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -72,7 +72,7 @@
     </div>
     <div>
       <label for="language">{{"FORM.LANGUAGE" | translate}}</label><br>
-        <select class="col-12 form-select" name="language" formControlName="language">
+        <select class="col-12 form-select" title="LANGUAGE" name="language" formControlName="language">
           <option *ngFor="let language of languages" value="{{ language.abbrev }}">
             {{ language.name }}
           </option>
@@ -80,7 +80,7 @@
     </div>
     <div>
       <label for="image">{{"FORM.AVATAR" | translate}}</label>
-      <input class="form-control" #imageInput type="file" name="image" accept="image/*"
+      <input class="form-control" #imageInput type="file" title="AVATAR" name="image" accept="image/*"
         (change)="changeImage(imageInput)" formControlName="image">
       <div class="alert alert-danger"
         *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.errors?.['pattern']?.requiredPattern === expresiones.image.toString()">

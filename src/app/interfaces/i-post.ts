@@ -5,5 +5,7 @@ export interface IPost {
   userImage: string,
   content: string,
   creationDate?: Date,
-  dateString?: string
+  dateString?: string,
+  likesCount?: number,
+  likedByUser?: boolean,
 }

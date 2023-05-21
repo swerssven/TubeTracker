@@ -65,7 +65,7 @@ export class LoginModalComponent {
 
   openRegisterForm(): void {
     this.activeModelService.close();
-    this.modalService.open(SignUpModalComponent);
+    this.modalService.open(SignUpModalComponent, {backdrop: 'static', keyboard: false, centered: true});
   }
 
   ngOnDestroy(): void {

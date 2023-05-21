@@ -37,6 +37,6 @@ export class UserLoginComponent {
   }
 
   openLoginForm(): void {
-    this.modalService.open(LoginModalComponent);
+    this.modalService.open(LoginModalComponent, {backdrop: 'static', keyboard: false, centered: true});
   }
 }

@@ -2,15 +2,17 @@
   <div class="card-header m-0 p-1">
     <div class="col-12 d-flex align-items-center justify-content-between px-2">
       <div class="d-flex align-items-center gap-2">
-        <ng-container *ngIf="post && post.userImage; else elseTemplate">
-          <img class="img-fluid" src="{{ post.userImage }}" alt="avatar">
-        </ng-container>
-        <ng-template #elseTemplate>
-          <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
-        </ng-template>
-        <span *ngIf="post && post.userNickname">{{ post.userNickname }}</span>
+        <a class="d-flex gap-3 align-items-center" [routerLink]="['/statistics', post.userId]">
+          <ng-container *ngIf="post && post.userImage; else elseTemplate">
+            <img class="img-fluid" src="{{ post.userImage }}" alt="avatar">
+          </ng-container>
+          <ng-template #elseTemplate>
+            <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
+          </ng-template>
+          <span *ngIf="post && post.userNickname">{{ post.userNickname }}</span>
+        </a>
       </div>
-      <div class="d-flex gap-3 ">
+      <div>
         <div *ngIf="post && post.creationDate">{{ post.dateString }}
         </div>
       </div>
@@ -24,10 +26,28 @@
     <div class="accordion-item bg-posts">
       <div class="text-end me-3 mb-2">
         <span class="accordion-header" id="flush-headingOne">
-          <button class="collapsed bg-primary btn btn-sm btn-primary" type="button" data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#' + Id" aria-expanded="false" [attr.aria-controls]="'#' + Id">
-            {{ comments && comments.length > 0 ? comments.length : ""}} COMMENTS
-          </button>
+          <div class="d-flex justify-content-end gap-3">
+            <button class="collapsed bg-primary btn btn-sm btn-primary rounded-5" type="button" (click)="changeLike()">
+              <div class="d-flex justify-content-around align-content-center">
+                <div>{{ post && post.likesCount! > 0 ? post.likesCount : ""}}&nbsp;</div>
+                <div *ngIf="post"><i class="bi"
+                    [ngClass]="post.likedByUser ? 'bi-heart-fill' : 'bi-heart' "></i>&nbsp;&nbsp;&nbsp;</div>
+                <div>LIKE</div>
+              </div>
+            </button>
+            <button class="collapsed bg-primary btn btn-sm btn-primary rounded-5" type="button"
+              data-bs-toggle="collapse" [attr.data-bs-target]="'#' + Id" aria-expanded="false"
+              [attr.aria-controls]="'#' + Id">
+              <div class="d-flex justify-content-around align-content-center">
+                <div>{{ comments && comments.length > 0 ? comments.length : ""}}&nbsp;</div>
+                <div *ngIf="post"><i class="bi"
+                    [ngClass]="checkIfUserHasComments() ? 'bi-chat-left-text-fill' : 'bi-chat-left-text' "></i>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div>COMMENT</div>
+              </div>
+            </button>
+          </div>
+
         </span>
       </div>
       <div id="{{Id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">

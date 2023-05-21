@@ -33,7 +33,7 @@ export class AuthInterceptorService implements HttpInterceptor{
           localStorage.clear();
           this.modalService.dismissAll();  // Close all open modal windows.
           this.router.navigateByUrl('/home');   // Redirect to home and login component.
-          this.modalService.open(LoginModalComponent);  // Open login component.
+          this.modalService.open(LoginModalComponent, {backdrop: 'static', keyboard: false, centered: true});  // Open login component.
         }
 
         return throwError(() => new Error("Unauthorized, please login with correct credentials"));

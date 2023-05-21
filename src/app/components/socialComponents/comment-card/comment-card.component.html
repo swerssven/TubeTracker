@@ -15,7 +15,9 @@
           alt="">
       </div>
       <div>
-        {{comment.userNickname}}
+        <a class="d-flex gap-3 align-items-center" [routerLink]="['/statistics', comment.userId]">
+          {{comment.userNickname}}
+        </a>
       </div>
     </div>
   </div>

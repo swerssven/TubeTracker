@@ -16,6 +16,7 @@ export class PostComponent {
   @Input() post!: IPost;
   Id: number = 0;
   user!: any;
+  liked: boolean = false;
   comments!: IComment[];
   commentForm: FormGroup = this.formBuilder.group({
     comment: ['', Validators.required],
@@ -65,6 +66,27 @@ export class PostComponent {
     }));
 
     this.commentForm.reset();
+  }
+
+  changeLike(){
+    this.liked = !this.post.likedByUser;
+    this.subscriptions.add(this.socialService.createPostLike(this.user.userId, this.post.postId!, this.liked).subscribe(
+      (data) => {
+        this.post.likedByUser = data;
+        if(data) {
+          this.post.likesCount! += 1;
+        }else{
+          this.post.likesCount! -= 1;
+        }
+      }
+    ));
+  }
+
+  checkIfUserHasComments(){
+    if(this.comments.some(c => c.userId === this.user.userId)){
+      return true;
+    }
+    return false;
   }
 
   ngOnDestroy(): void {

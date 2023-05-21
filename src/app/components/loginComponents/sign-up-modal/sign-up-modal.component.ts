@@ -107,7 +107,7 @@ export class SignUpModalComponent {
 
   openLoginForm() {
     this.activeModelService.close();
-    this.modalService.open(LoginModalComponent);
+    this.modalService.open(LoginModalComponent, {backdrop: 'static', keyboard: false, centered: true});
   }
 
   // Método para leer archivo de campo imagen.

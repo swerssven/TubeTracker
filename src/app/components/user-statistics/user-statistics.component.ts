@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { IStatistics } from 'src/app/interfaces/i-statistics';
 import { IUserResponse } from 'src/app/interfaces/i-user-response';
+import { MovieServiceService } from 'src/app/services/movie-service.service';
+import { SerieServiceService } from 'src/app/services/serie-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
@@ -18,12 +21,17 @@ export class UserStatisticsComponent {
   statistics!: IStatistics;
   hoursMovies!: string[];
   hoursSeries!: string[];
+  movies!: IMovieSerieCard[];
+  series!: IMovieSerieCard[];
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserServiceService,
-    private utils: UtilsServiceService
+    private utils: UtilsServiceService,
+    private movieService: MovieServiceService,
+    private serieService: SerieServiceService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +57,14 @@ export class UserStatisticsComponent {
                   );
                 })
             );
+
+            this.subscriptions.add(this.movieService.getLastWatchedMoviesList(this.user.userId, this.user.language).subscribe(
+              (data) => {this.movies = data.reverse();}
+            ));
+
+            this.subscriptions.add(this.serieService.getLastWatchedSeriesList(this.user.userId, this.user.language).subscribe(
+              (data) => {this.series = data.reverse();}
+            ));
           })
         );
       }
