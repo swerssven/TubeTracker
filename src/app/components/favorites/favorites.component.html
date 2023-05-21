@@ -3,13 +3,13 @@
     <div class="col-12 col-md-4 col-lg-12 d-flex justify-content-center align-items-center mt-2 mt-md-0">
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-search align-self-center"></i>
-        <input class="form-control" type="text" placeholder="{{ 'FORM.FILTER_BY' | translate }}"
+        <input class="form-control" type="text" title="{{ 'FORM.FILTER_BY' | translate }}" placeholder="{{ 'FORM.FILTER_BY' | translate }}"
           [(ngModel)]="searchFilter">
       </div>
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-filter"></i>
         <label class="form-check-label" for="selectWatched">{{ "FORM.WATCHED" | translate }}</label>
-        <select [(ngModel)]="selectedWatched" name="selectWatched" title="selectWatched" (ngModelChange)="filterItems()">
+        <select [(ngModel)]="selectedWatched" name="selectWatched" title="{{ 'FORM.WATCHED' | translate }}" (ngModelChange)="filterItems()">
           <option value="all">All</option>
           <option value="true">Watched</option>
           <option value="false">Not watched</option>
@@ -17,8 +17,8 @@
       </div>
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-list-stars"></i>
-        <label class="form-check-label" for="selectType">{{ "FORM.TYPE" | translate }}</label>
-        <select [(ngModel)]="selectedType" name="selectType" title="selectType" (ngModelChange)="filterItems()">
+        <label class="form-check-label" for="selectType">{{ "FORM.CONTENT_TYPE" | translate }}</label>
+        <select [(ngModel)]="selectedType" name="selectType" title="{{ 'FORM.CONTENT_TYPE' | translate }}" (ngModelChange)="filterItems()">
           <option value="all">All</option>
           <option value="movies">Movies</option>
           <option value="series">Series</option>
@@ -26,8 +26,8 @@
       </div>
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-sort-down"></i>
-        <label class="form-check-label" for="selectOrder">{{ "FORM.ORDER" | translate }}</label>
-        <select [(ngModel)]="selectedOrder" name="selectOrder" title="selectOrder"  (ngModelChange)="filterItems()">
+        <label class="form-check-label" for="selectOrder">{{ "FORM.ORDER_BY" | translate }}</label>
+        <select [(ngModel)]="selectedOrder" name="selectOrder" title="{{ 'FORM.ORDER_BY' | translate }}"  (ngModelChange)="filterItems()">
           <option value="none">None</option>
           <option value="dateAsc">Date (Ascending)</option>
           <option value="dateDesc">Date (Descending)</option>

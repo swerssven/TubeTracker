@@ -18,7 +18,7 @@
           </a></span>
       </div>
       <div class="d-flex gap-3">
-        <span>PUBLISHED</span>
+        <span>{{"NEWS.PUBLISHED" | translate}}</span>
         <div *ngIf="newsArticle && newsArticle.creationDate">{{ utils.convertDateLocale(newsArticle.creationDate) |
           date: 'dd-MM-yyyy' }}</div>
         <div *ngIf="newsArticle && newsArticle.creationDate">{{ utils.convertDateLocale(newsArticle.creationDate) |

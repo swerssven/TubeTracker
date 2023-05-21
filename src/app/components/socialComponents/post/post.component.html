@@ -32,7 +32,7 @@
                 <div>{{ post && post.likesCount! > 0 ? post.likesCount : ""}}&nbsp;&nbsp;</div>
                 <div *ngIf="post"><i class="bi"
                     [ngClass]="post.likedByUser ? 'bi-heart-fill' : 'bi-heart' "></i>&nbsp;&nbsp;&nbsp;</div>
-                <div>LIKE</div>
+                <div>{{ "SOCIAL.LIKE" | translate }}</div>
               </div>
             </button>
             <button class="collapsed bg-primary btn btn-sm btn-primary rounded-5" type="button"
@@ -43,7 +43,7 @@
                 <div *ngIf="post"><i class="bi"
                     [ngClass]="checkIfUserHasComments() ? 'bi-chat-left-text-fill' : 'bi-chat-left-text' "></i>&nbsp;&nbsp;&nbsp;
                 </div>
-                <div>COMMENT</div>
+                <div>{{ "SOCIAL.COMMENT" | translate }}</div>
               </div>
             </button>
           </div>

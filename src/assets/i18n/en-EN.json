@@ -25,7 +25,12 @@
     "SEARCH FOR": "Search for...",
     "MOVIES": "Movies",
     "SERIES": "Series",
-    "REQUIRED": "*Fields are required"
+    "REQUIRED": "*Fields are required",
+    "FILTER_BY": "Filter by...",
+    "WATCHED": "Watched",
+    "CONTENT_TYPE": "Content type",
+    "ORDER_BY": "Order by",
+    "SEND": "Send"
   },
 
   "LOGIN":{
@@ -45,6 +50,10 @@
     "NO_RESULTS": "No results"
   },
 
+  "NEWS":{
+    "PUBLISHED": "Published"
+  },
+
   "POPULAR":{
     "RECOMMENDED_MOVIES": "Recommended movies",
     "RECOMMENDED_SERIES": "Recommended series",
@@ -61,5 +70,15 @@
 
   "DATETIME":{
     "NOW": "Now"
+  },
+
+  "SOCIAL":{
+    "SHARE_SOMETHING": "Want to share something with the world?",
+    "LIKE": "Like",
+    "COMMENT": "Comment",
+    "FIND_NEW_FRIENDS": "Find new friends...",
+    "YOUR_SEARCH": "Your search",
+    "FRIENDS": "Friends",
+    "WRITE_YOUR_OWN_MESSAGE_HERE": "Write your own message here..."
   }
 }

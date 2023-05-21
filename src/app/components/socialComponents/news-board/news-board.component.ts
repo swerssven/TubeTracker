@@ -18,7 +18,7 @@ export class NewsBoardComponent {
   editorConfig = {
     base_url: '/tinymce',
     suffix: '.min',
-    plugins: 'lists link image emoticons table wordcount quickbars preview',
+    plugins: 'lists link image emoticons table wordcount preview',
     skin: "oxide-dark",
     content_css: "dark"
   };
