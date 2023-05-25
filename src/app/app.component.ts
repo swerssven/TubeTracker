@@ -34,7 +34,6 @@ export class AppComponent {
       this.socialService
         .getNumberUnreadMessages(this.user.userId)
         .subscribe((data) => {
-          console.log(data);
           this.dataService.setData(data);
         })
     );

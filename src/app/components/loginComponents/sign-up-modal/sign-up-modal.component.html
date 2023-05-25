@@ -74,9 +74,16 @@
         </select>
     </div>
     <div>
-      <label for="image">{{"FORM.AVATAR" | translate}}</label>
-      <input class="form-control" #imageInput type="file" title="AVATAR" name="image" accept="image/*"
-        (change)="changeImage(imageInput)" formControlName="image">
+      <div class="d-flex gap-2">
+        <div>
+          <label for="image">{{"FORM.AVATAR" | translate}}</label>
+          <input class="form-control" #imageInput type="file" title="AVATAR" name="image" accept="image/*"
+            (change)="changeImage(imageInput)" formControlName="image">
+        </div>
+        <div class="pt-2">
+          <img src="{{ imagen }}" alt="">
+        </div>
+      </div>
       <div class="alert alert-danger"
         *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.errors?.['pattern']?.requiredPattern === expresiones.image.toString()">
         {{ "FORM.IMG_FORMAT" | translate }}</div>

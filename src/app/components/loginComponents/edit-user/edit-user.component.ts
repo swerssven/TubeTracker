@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/interfaces/i-user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-sign-up-modal',
-  templateUrl: './sign-up-modal.component.html',
-  styleUrls: ['./sign-up-modal.component.scss'],
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss']
 })
-export class SignUpModalComponent {
+export class EditUserComponent {
   expresiones = {
     firstname: /^[A-Za-zÀ-ÿ\u00f1\u00d1 ]+$/m, // Uppercase, lowercase only.
     lastname: /^[A-Za-zÀ-ÿ\u00f1\u00d1 ]+$/m, // Uppercase, lowercase only.
@@ -26,10 +25,13 @@ export class SignUpModalComponent {
     image: /.(gif|jpeg|jpg|png)$/i, // Only accepts gif, jpeg. jpg y png.
   };
 
+  user!: any;
+
   registerForm!: FormGroup;
   imagen!: string;
   languages = [{ name: 'English', abbrev: 'en-EN' }, { name: 'Español', abbrev: 'es-ES' }];
   newUser: IUser = {
+    userId: 0,
     firstname: '',
     lastname: '',
     nickname: '',
@@ -51,22 +53,18 @@ export class SignUpModalComponent {
   ) {}
 
   ngOnInit() {
+    if (localStorage.getItem('user')) {
+      let userString = localStorage.getItem('user');
+      this.user = userString ? JSON.parse(userString) : null;
+    }
     this.registerForm = this.initForm();
   }
 
   // Método para inicializar formulario
   initForm(): FormGroup {
     return this.fb.group({
-      firstname: [
-        '',
-        [Validators.required, Validators.pattern(this.expresiones.firstname)],
-      ],
-      lastname: [
-        '',
-        [Validators.required, Validators.pattern(this.expresiones.lastname)],
-      ],
       nickname: [
-        '',
+        this.user.nickname,
         [Validators.required, Validators.maxLength(15), Validators.pattern(this.expresiones.nickname)],
       ],
       password: [
@@ -78,33 +76,31 @@ export class SignUpModalComponent {
         ],
       ],
       email: [
-        '',
+        this.user.email,
         [Validators.required, Validators.pattern(this.expresiones.email)],
       ],
-      language: ['en-EN', Validators.required],
+      language: [this.user.language, Validators.required],
       image: null
     });
   }
 
   // Método para enviar datos a backend.
-  registerUser() {
+  editUser() {
     this.newUser = {
-      firstname: this.registerForm.value.firstname,
-      lastname: this.registerForm.value.lastname,
+      userId: this.user.userId,
+      firstname: this.user.firstName,
+      lastname: this.user.lastName,
       nickname: this.registerForm.value.nickname,
       password: this.registerForm.value.password,
       email: this.registerForm.value.email,
       language: this.registerForm.value.language,
-      image: this.imagen
+      image: this.user.image
     };
+    console.log(this.newUser)
 
-    this.subscriptions.add(this.userService.createUser(this.newUser).subscribe({
-      next: (res) => console.log(res),
-      error:HttpErrorResponse  => console.error(Error),
-      complete: () => {
-        this.openLoginForm();
-      },
-    }));
+    this.subscriptions.add(
+      /// Edit service
+    );
   }
 
   openLoginForm() {
@@ -121,7 +117,7 @@ export class SignUpModalComponent {
     reader.readAsDataURL(fileInput.files[0]);
     reader.addEventListener('loadend', (e) => {
       this.imagen = reader.result as string;
-      this.newUser.image = reader.result as string;
+      this.user.image = reader.result as string;
     });
   }
 

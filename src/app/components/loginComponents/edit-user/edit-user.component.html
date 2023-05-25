@@ -1,0 +1,78 @@
+<div class="modal-header p-0 m-0">
+  <div>
+    <h6 class="modal-title text-center ms-3">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+  </div>
+  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form class="row justify-content-center mt-4" (ngSubmit)="editUser()" [formGroup]="registerForm">
+
+  <div class="form-group new-event col-10 d-grid gap-2">
+    <div class="row">
+      <h5>{{"FORM.EDIT_USER" |translate}}</h5>
+      <i>{{"FORM.EDIT_TO_YOUR_LIKING!" |translate}}</i>
+    </div>
+    <div>
+      <label for="nickname">{{"FORM.NICKNAME" | translate}}</label>
+      <input type="text" class="form-control" name="nickname" placeholder="{{'FORM.NICKNAME' | translate}}*" required
+        formControlName="nickname">
+      <div class="error"
+        *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.errors?.['required']">
+        {{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
+        *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.errors?.['pattern']?.requiredPattern === expresiones.nickname.toString()">
+        {{ "FORM.UPPER_LOWER_SPECIAL" | translate }}</div>
+    </div>
+    <div>
+      <label for="email">{{"FORM.EMAIL" | translate}}</label>
+      <input type="text" class="form-control" name="email" placeholder="{{'FORM.EMAIL' | translate}}*" required
+        formControlName="email">
+      <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">
+        {{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
+        *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['pattern']?.requiredPattern === expresiones.email.toString()">
+        {{ "FORM.EMAIL_FORMAT" | translate }}</div>
+    </div>
+    <div>
+      <label for="language">{{"FORM.LANGUAGE" | translate}}</label><br>
+      <select class="col-12 form-select" title="{{'FORM.LANGUAGE' | translate}}" name="language"
+        formControlName="language" (change)="changeLanguage()">
+        <option *ngFor="let language of languages" value="{{ language.abbrev }}">
+          {{ language.name }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <div class="d-flex gap-2">
+        <div>
+          <label for="image">{{"FORM.AVATAR" | translate}}</label>
+          <input class="form-control" #imageInput type="file" title="AVATAR" name="image" accept="image/*"
+            (change)="changeImage(imageInput)" formControlName="image">
+        </div>
+        <div class="pt-2">
+          <img src="{{ user.image }}" alt="">
+        </div>
+      </div>
+      <div class="alert alert-danger"
+        *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.errors?.['pattern']?.requiredPattern === expresiones.image.toString()">
+        {{ "FORM.IMG_FORMAT" | translate }}</div>
+    </div>
+    <div>
+      <label for="password">{{"FORM.PASSWORD" | translate}}</label>
+      <input type="password" class="form-control" name="password"
+        placeholder="{{'FORM.PASSWORD_CONFIRM_EDIT' | translate}}*" required formControlName="password">
+      <div class="error"
+        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">{{
+        "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
+        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['pattern']?.requiredPattern === expresiones.password.toString()">
+        {{ "FORM.PASSWORD_FORMAT" | translate }}</div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mt-2 mb-4">
+      <input class="btn btn-primary" type="submit" value="{{'FORM.EDIT_CONFIGURATION' | translate}}"
+        [disabled]="registerForm.invalid">
+      <i>{{"FORM.REQUIRED"|translate}}</i>
+    </div>
+  </div>
+</form>

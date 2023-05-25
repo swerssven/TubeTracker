@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { IStatistics } from 'src/app/interfaces/i-statistics';
-import { IUserResponse } from 'src/app/interfaces/i-user-response';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
+import { EditUserComponent } from '../loginComponents/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-statistics',
@@ -31,7 +32,8 @@ export class UserStatisticsComponent {
     private userService: UserServiceService,
     private utils: UtilsServiceService,
     private movieService: MovieServiceService,
-    private serieService: SerieServiceService
+    private serieService: SerieServiceService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +76,10 @@ export class UserStatisticsComponent {
       let userString = localStorage.getItem('user');
       this.localUser = userString ? JSON.parse(userString) : null;
     }
+  }
+
+  profileConfiguration(){
+    this.modalService.open(EditUserComponent, {centered: true});
   }
 
   logout(): void {

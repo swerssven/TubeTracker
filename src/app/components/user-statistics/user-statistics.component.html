@@ -12,11 +12,11 @@
       <div class="col-10">
         <h1 *ngIf="user" class="col"><b>{{user.nickname}}</b></h1>
         <div class="col">
-          <div>
-            <a href="">{{ "STATISTICS.PROFILE_CONFIGURATION" | translate }}</a>
+          <div *ngIf="user && user.userId == localUser.userId">
+            <a class="link-primary" (click)="profileConfiguration()">{{ "STATISTICS.PROFILE_CONFIGURATION" | translate }}</a>
           </div>
           <div>
-            <a href="" *ngIf="user && user.rolId == 0 && user.userId == localUser.userId"
+            <a href="" class="link-primary"  *ngIf="user && user.rolId == 0 && user.userId == localUser.userId"
               [routerLink]="['/news/newArticle']">{{ "STATISTICS.CREATE_NEWS_ARTICLES" | translate}}</a>
           </div>
           <div>
@@ -40,15 +40,15 @@
               <div class="row d-flex justify-content-center">
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursSeries[0] }}</h1>
-                  <h6>months</h6>
+                  <h6>{{ "STATISTICS.MONTHS" | translate }}</h6>
                 </div>
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursSeries[1] }}</h1>
-                  <h6>days</h6>
+                  <h6>{{ "STATISTICS.DAYS" | translate }}</h6>
                 </div>
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursSeries[2] }}</h1>
-                  <h6>hours</h6>
+                  <h6>{{ "STATISTICS.HOURS" | translate }}</h6>
                 </div>
               </div>
             </div>
@@ -87,15 +87,15 @@
               <div class="row d-flex justify-content-center">
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursMovies[0] }}</h1>
-                  <h6>months</h6>
+                  <h6>{{ "STATISTICS.MONTHS" | translate }}</h6>
                 </div>
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursMovies[1] }}</h1>
-                  <h6>days</h6>
+                  <h6>{{ "STATISTICS.DAYS" | translate }}</h6>
                 </div>
                 <div class="col-3">
                   <h1 *ngIf="statistics">{{ hoursMovies[2] }}</h1>
-                  <h6>hours</h6>
+                  <h6>{{ "STATISTICS.HOURS" | translate }}</h6>
                 </div>
               </div>
             </div>

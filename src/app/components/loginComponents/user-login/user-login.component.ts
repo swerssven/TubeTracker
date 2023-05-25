@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { SignUpModalComponent } from '../sign-up-modal/sign-up-modal.component';
-import { IUserResponse } from 'src/app/interfaces/i-user-response';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 

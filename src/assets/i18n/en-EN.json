@@ -44,7 +44,11 @@
     "PASSWORD_FORMAT": "At least one upper and lowercase, one digit and one special caracter. Min length 8",
     "IMG_FORMAT": "Only accepts gif, jpeg. jpg y png",
     "FIELD_REQUIRED": "Field is required",
-    "MIN_CARACTERS": "Minimum 20 caracters"
+    "MIN_CARACTERS": "Minimum 20 caracters",
+    "EDIT_USER": "Edit user information",
+    "EDIT_TO_YOUR_LIKING!": "Edit profile to your liking!",
+    "PASSWORD_CONFIRM_EDIT": "Enter old or change password",
+    "EDIT_CONFIGURATION": "Edit profile"
   },
 
   "LOGIN":{
@@ -125,7 +129,10 @@
     "LIKES": "Likes",
     "FRIENDS": "Friends",
     "PROFILE_CONFIGURATION": "Profile configuration",
-    "CREATE_NEWS_ARTICLES": "Create news articles"
+    "CREATE_NEWS_ARTICLES": "Create news articles",
+    "MONTHS": "months",
+    "DAYS": "days",
+    "HOURS": "hours"
   },
 
   "NAC": {
