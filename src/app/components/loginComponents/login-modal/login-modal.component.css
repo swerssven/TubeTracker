@@ -8000,4 +8000,8 @@
 
 .bi-wikipedia::before {
   content: "\f8cc";
+}
+
+.error {
+  color: red;
 }/*# sourceMappingURL=login-modal.component.css.map */

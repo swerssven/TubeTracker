@@ -17,62 +17,57 @@
       <label for="firstname">{{"FORM.FIRSTNAME" | translate}}</label>
       <input type="text" class="form-control" firstname="firstname"
         placeholder="{{'FORM.FIRSTNAME' | translate}}*" required formControlName="firstname">
-      <div class="alert alert-danger"
+      <div class="error"
         *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.errors?.['required']">
-        Este campo es obligatorio</div>
-      <div class="alert alert-danger"
+        {{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
         *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.errors?.['pattern']?.requiredPattern === expresiones.firstname.toString()">
-        Este campo solo admite mayusculas y minusculas</div>
+        {{ "FORM.UPPER_LOWER_ONLY" | translate }}</div>
     </div>
     <div>
       <label for="lastname">{{"FORM.LASTNAME" | translate}}</label>
       <input type="text" class="form-control" name="lastname"
         placeholder="{{'FORM.LASTNAME' | translate}}*" required formControlName="lastname">
-      <div class="alert alert-danger"
-        *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.errors?.['required']">Este campo
-        es
-        obligatorio</div>
-      <div class="alert alert-danger"
+      <div class="error"
+        *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.errors?.['required']">{{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
         *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.errors?.['pattern']?.requiredPattern === expresiones.lastname.toString()">
-        Este campo solo admite mayusculas y minusculas</div>
+        {{ "FORM.UPPER_LOWER_ONLY" | translate }}</div>
     </div>
     <div>
       <label for="nickname">{{"FORM.NICKNAME" | translate}}</label>
       <input type="text" class="form-control" name="nickname"
         placeholder="{{'FORM.NICKNAME' | translate}}*" required formControlName="nickname">
-      <div class="alert alert-danger"
+      <div class="error"
         *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.errors?.['required']">
-        Este campo es obligatorio</div>
-      <div class="alert alert-danger"
+        {{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
         *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.errors?.['pattern']?.requiredPattern === expresiones.nickname.toString()">
-        Formato NIF/NIE incorrecto</div>
+        {{ "FORM.UPPER_LOWER_SPECIAL" | translate }}</div>
     </div>
     <div>
       <label for="password">{{"FORM.PASSWORD" | translate}}</label>
       <input type="password" class="form-control" name="password"
         placeholder="{{'FORM.PASSWORD' | translate}}*" required formControlName="password">
-      <div class="alert alert-danger"
-        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">Este campo
-        es
-        obligatorio</div>
-      <div class="alert alert-danger"
+      <div class="error"
+        *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">{{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
         *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['pattern']?.requiredPattern === expresiones.password.toString()">
-        Este campo solo admite mayusculas, minusculas, digitos y carácteres especiales (-/ºª´)</div>
+        {{ "FORM.PASSWORD_FORMAT" | translate }}</div>
     </div>
     <div>
       <label for="email">{{"FORM.EMAIL" | translate}}</label>
       <input type="text" class="form-control" name="email"
         placeholder="{{'FORM.EMAIL' | translate}}*" required formControlName="email">
-      <div class="alert alert-danger"
-        *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">Este campo es
-        obligatorio</div>
-      <div class="alert alert-danger"
+      <div class="error"
+        *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">{{ "FORM.FIELD_REQUIRED" | translate }}</div>
+      <div class="error"
         *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['pattern']?.requiredPattern === expresiones.email.toString()">
-        Este campo solo admite mayusculas, minusculas, digitos y carácteres especiales (-/ºª´)</div>
+        {{ "FORM.EMAIL_FORMAT" | translate }}</div>
     </div>
     <div>
       <label for="language">{{"FORM.LANGUAGE" | translate}}</label><br>
-        <select class="col-12 form-select" title="LANGUAGE" name="language" formControlName="language">
+        <select class="col-12 form-select" title="{{'FORM.LANGUAGE' | translate}}" name="language" formControlName="language" (change)="changeLanguage()">
           <option *ngFor="let language of languages" value="{{ language.abbrev }}">
             {{ language.name }}
           </option>
@@ -84,7 +79,7 @@
         (change)="changeImage(imageInput)" formControlName="image">
       <div class="alert alert-danger"
         *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.errors?.['pattern']?.requiredPattern === expresiones.image.toString()">
-        Este campo solo admite extensiones gif, jpeg. jpg y png</div>
+        {{ "FORM.IMG_FORMAT" | translate }}</div>
     </div>
     <div>
 

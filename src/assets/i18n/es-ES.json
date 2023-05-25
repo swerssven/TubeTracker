@@ -4,15 +4,139 @@
     "EXPLORE": "Explorar",
     "POPULAR": "Popular",
     "FAVORITES": "Favoritos",
-    "SOCIAL": "Social"
+    "SOCIAL": {
+      "SOCIAL": "Social",
+      "NEWS_BOARD": "Tablero de noticias",
+      "MY_PROFILE": "Mi perfil",
+      "FIND_FRIENDS": "Buscar amigos",
+      "MESSAGES": "Mensajes"
+    }
   },
 
-  "FORM":{
-    "USER NAME": "Nombre usuario",
+  "FORM": {
+    "FIRSTNAME": "Nombre",
+    "LASTNAME": "Apellido",
+    "NICKNAME": "Apodo",
     "PASSWORD": "Contraseña",
+    "EMAIL": "Correo electrónico",
+    "LANGUAGE": "Idioma",
+    "AVATAR": "Avatar",
     "SEARCH": "Buscar",
     "SEARCH FOR": "Buscar...",
     "MOVIES": "Películas",
-    "SERIES": "Series"
+    "SERIES": "Series",
+    "REQUIRED": "*Campos obligatorios",
+    "FILTER_BY": "Filtrar por...",
+    "WATCHED": "Visto",
+    "CONTENT_TYPE": "Tipo de contenido",
+    "ORDER_BY": "Ordenar por",
+    "ALL": "Todo",
+    "NOT_WATCHED": "No visto",
+    "NONE": "Ninguno",
+    "DATE_ASC": "Fecha (Ascendente)",
+    "DATE_DESC": "Fecha (Descendente)",
+    "TITLE_ASC": "Título (Ascendente)",
+    "TITLE_DESC": "Título (Descendente)",
+    "SEND": "Enviar",
+    "UPPER_LOWER_ONLY": "Solo letras mayúsculas y minúsculas",
+    "UPPER_LOWER_SPECIAL": "Solo letras mayúsculas y minúsculas, dígitos y caracteres especiales (-_/)",
+    "EMAIL_FORMAT": "Formato incorrecto (email@direccion.com)",
+    "PASSWORD_FORMAT": "Al menos una letra mayúscula y minúscula, un dígito y un carácter especial. Longitud mínima de 8",
+    "IMG_FORMAT": "Solo acepta formatos gif, jpeg, jpg y png",
+    "FIELD_REQUIRED": "Campo obligatorio",
+    "MIN_CARACTERS": "Mínimo 20 caracteres"
+  },
+
+  "LOGIN": {
+    "DON'T HAVE AN ACCOUNT?": "¿No tienes una cuenta?",
+    "SIGN_UP_HERE": "Regístrate aquí",
+    "ALREADY_HAVE_AN_ACCOUNT?": "¿Ya tienes una cuenta?",
+    "WELCOME_STRANGER!": "¡Bienvenido extraño!",
+    "LOGIN": "Iniciar sesión",
+    "LOGIN_HERE": "Inicia sesión aquí",
+    "CREATE_ACCOUNT": "Crear cuenta",
+    "REGISTER_NOW": "Regístrate ahora",
+    "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Crea tu cuenta y ¡disfruta!",
+    "LOGIN_AND_HAVE_SOME_FUN!": "Inicia sesión y ¡diviértete!",
+    "LOGOUT": "Cerrar sesión"
+  },
+
+  "SEARCH": {
+    "NO_RESULTS": "Sin resultados"
+  },
+
+  "NEWS": {
+    "PUBLISHED": "Publicado"
+  },
+
+  "POPULAR": {
+    "RECOMMENDED_MOVIES": "Películas recomendadas",
+    "RECOMMENDED_SERIES": "Series recomendadas",
+    "POPULAR_MOVIES": "Películas populares",
+    "POPULAR_SERIES": "Series populares",
+    "TOP_RATED_MOVIES": "Películas mejor valoradas",
+    "TOP_RATED_SERIES": "Series mejor valoradas"
+  },
+
+  "DETAIL": {
+    "REVIEWS": "Reseñas",
+    "TT_RATING": "Calificación de TT",
+    "YOUR_RATING": "Tu calificación",
+    "DESCRIPTION": "Descripción",
+    "DIRECTOR": "Director",
+    "DIRECTORS": "Directores",
+    "ACTORS": "Actores",
+    "USER_REVIEWS": "Reseñas de usuarios",
+    "WRITE_YOUR_REVIEW": "Escribe tu propia reseña aquí...",
+    "NO_REVIEWS_YET": "No hay reseñas disponibles. ¡Sé el primero en escribir una nueva reseña!",
+    "SEASON": "Temporada",
+    "SEASONS": "Temporadas",
+    "EPISODES": "Episodios"
+  },
+
+  "MOVIE_SERIE_CARD": {
+    "WATCHED": "Marcar como visto",
+    "FAVORITE": "Marcar como favorito"
+  },
+
+  "DATETIME": {
+    "NOW": "Ahora"
+  },
+
+  "SOCIAL": {
+    "SHARE_SOMETHING": "¿Quieres compartir algo con el mundo?",
+    "LIKE": "Me gusta",
+    "COMMENT": "Comentario",
+    "FIND_NEW_FRIENDS": "Buscar nuevos amigos...",
+    "YOUR_SEARCH": "Tu búsqueda",
+    "FRIENDS": "Amigos",
+    "WRITE_YOUR_OWN_MESSAGE_HERE": "Escribe tu propio mensaje aquí..."
+  },
+
+  "STATISTICS": {
+    "LAST_WATCHED_MOVIES": "Últimas películas vistas",
+    "LAST_WATCHED_SERIES": "Últimas series vistas",
+    "TOTAL_TIME_MOVIES": "Tiempo total viendo películas",
+    "TOTAL_TIME_SERIES": "Tiempo total viendo series",
+    "EPISODES_WATCHED": "Episodios vistos",
+    "MOVIES_WATCHED": "Películas vistas",
+    "POSTS": "Publicaciones",
+    "COMMENTS": "Comentarios",
+    "LIKES": "Me gusta",
+    "FRIENDS": "Amigos",
+    "PROFILE_CONFIGURATION": "Configuración del perfil",
+    "CREATE_NEWS_ARTICLES": "Crear artículos de noticias"
+  },
+
+  "NAC": {
+    "WELCOME": "¡Bienvenido al CAN, estimado administrador!",
+    "NAC": "(Creador de Artículos de Noticias)",
+    "INSTRUCTIONS": "INSTRUCCIONES: Primero ingrese el artículo en inglés >> Presione siguiente idioma >> Ingrese el artículo en español >> Presione enviar para guardar en la base de datos.",
+    "NEXT_LANG": "Siguiente idioma",
+    "SEND": "Enviar"
+  },
+
+  "OTHERS": {
+    "LOADING": "Cargando..."
   }
 }

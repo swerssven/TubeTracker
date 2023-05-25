@@ -23,7 +23,7 @@
           <a class="nav-link d-flex gap-2" [routerLink]="['/social/friends-messages-list']" [routerLinkActive]="['active']">
             <i class="bi bi-chat-square-text-fill"></i>
             <div class="d-none d-md-block">{{"NAV.SOCIAL.MESSAGES" | translate}}</div>
-            <div class="text-white bg-primary rounded-circle" style="height: 22px;" *ngIf="unreadMessages > 0">&nbsp;&nbsp;{{ unreadMessages }}&nbsp;&nbsp;</div>
+            <div class="text-white bg-primary rounded-circle notification" *ngIf="unreadMessages > 0">&nbsp;&nbsp;{{ unreadMessages }}&nbsp;&nbsp;</div>
           </a>
         </li>
       </ul>

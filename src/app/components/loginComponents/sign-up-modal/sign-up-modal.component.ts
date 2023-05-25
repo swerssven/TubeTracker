@@ -7,6 +7,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-up-modal',
@@ -27,7 +28,7 @@ export class SignUpModalComponent {
 
   registerForm!: FormGroup;
   imagen!: string;
-  languages = [{ name: 'English', abbrev: 'en-US' }, { name: 'Español', abbrev: 'es-ES' }];
+  languages = [{ name: 'English', abbrev: 'en-EN' }, { name: 'Español', abbrev: 'es-ES' }];
   newUser: IUser = {
     firstname: '',
     lastname: '',
@@ -45,7 +46,8 @@ export class SignUpModalComponent {
     private modalService: NgbModal,
     private activeModelService: NgbActiveModal,
     private router: Router,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -79,7 +81,7 @@ export class SignUpModalComponent {
         '',
         [Validators.required, Validators.pattern(this.expresiones.email)],
       ],
-      language: ['en-US', Validators.required],
+      language: ['en-EN', Validators.required],
       image: null
     });
   }
@@ -121,6 +123,11 @@ export class SignUpModalComponent {
       this.imagen = reader.result as string;
       this.newUser.image = reader.result as string;
     });
+  }
+
+  changeLanguage(){
+    console.log(this.registerForm.value.language)
+    this.translate.use(this.registerForm.value.language)
   }
 
   ngOnDestroy(): void {

@@ -10,29 +10,29 @@
         <i class="bi bi-filter"></i>
         <label class="form-check-label" for="selectWatched">{{ "FORM.WATCHED" | translate }}</label>
         <select [(ngModel)]="selectedWatched" name="selectWatched" title="{{ 'FORM.WATCHED' | translate }}" (ngModelChange)="filterItems()">
-          <option value="all">All</option>
-          <option value="true">Watched</option>
-          <option value="false">Not watched</option>
+          <option value="all">{{ "FORM.ALL" | translate }}</option>
+          <option value="true">{{ "FORM.WATCHED" | translate }}</option>
+          <option value="false">{{ "FORM.NOT_WATCHED" | translate }}</option>
         </select>
       </div>
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-list-stars"></i>
         <label class="form-check-label" for="selectType">{{ "FORM.CONTENT_TYPE" | translate }}</label>
         <select [(ngModel)]="selectedType" name="selectType" title="{{ 'FORM.CONTENT_TYPE' | translate }}" (ngModelChange)="filterItems()">
-          <option value="all">All</option>
-          <option value="movies">Movies</option>
-          <option value="series">Series</option>
+          <option value="all">{{ "FORM.ALL" | translate }}</option>
+          <option value="movies">{{ "FORM.MOVIES" | translate }}</option>
+          <option value="series">{{ "FORM.SERIES" | translate }}</option>
         </select>
       </div>
       <div class="form-check form-check-inline d-flex gap-2 ps-1">
         <i class="bi bi-sort-down"></i>
         <label class="form-check-label" for="selectOrder">{{ "FORM.ORDER_BY" | translate }}</label>
         <select [(ngModel)]="selectedOrder" name="selectOrder" title="{{ 'FORM.ORDER_BY' | translate }}"  (ngModelChange)="filterItems()">
-          <option value="none">None</option>
-          <option value="dateAsc">Date (Ascending)</option>
-          <option value="dateDesc">Date (Descending)</option>
-          <option value="titleAsc">Title (Ascending)</option>
-          <option value="titleDesc">Title (Descending)</option>
+          <option value="none">{{ "FORM.NONE" | translate }}</option>
+          <option value="dateAsc">{{ "FORM.DATE_ASC" | translate }}</option>
+          <option value="dateDesc">{{ "FORM.DATE_DESC" | translate }}</option>
+          <option value="titleAsc">{{ "FORM.TITLE_ASC" | translate }}</option>
+          <option value="titleDesc">{{ "FORM.TITLE_DESC" | translate }}</option>
         </select>
       </div>
     </div>

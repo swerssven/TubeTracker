@@ -30,7 +30,21 @@
     "WATCHED": "Watched",
     "CONTENT_TYPE": "Content type",
     "ORDER_BY": "Order by",
-    "SEND": "Send"
+    "ALL": "All",
+    "NOT_WATCHED": "Not watched",
+    "NONE": "None",
+    "DATE_ASC": "Date (Ascending)",
+    "DATE_DESC": "Date (Descending)",
+    "TITLE_ASC": "Title (Ascending)",
+    "TITLE_DESC": "Title (Descending)",
+    "SEND": "Send",
+    "UPPER_LOWER_ONLY": "Only upper and lowercase letters",
+    "UPPER_LOWER_SPECIAL": "Only upper and lowercase letters, digits y special caracters (-_/)",
+    "EMAIL_FORMAT": "Incorrect format (email@address.com)",
+    "PASSWORD_FORMAT": "At least one upper and lowercase, one digit and one special caracter. Min length 8",
+    "IMG_FORMAT": "Only accepts gif, jpeg. jpg y png",
+    "FIELD_REQUIRED": "Field is required",
+    "MIN_CARACTERS": "Minimum 20 caracters"
   },
 
   "LOGIN":{
@@ -43,7 +57,8 @@
     "CREATE_ACCOUNT": "Create Account",
     "REGISTER_NOW": "Register Now",
     "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Create your account and enjoy!",
-    "LOGIN_AND_HAVE_SOME_FUN!": "Login and have some fun!"
+    "LOGIN_AND_HAVE_SOME_FUN!": "Login and have some fun!",
+    "LOGOUT": "Logout"
   },
 
   "SEARCH":{
@@ -61,6 +76,22 @@
     "POPULAR_SERIES": "Popular series",
     "TOP_RATED_MOVIES": "Top rated movies",
     "TOP_RATED_SERIES": "Top rated series"
+  },
+
+  "DETAIL": {
+    "REVIEWS": "Reviews",
+    "TT_RATING": "TT rating",
+    "YOUR_RATING": "Your rating",
+    "DESCRIPTION": "Description",
+    "DIRECTOR": "Director",
+    "DIRECTORS": "Director/s",
+    "ACTORS": "Actor/s",
+    "USER_REVIEWS": "User reviews",
+    "WRITE_YOUR_REVIEW": "Write your own review here...",
+    "NO_REVIEWS_YET": "No reviews available, be the first one to write a new review!!!",
+    "SEASON": "Season",
+    "SEASONS": "Seasons",
+    "EPISODES": "Episodes"
   },
 
   "MOVIE_SERIE_CARD":{
@@ -84,6 +115,28 @@
 
   "STATISTICS": {
     "LAST_WATCHED_MOVIES": "Last movies watched",
-    "LAST_WATCHED_SERIES": "Last series watched"
+    "LAST_WATCHED_SERIES": "Last series watched",
+    "TOTAL_TIME_MOVIES": "Total time watching movies",
+    "TOTAL_TIME_SERIES": "Total time watching series",
+    "EPISODES_WATCHED": "Episodes watched",
+    "MOVIES_WATCHED": "Movies watched",
+    "POSTS": "Posts",
+    "COMMENTS": "Comments",
+    "LIKES": "Likes",
+    "FRIENDS": "Friends",
+    "PROFILE_CONFIGURATION": "Profile configuration",
+    "CREATE_NEWS_ARTICLES": "Create news articles"
+  },
+
+  "NAC": {
+    "WELCOME": "Welcome to the NAC, dear administrator!",
+    "NAC": "(News Article Creator)",
+    "INSTRUCTIONS": "INSTRUCTIONS: First enter the article in English >> Press next language >> Enter article in Spanish >> Press send to save in data base.",
+    "NEXT_LANG": "Next language",
+    "SEND": "Send"
+  },
+
+  "OTHERS": {
+    "LOADING": "Loading..."
   }
 }
