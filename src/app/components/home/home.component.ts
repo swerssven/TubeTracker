@@ -10,7 +10,7 @@ import { NewsServiceService } from 'src/app/services/news-service.service';
 })
 export class HomeComponent {
 
-  newsArticles!: INews[];
+  newsArticles: INews[] = [];
   private subscriptions: Subscription = new Subscription();
 
 constructor(private newsService: NewsServiceService){}

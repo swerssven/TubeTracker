@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IMessage, IMessageDto } from 'src/app/interfaces/i-message';
+import { DataServiceService } from 'src/app/services/data-service.service';
 import { SocialServiceService } from 'src/app/services/social-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
@@ -29,7 +30,8 @@ export class MessagesComponent {
     private socialService: SocialServiceService,
     public datepipe: DatePipe,
     private formBuilder: FormBuilder,
-    public utils: UtilsServiceService
+    public utils: UtilsServiceService,
+    private dataService: DataServiceService
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +43,11 @@ export class MessagesComponent {
     }
 
     this.subscriptions.add(this.socialService
-      .getMessagesList(this.sender.userId, this.receiverId)
-      .subscribe((data) => {
-        this.messages = data.messagesList;
-        this.receiverImage = data.receiverImage;
-        this.receiverName = data.receiverName;
+        .getMessagesList(this.sender.userId, this.receiverId)
+        .subscribe((data) => {
+          this.messages = data.messagesList;
+          this.receiverImage = data.receiverImage;
+          this.receiverName = data.receiverName;
       }));
   }
 
@@ -54,7 +56,7 @@ export class MessagesComponent {
     if (
       this.dateAux == null || this.dateAux == undefined ||
       this.datepipe.transform(date, 'dd/MM/yyyy') !=
-      this.datepipe.transform(this.dateAux, 'dd/MM/yyyy')
+        this.datepipe.transform(this.dateAux, 'dd/MM/yyyy')
     ) {
       this.dateAux = date;
       return true;

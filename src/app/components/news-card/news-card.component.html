@@ -1,4 +1,4 @@
-<div class="card bg-posts shadow mt-2">
+<div class="card bg-posts shadow mt-4">
   <div class="card-body">
     <span class="card-text" *ngIf="newsArticle && content || content"
       [innerHTML]="sanitizer.bypassSecurityTrustHtml(content)"></span>

@@ -54,6 +54,7 @@ export class NewsCreatorComponent {
       this.subscriptions.add(this.newsService.createNewsArticle(this.article).subscribe(
         () => {
         alert('Article uploaded correctly');
+        location.reload();
       }));
     }
   }

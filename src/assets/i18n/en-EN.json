@@ -80,5 +80,10 @@
     "YOUR_SEARCH": "Your search",
     "FRIENDS": "Friends",
     "WRITE_YOUR_OWN_MESSAGE_HERE": "Write your own message here..."
+  },
+
+  "STATISTICS": {
+    "LAST_WATCHED_MOVIES": "Last movies watched",
+    "LAST_WATCHED_SERIES": "Last series watched"
   }
 }
