@@ -114,7 +114,11 @@
     "FIND_NEW_FRIENDS": "Buscar nuevos amigos...",
     "YOUR_SEARCH": "Tu búsqueda",
     "FRIENDS": "Amigos",
-    "WRITE_YOUR_OWN_MESSAGE_HERE": "Escribe tu propio mensaje aquí..."
+    "WRITE_YOUR_OWN_MESSAGE_HERE": "Escribe tu propio mensaje aquí...",
+    "INVITED_YOU_TO_BECOME_FRIENDS": "Te ha invitado a ser amigos",
+    "INVITE": "Invitar",
+    "INVITATION_SEND": "Invitación enviada",
+    "ACCEPT_INVITATION": "Aceptar invitación"
   },
 
   "STATISTICS": {
@@ -145,5 +149,10 @@
 
   "OTHERS": {
     "LOADING": "Cargando..."
+  },
+
+  "ERROR": {
+    "NickNameAlreadyExists": "El apodo introducido ya existe",
+    "EmailAlreadyExists": "El email introducido ya existe"
   }
 }

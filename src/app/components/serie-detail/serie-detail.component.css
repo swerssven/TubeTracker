@@ -8030,4 +8030,8 @@
 .episode-hover:hover {
   box-shadow: 0px 0px 5px white;
   background-color: rgb(44, 44, 44);
+}
+
+.episode-list {
+  max-height: 550px;
 }/*# sourceMappingURL=serie-detail.component.css.map */

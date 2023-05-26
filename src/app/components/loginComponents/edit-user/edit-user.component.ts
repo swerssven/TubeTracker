@@ -26,7 +26,7 @@ export class EditUserComponent {
   };
 
   user!: any;
-
+  serverError!: string;
   registerForm!: FormGroup;
   imagen!: string;
   languages = [{ name: 'English', abbrev: 'en-EN' }, { name: 'Español', abbrev: 'es-ES' }];
@@ -96,10 +96,18 @@ export class EditUserComponent {
       language: this.registerForm.value.language,
       image: this.user.image
     };
-    console.log(this.newUser)
 
     this.subscriptions.add(
-      /// Edit service
+      this.userService.EditUser(this.newUser).subscribe(
+        (data) => {
+          localStorage.setItem('user', JSON.stringify(data))
+          this.activeModal.close();
+          location.reload();
+        },
+        (error)=>{
+          this.serverError = error.error
+        }
+      )
     );
   }
 

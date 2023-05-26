@@ -58,4 +58,10 @@ export class UserServiceService {
   GetUserStatistics(userId: number): Observable<IStatistics>{
     return this.http.get<IStatistics>(`https://localhost:7203/api/User/GetUserStatistics?userId=${userId}`);
   }
+
+  // Edit user in database.
+  EditUser(userData: IUser): Observable<IUser> {
+    return this.http
+      .post<IUser>('https://localhost:7203/api/User/EditUser', userData);
+  }
 }

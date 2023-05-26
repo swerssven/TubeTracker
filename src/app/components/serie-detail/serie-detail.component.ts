@@ -71,7 +71,6 @@ export class SerieDetailComponent {
       .subscribe((data) => {
         this.seasonEpisodes = data;
         this.temporadaSeleccionada = data.seasonsList[0];
-        console.log(data);
       }));
 
       this.subscriptions.add(this.serieService

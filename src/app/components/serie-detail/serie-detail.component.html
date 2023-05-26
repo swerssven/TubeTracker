@@ -4,13 +4,13 @@
       <h2 *ngIf="serie"><b>{{title}}</b></h2>
       <div class="d-flex gap-5">
         <h6 *ngIf="serie">{{serie.premiereDate | date: 'yyyy'}}</h6>
-        <ng-container *ngIf="seasonEpisodes.totalNumEpisodes > 1; else elseTemplate">
+        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumEpisodes > 1; else elseTemplate">
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODES" | translate}}</h6>
         </ng-container>
         <ng-template #elseTemplate>
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODE" | translate}}</h6>
         </ng-template>
-        <ng-container *ngIf="seasonEpisodes.totalNumSeasons > 1; else elseTemplate">
+        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumSeasons > 1; else elseTemplate">
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASONS" | translate}}</h6>
         </ng-container>
         <ng-template #elseTemplate>
@@ -65,7 +65,7 @@
           </select>
         </div>
       </div>
-      <div class="row mt-2 p-1 overflow-auto" style="max-height: 550px" *ngIf="temporadaSeleccionada">
+      <div class="row mt-2 p-1 overflow-auto episode-list" *ngIf="temporadaSeleccionada">
         <div class="card bg-darker mb-1 episode-hover" *ngFor="let episode of temporadaSeleccionada.episodesList">
           <app-episode-card [episode]="episode"
             (checkWatchedEpisodeParent)="checkWatchedEpisodeParent($event)"></app-episode-card>

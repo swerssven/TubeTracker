@@ -69,10 +69,15 @@
         *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['pattern']?.requiredPattern === expresiones.password.toString()">
         {{ "FORM.PASSWORD_FORMAT" | translate }}</div>
     </div>
-    <div class="d-flex align-items-center justify-content-between mt-2 mb-4">
+    <div class="d-flex align-items-center justify-content-between mt-2">
       <input class="btn btn-primary" type="submit" value="{{'FORM.EDIT_CONFIGURATION' | translate}}"
         [disabled]="registerForm.invalid">
       <i>{{"FORM.REQUIRED"|translate}}</i>
     </div>
+    <div *ngIf="serverError">
+      <div class="error">
+        {{ "ERROR." + serverError | translate }}</div>
+    </div>
+    <div class=" mb-4"></div>
   </div>
 </form>
