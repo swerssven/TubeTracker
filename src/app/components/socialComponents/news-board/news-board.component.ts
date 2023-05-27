@@ -10,7 +10,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
   styleUrls: ['./news-board.component.scss']
 })
 export class NewsBoardComponent {
-  value: string = "";
+  value: string = '';
   user!: any;
   posts: IPost[] = [];
   private subscriptions: Subscription = new Subscription();

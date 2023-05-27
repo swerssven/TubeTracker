@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { IMovieDetail } from 'src/app/interfaces/i-movie-detail';
 import { IReview, IReviewDto } from 'src/app/interfaces/i-review';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
+import { UtilsServiceService } from 'src/app/services/utils-service.service';
+import { ShareComponent } from '../socialComponents/share/share.component';
 
 @Component({
   selector: 'app-movie-detail',
@@ -34,7 +37,9 @@ export class MovieDetailComponent {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private movieService: MovieServiceService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private modalService: NgbModal,
+    public utils: UtilsServiceService
   ) {}
 
   ngOnInit(): void {
@@ -137,6 +142,15 @@ export class MovieDetailComponent {
       .subscribe((data) => {
         this.movie.favorite = data;
       }));
+  }
+
+  share(){
+    let content = '<p style="margin-bottom: 25px;"></p><div contenteditable="false" class="card px-sm-3 px-md-3 py-1 p-3 my-0 mx-2 mx-md-5 mx-lg-5 shadow">\n <a\n style="text-decoration: none !important; color: inherit;"\n href="/movie/76600"\n style="cursor: pointer;"\n class="row d-flex justify-content-center align-items-center"\n >\n <div class="col-sm-12 col-md-6 col-lg-3">\n <img\n class="img-fluid ps-lg-4 p-lg-2"\n src="{{poster}}"\n alt=""\n />\n </div>\n <div class="col-sm-12 col-md-12 col-lg-9 pt-2 pb-0 mb-0">\n <p class="me-lg-4 pb-0 mb-0 ms-md-2 ms-lg-2">{{description}}\n </p>\n </div>\n </a>\n </div>';
+    content = content.replaceAll('{{poster}}', ('https://image.tmdb.org/t/p/w400' + this.movie.poster));
+    content = content.replaceAll('{{description}}', this.description);
+
+    const modalRef = this.modalService.open(ShareComponent, {centered: true, size: 'xl'});
+    modalRef.componentInstance.value = content;
   }
 
   ngOnDestroy(): void {

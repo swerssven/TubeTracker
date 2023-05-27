@@ -40,6 +40,7 @@ import { DatePipe } from '@angular/common';
 import { CommentCardComponent } from './components/socialComponents/comment-card/comment-card.component';
 import { MovieSerieFilterPipePipe } from './pipes/movie-serie-filter-pipe.pipe';
 import { EditUserComponent } from './components/loginComponents/edit-user/edit-user.component';
+import { ShareComponent } from './components/socialComponents/share/share.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -77,7 +78,8 @@ export function HttpLoaderFactory(http: HttpClient){
     EpisodeCardComponent,
     CommentCardComponent,
     MovieSerieFilterPipePipe,
-    EditUserComponent
+    EditUserComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,

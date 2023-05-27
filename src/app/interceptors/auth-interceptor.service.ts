@@ -28,35 +28,6 @@ export class AuthInterceptorService implements HttpInterceptor{
         }
       });
     }
-    // return next.handle(request).pipe(
-    //   catchError((err: HttpErrorResponse) => {
-    //     if(err.status === 401){
-    //       localStorage.clear();
-    //       this.modalService.dismissAll();  // Close all open modal windows.
-    //       this.router.navigateByUrl('/home');   // Redirect to home and login component.
-    //       this.modalService.open(LoginModalComponent, {backdrop: 'static', keyboard: false, centered: true});  // Open login component.
-    //     }
-
-    //     return throwError(() => new Error("Unauthorized, please login with correct credentials"));
-    //   })
-    // );
-    // return next.handle(request).pipe(
-    //   map((event: HttpEvent<any>) => {
-    //     // Comprueba si el evento es una respuesta HTTP exitosa
-    //     if (event instanceof HttpResponse && event.status === 401) {
-    //       localStorage.clear();
-    //       this.modalService.dismissAll();
-    //       this.router.navigateByUrl('/home');
-    //       this.modalService.open(LoginModalComponent, { backdrop: 'static', keyboard: false, centered: true });
-    //       throw new Error("Unauthorized, please login with correct credentials");
-    //     }
-    //     return event;
-    //   })
-      // catchError((error: any) => {
-      //   // Maneja otros errores aquí
-      //   return throwError(error);
-      // })
-    // );
     return next.handle(request).pipe(
       catchError((error: any) => {
         if (error.status === 401) {

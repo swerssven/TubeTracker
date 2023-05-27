@@ -1,0 +1,12 @@
+<div class="modal-header p-0 m-0">
+  <div>
+    <h6 class="modal-title text-center ms-3">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+  </div>
+  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
+<input type="button" class="btn btn-primary float-end mt-2 mb-2" value="{{ 'FORM.SEND' | translate }}" (click)="createPost()" data-bs-toggle="collapse"
+  data-bs-target="#tinymce">

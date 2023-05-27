@@ -109,6 +109,7 @@
 
   "SOCIAL":{
     "SHARE_SOMETHING": "Want to share something with the world?",
+    "SHARE": "Share",
     "LIKE": "Like",
     "COMMENT": "Comment",
     "FIND_NEW_FRIENDS": "Find new friends...",
@@ -118,7 +119,8 @@
     "INVITED_YOU_TO_BECOME_FRIENDS": "Invited you to become friends",
     "INVITE": "Invite",
     "INVITATION_SEND": "Invitation send",
-    "ACCEPT_INVITATION": "Accept invitation"
+    "ACCEPT_INVITATION": "Accept invitation",
+    "REVIEW_FOR": "Review for"
   },
 
   "STATISTICS": {

@@ -18,6 +18,10 @@
       <div class="col d-flex justify-content-center align-items-center">
         <i *ngIf="movie" class="bi icon" [ngClass]="movie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' " title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
       </div>
+      <div class="col d-flex justify-content-center align-items-center">
+        <i *ngIf="movie" class="bi bi-share icon"
+          title="{{ 'SOCIAL.SHARE' | translate }}" (click)="share()"></i>
+      </div>
       <div class="row">
         <div class="row">
           <h6 class="col text-end">{{ "DETAIL.TT_RATING" | translate }}</h6>
@@ -100,7 +104,7 @@
         <div *ngIf="reviews" class="row">
           <!--User reviews component-->
           <ng-container *ngFor="let review of reviews.reviews">
-            <app-movie-review class="col-6 mt-2 mb-3" [review]="review"></app-movie-review>
+            <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="movie.movieApiId" [contentType]="'movie'" [title]="title"></app-movie-review>
           </ng-container>
         </div>
         <div class="mb-5" *ngIf="reviews && reviews.numReviews== 0">{{ "DETAIL.NO_REVIEWS_YET" | translate }}</div>

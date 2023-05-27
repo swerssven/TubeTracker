@@ -51,7 +51,7 @@
             (change)="changeImage(imageInput)" formControlName="image">
         </div>
         <div class="pt-2">
-          <img src="{{ user.image }}" alt="">
+          <img src="{{ user.imagen == null || user.imagen.length == 0 ? '../../../../../../assets/default-avatar.png' : user.imagen }}" alt="">
         </div>
       </div>
       <div class="alert alert-danger"
