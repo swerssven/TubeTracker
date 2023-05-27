@@ -5,12 +5,21 @@ import { HttpClient } from '@angular/common/http';
 import { IMovieDetail } from '../interfaces/i-movie-detail';
 import { IReview, IReviewDto } from '../interfaces/i-review';
 import { IRatings } from '../interfaces/i-ratings';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieServiceService {
-  constructor(private http: HttpClient) {}
+  apiUrl!: string;
+
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      this.apiUrl = environment.apiUrl;
+    } else {
+      this.apiUrl = environment.apiUrl;
+    }
+  }
 
   getMovieSearchList(
     searchString: string,
@@ -19,7 +28,7 @@ export class MovieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Movie/getMovieSearchList?filter=${searchString}&page=${page}&language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Movie/getMovieSearchList?filter=${searchString}&page=${page}&language=${language}&userId=${userId}`
     );
   }
 
@@ -28,7 +37,7 @@ export class MovieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Movie/getMoviePopularList?language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Movie/getMoviePopularList?language=${language}&userId=${userId}`
     );
   }
 
@@ -37,7 +46,7 @@ export class MovieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Movie/getMovieTopRatedList?language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Movie/getMovieTopRatedList?language=${language}&userId=${userId}`
     );
   }
 
@@ -47,7 +56,7 @@ export class MovieServiceService {
     userId: number
   ): Observable<IMovieDetail> {
     return this.http.get<IMovieDetail>(
-      `https://localhost:7203/api/Movie/getMovie?id=${movieId}&language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Movie/getMovie?id=${movieId}&language=${language}&userId=${userId}`
     );
   }
 
@@ -57,26 +66,26 @@ export class MovieServiceService {
     rating: number
   ): Observable<IRatings> {
     return this.http.post<IRatings>(
-      `https://localhost:7203/api/Movie/setMovieRating?movieApiId=${movieApiId}&userId=${userId}&rating=${rating}`,
+      `${this.apiUrl}/api/Movie/setMovieRating?movieApiId=${movieApiId}&userId=${userId}&rating=${rating}`,
       null
     );
   }
 
   getMovieRatings(movieApiId: number, userId: number): Observable<IRatings> {
     return this.http.get<IRatings>(
-      `https://localhost:7203/api/Movie/getMovieRatings?userId=${userId}&movieApiId=${movieApiId}`
+      `${this.apiUrl}/api/Movie/getMovieRatings?userId=${userId}&movieApiId=${movieApiId}`
     );
   }
 
   getMovieReviews(movieId: number): Observable<IReviewDto> {
     return this.http.get<IReviewDto>(
-      `https://localhost:7203/api/Movie/getReviews?movieApiId=${movieId}`
+      `${this.apiUrl}/api/Movie/getReviews?movieApiId=${movieId}`
     );
   }
 
   createMovieReview(review: IReview): Observable<IReviewDto> {
     return this.http.post<IReviewDto>(
-      `https://localhost:7203/api/Movie/createReview`,
+      `${this.apiUrl}/api/Movie/createReview`,
       review
     );
   }
@@ -88,7 +97,7 @@ export class MovieServiceService {
     watched: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Movie/setMovieWatched?movieApiId=${movieApiId}&userId=${userId}&language=${language}&watched=${watched}`,
+      `${this.apiUrl}/api/Movie/setMovieWatched?movieApiId=${movieApiId}&userId=${userId}&language=${language}&watched=${watched}`,
       null
     );
   }
@@ -100,18 +109,18 @@ export class MovieServiceService {
     favorite: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Movie/setMovieFavorite?movieApiId=${movieApiId}&userId=${userId}&language=${language}&favorite=${favorite}`,
+      `${this.apiUrl}/api/Movie/setMovieFavorite?movieApiId=${movieApiId}&userId=${userId}&language=${language}&favorite=${favorite}`,
       null
     );
   }
 
   getMovieFavoritesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Movie/getMovieFavoritesList?userId=${userId}&language=${language}`
+      `${this.apiUrl}/api/Movie/getMovieFavoritesList?userId=${userId}&language=${language}`
     );
   }
 
   getLastWatchedMoviesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
-    return this.http.get<IMovieSerieCard[]>(`https://localhost:7203/api/Movie/getLastWatchedMoviesList?userId=${userId}&language=${language}`);
+    return this.http.get<IMovieSerieCard[]>(`${this.apiUrl}/api/Movie/getLastWatchedMoviesList?userId=${userId}&language=${language}`);
   }
 }

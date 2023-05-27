@@ -48,6 +48,9 @@ export class MessagesComponent {
           this.messages = data.messagesList;
           this.receiverImage = data.receiverImage;
           this.receiverName = data.receiverName;
+          this.subscriptions.add(this.socialService.getNumberUnreadMessages(this.sender.userId).subscribe(
+            (data) => this.dataService.setData(data)
+          ))
       }));
   }
 

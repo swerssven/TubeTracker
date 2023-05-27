@@ -6,39 +6,47 @@ import { IFriend } from '../interfaces/i-friend';
 import { IMessage, IMessageDto } from '../interfaces/i-message';
 import { IComment } from '../interfaces/i-comment';
 import { DataServiceService } from './data-service.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocialServiceService {
   private subscriptions: Subscription = new Subscription();
+  apiUrl!: string;
 
-  constructor(private http: HttpClient, private dataService: DataServiceService) {}
+  constructor(private http: HttpClient, private dataService: DataServiceService) {
+    if (environment.production) {
+      this.apiUrl = environment.apiUrl;
+    } else {
+      this.apiUrl = environment.apiUrl;
+    }
+  }
 
   GetSearchFriendsList(
     userId: number,
     searchParam: string
   ): Observable<IFriend[]> {
     return this.http.get<IFriend[]>(
-      `https://localhost:7203/api/Social/friends/getSearchFriendsList?userId=${userId}&searchParam=${searchParam}`
+      `${this.apiUrl}/api/Social/friends/getSearchFriendsList?userId=${userId}&searchParam=${searchParam}`
     );
   }
 
   getFriends(userId: number): Observable<IFriend[]> {
     return this.http.get<IFriend[]>(
-      `https://localhost:7203/api/Social/friends/getFriendsList?userId=${userId}`
+      `${this.apiUrl}/api/Social/friends/getFriendsList?userId=${userId}`
     );
   }
 
   getFriendsWithMessagesList(userId: number): Observable<IFriend[]> {
     return this.http.get<IFriend[]>(
-      `https://localhost:7203/api/Social/friends/getFriendsWithMessagesList?userId=${userId}`
+      `${this.apiUrl}/api/Social/friends/getFriendsWithMessagesList?userId=${userId}`
     );
   }
 
   createMessage(message: IMessage): Observable<IMessageDto> {
     return this.http.post<IMessageDto>(
-      `https://localhost:7203/api/Social/messages/createMessage`,
+      `${this.apiUrl}/api/Social/messages/createMessage`,
       message
     );
   }
@@ -48,7 +56,7 @@ export class SocialServiceService {
     receiverId: number
   ): Observable<IMessageDto> {
     return this.http.get<IMessageDto>(
-      `https://localhost:7203/api/Social/messages/getMessagesList?userId=${senderId}&friendUserId=${receiverId}`
+      `${this.apiUrl}/api/Social/messages/getMessagesList?userId=${senderId}&friendUserId=${receiverId}`
     );
   }
 
@@ -57,41 +65,41 @@ export class SocialServiceService {
     friendUserId: number
   ): Observable<IFriend> {
     return this.http.post<IFriend>(
-      `https://localhost:7203/api/Social/friends/createFriendInvitation?userId=${userId}&friendUserId=${friendUserId}`,
+      `${this.apiUrl}/api/Social/friends/createFriendInvitation?userId=${userId}&friendUserId=${friendUserId}`,
       null
     );
   }
 
   acceptInvitation(userId: number, friendUserId: number): Observable<IFriend> {
     return this.http.post<IFriend>(
-      `https://localhost:7203/api/Social/friends/acceptFriendship?userId=${userId}&friendUserId=${friendUserId}`,
+      `${this.apiUrl}/api/Social/friends/acceptFriendship?userId=${userId}&friendUserId=${friendUserId}`,
       null
     );
   }
 
   getPosts(forFriend: boolean, userId: number): Observable<IPost[]> {
     return this.http.get<IPost[]>(
-      `https://localhost:7203/api/Social/posts/getPostsList?forFriends=${forFriend}&userId=${userId}`
+      `${this.apiUrl}/api/Social/posts/getPostsList?forFriends=${forFriend}&userId=${userId}`
     );
   }
 
   createPost(post: IPost): Observable<IPost[]> {
     return this.http.post<IPost[]>(
-      `https://localhost:7203/api/Social/posts/createPost`,
+      `${this.apiUrl}/api/Social/posts/createPost`,
       post
     );
   }
 
   createPostComment(comment: IComment): Observable<IComment[]> {
     return this.http.post<IComment[]>(
-      `https://localhost:7203/api/Social/posts/createPostComment`,
+      `${this.apiUrl}/api/Social/posts/createPostComment`,
       comment
     );
   }
 
   getCommentsList(postId: number): Observable<IComment[]> {
     return this.http.get<IComment[]>(
-      `https://localhost:7203/api/Social/posts/getCommentsList?postId=${postId}`
+      `${this.apiUrl}/api/Social/posts/getCommentsList?postId=${postId}`
     );
   }
 
@@ -101,14 +109,14 @@ export class SocialServiceService {
     liked: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Social/posts/createPostLike?userId=${userId}&postId=${postId}&liked=${liked}`,
+      `${this.apiUrl}/api/Social/posts/createPostLike?userId=${userId}&postId=${postId}&liked=${liked}`,
       null
     );
   }
 
   getNumberUnreadMessages(userId: number): Observable<number> {
     return this.http.get<number>(
-      `https://localhost:7203/api/Social/messages/getNumberUnreadMessages?userId=${userId}`
+      `${this.apiUrl}/api/Social/messages/getNumberUnreadMessages?userId=${userId}`
     );
   }
 
@@ -118,7 +126,7 @@ export class SocialServiceService {
         .subscribe(() => {
           this.http
             .get(
-              `https://localhost:7203/api/Social/messages/getNumberUnreadMessages?userId=${userId}`
+              `${this.apiUrl}/api/Social/messages/getNumberUnreadMessages?userId=${userId}`
             )
             .subscribe((response) => {
               this.dataService.setData(response);

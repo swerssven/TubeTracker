@@ -8,17 +8,25 @@ import { IUserResponse } from '../interfaces/i-user-response';
 import { IFriend } from '../interfaces/i-friend';
 import { IStatistics } from '../interfaces/i-statistics';
 import { IUserGrid } from '../interfaces/i-user-grid';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServiceService {
-  constructor(private http: HttpClient) {}
+  apiUrl!: string;
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      this.apiUrl = environment.apiUrl;
+    } else {
+      this.apiUrl = environment.apiUrl;
+    }
+  }
 
   // Get user token from server
   getToken(userLogin: ILogin): Observable<ILoginResponse> {
     return this.http
-      .post<ILoginResponse>('https://localhost:7203/api/auth', userLogin)
+      .post<ILoginResponse>(`${this.apiUrl}/api/auth`, userLogin)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -32,7 +40,7 @@ export class UserServiceService {
   // Send user data to server to register user in DB.
   createUser(userData: IUser): Observable<IUser> {
     return this.http
-      .post<IUser>('https://localhost:7203/api/user', userData)
+      .post<IUser>(`${this.apiUrl}/api/user`, userData)
       .pipe(
         map((resp) => {
           return resp;
@@ -42,12 +50,12 @@ export class UserServiceService {
 
   // Get user from server.
   getUser(
-    id: number/*,
+    id: number /*,
     typeToken: string,
     token: string*/
   ): Observable<IUserResponse> {
     return this.http
-      .get<IUserResponse>(`https://localhost:7203/api/User/${id}`)
+      .get<IUserResponse>(`${this.apiUrl}/api/User/${id}`)
       .pipe(
         map((resp) => {
           return resp;
@@ -56,18 +64,24 @@ export class UserServiceService {
   }
 
   // Get list of users for the admin.
-  GetUserList(): Observable<IUserGrid[]>{
-    return this.http.get<IUserGrid[]>(`https://localhost:7203/api/User/GetUserList`);
+  GetUserList(): Observable<IUserGrid[]> {
+    return this.http.get<IUserGrid[]>(
+      `${this.apiUrl}/api/User/GetUserList`
+    );
   }
 
   // Get user statistics.
-  GetUserStatistics(userId: number): Observable<IStatistics>{
-    return this.http.get<IStatistics>(`https://localhost:7203/api/User/GetUserStatistics?userId=${userId}`);
+  GetUserStatistics(userId: number): Observable<IStatistics> {
+    return this.http.get<IStatistics>(
+      `${this.apiUrl}/api/User/GetUserStatistics?userId=${userId}`
+    );
   }
 
   // Edit user in database.
   EditUser(userData: IUser): Observable<IUser> {
-    return this.http
-      .post<IUser>('https://localhost:7203/api/User/EditUser', userData);
+    return this.http.post<IUser>(
+      `${this.apiUrl}/api/User/EditUser`,
+      userData
+    );
   }
 }

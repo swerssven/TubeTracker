@@ -6,12 +6,21 @@ import { IReview, IReviewDto } from '../interfaces/i-review';
 import { ISerieDetail } from '../interfaces/i-serie-detail';
 import { IRatings } from '../interfaces/i-ratings';
 import { ISeasonsEpisodesListDto } from '../interfaces/i-season-episode';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SerieServiceService {
-  constructor(private http: HttpClient) {}
+  apiUrl!: string;
+
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      this.apiUrl = environment.apiUrl;
+    } else {
+      this.apiUrl = environment.apiUrl;
+    }
+  }
 
   getSerieSearchList(
     searchString: string,
@@ -20,7 +29,7 @@ export class SerieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Serie/getSerieSearchList?filter=${searchString}&page=${page}&language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Serie/getSerieSearchList?filter=${searchString}&page=${page}&language=${language}&userId=${userId}`
     );
   }
 
@@ -29,7 +38,7 @@ export class SerieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Serie/getSeriePopularList?language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Serie/getSeriePopularList?language=${language}&userId=${userId}`
     );
   }
 
@@ -38,7 +47,7 @@ export class SerieServiceService {
     userId: number
   ): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Serie/getSerieTopRatedList?language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Serie/getSerieTopRatedList?language=${language}&userId=${userId}`
     );
   }
 
@@ -48,7 +57,7 @@ export class SerieServiceService {
     userId: number
   ): Observable<ISerieDetail> {
     return this.http.get<ISerieDetail>(
-      `https://localhost:7203/api/Serie/getSerie?id=${serieId}&language=${language}&userId=${userId}`
+      `${this.apiUrl}/api/Serie/getSerie?id=${serieId}&language=${language}&userId=${userId}`
     );
   }
 
@@ -57,7 +66,7 @@ export class SerieServiceService {
     userId: number
   ): Observable<ISeasonsEpisodesListDto> {
     return this.http.get<ISeasonsEpisodesListDto>(
-      `https://localhost:7203/api/Serie/getSeasonsEpisodesList?serieApiId=${serieApiId}&userId=${userId}`
+      `${this.apiUrl}/api/Serie/getSeasonsEpisodesList?serieApiId=${serieApiId}&userId=${userId}`
     );
   }
 
@@ -67,26 +76,26 @@ export class SerieServiceService {
     rating: number
   ): Observable<IRatings> {
     return this.http.post<IRatings>(
-      `https://localhost:7203/api/Serie/setSerieRating?serieApiId=${serieApiId}&userId=${userId}&rating=${rating}`,
+      `${this.apiUrl}/api/Serie/setSerieRating?serieApiId=${serieApiId}&userId=${userId}&rating=${rating}`,
       null
     );
   }
 
   getSerieRatings(serieApiId: number, userId: number): Observable<IRatings> {
     return this.http.get<IRatings>(
-      `https://localhost:7203/api/Serie/getSerieRatings?userId=${userId}&serieApiId=${serieApiId}`
+      `${this.apiUrl}/api/Serie/getSerieRatings?userId=${userId}&serieApiId=${serieApiId}`
     );
   }
 
   getSerieReviews(serieId: number): Observable<IReviewDto> {
     return this.http.get<IReviewDto>(
-      `https://localhost:7203/api/Serie/getReviews?serieApiId=${serieId}`
+      `${this.apiUrl}/api/Serie/getReviews?serieApiId=${serieId}`
     );
   }
 
   createSerieReview(review: IReview): Observable<IReviewDto> {
     return this.http.post<IReviewDto>(
-      `https://localhost:7203/api/Serie/createReview`,
+      `${this.apiUrl}/api/Serie/createReview`,
       review
     );
   }
@@ -98,7 +107,7 @@ export class SerieServiceService {
     watched: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Serie/setSerieWatched?serieApiId=${serieApiId}&userId=${userId}&language=${language}&watched=${watched}`,
+      `${this.apiUrl}/api/Serie/setSerieWatched?serieApiId=${serieApiId}&userId=${userId}&language=${language}&watched=${watched}`,
       null
     );
   }
@@ -110,7 +119,7 @@ export class SerieServiceService {
     watched: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Serie/setSeasonEpisodeWatched?serieApiId=${serieApiId}&seasonsEpisodeId=${seasonsEpisodeId}&userId=${userId}&watched=${watched}`,
+      `${this.apiUrl}/api/Serie/setSeasonEpisodeWatched?serieApiId=${serieApiId}&seasonsEpisodeId=${seasonsEpisodeId}&userId=${userId}&watched=${watched}`,
       null
     );
   }
@@ -122,20 +131,20 @@ export class SerieServiceService {
     favorite: boolean
   ): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://localhost:7203/api/Serie/setSerieFavorite?serieApiId=${serieApiId}&userId=${userId}&language=${language}&favorite=${favorite}`,
+      `${this.apiUrl}/api/Serie/setSerieFavorite?serieApiId=${serieApiId}&userId=${userId}&language=${language}&favorite=${favorite}`,
       null
     );
   }
 
   getSerieFavoritesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Serie/getSeriesFavoritesList?userId=${userId}&language=${language}`
+      `${this.apiUrl}/api/Serie/getSeriesFavoritesList?userId=${userId}&language=${language}`
     );
   }
 
   getLastWatchedSeriesList(userId: number, language: string): Observable<IMovieSerieCard[]> {
     return this.http.get<IMovieSerieCard[]>(
-      `https://localhost:7203/api/Serie/getLastWatchedSeriesList?userId=${userId}&language=${language}`
+      `${this.apiUrl}/api/Serie/getLastWatchedSeriesList?userId=${userId}&language=${language}`
     );
   }
 }

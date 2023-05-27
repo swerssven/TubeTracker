@@ -3,13 +3,24 @@
     <div class="accordion accordion-flush col-12 col-md-9 col-lg-8" id="accordionFlushExample">
       <div class="accordion-item bg-posts">
         <div class="text-end me-3 mb-2">
-          <span class="accordion-header d-flex justify-content-center gap-5" id="flush-headingOne">
+          <span class="accordion-header d-flex justify-content-center gap-5" id="flush-headingOne" *ngIf="!show">
             <button class="align-self-center bg-transparent border-0 d-flex gap-3" type="button"
               data-bs-toggle="collapse" data-bs-target="#tinymce" aria-expanded="false" aria-controls="#tinymce">
               <i class="bi bi-pencil-square shadow align-self-center fs-2 text-secondary"></i>
               <span class="card border-2 rounded-pill p-2 px-3 shadow align-self-center">{{ "SOCIAL.SHARE_SOMETHING" | translate }}</span>
             </button>
           </span>
+          <div class="row text-start" *ngIf="show">
+            <div class="d-flex gap-3 justify-content-center">
+              <ng-container *ngIf="userImage == null || userImage.length == 0; else elseTemplate">
+                <img class="img-fluid shadow align-self-center mb-2" src="../../../assets/default-avatar.png" alt="Avatar">
+              </ng-container>
+              <ng-template #elseTemplate>
+                <img class="img-fluid shadow align-self-center mb-2" src="{{userImage}}" alt="Avatar">
+              </ng-template>
+              <h3><b>{{ "SOCIAL.POSTS_FROM" | translate }} <a [routerLink]="['/statistics', userId]">{{userNickname}}</a></b></h3>
+            </div>
+          </div>
         </div>
         <div id="tinymce" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body m-0 p-0">

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IPost } from 'src/app/interfaces/i-post';
 import { SocialServiceService } from 'src/app/services/social-service.service';
@@ -10,43 +11,66 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  value: string = "";
-  user!: any;
+  value: string = '';
+  userId!: number;
+  userImage!: string;
+  userNickname!: string;
+  localUser!: any;
   posts: IPost[] = [];
+  show: boolean = false;
   private subscriptions: Subscription = new Subscription();
 
   editorConfig = {
     base_url: '/tinymce',
     suffix: '.min',
     plugins: 'lists link image emoticons table wordcount',
-    skin: "oxide-dark",
-    content_css: "dark"
+    skin: 'oxide-dark',
+    content_css: 'dark',
   };
 
-  constructor(public sanitizer: DomSanitizer, private socialService: SocialServiceService) {
-    if (localStorage.getItem('user')) {
-      let userString = localStorage.getItem('user');
-      this.user = userString ? JSON.parse(userString) : null;
-    }
-  }
+  constructor(
+    private route: ActivatedRoute,
+    public sanitizer: DomSanitizer,
+    private socialService: SocialServiceService
+  ) {}
 
   ngOnInit(): void {
-    this.subscriptions.add(this.socialService.getPosts(false, this.user.userId).subscribe((data) => {
-      this.posts = data;
-      console.log(data)
-    }));
+    if (localStorage.getItem('user')) {
+      let userString = localStorage.getItem('user');
+      this.localUser = userString ? JSON.parse(userString) : null;
+    }
+    this.userId = +this.route.params.subscribe((params) => {
+      // Accede al nuevo valor del ID
+      this.userId = +params['id'];
+      this.show = false;
+
+      if(this.userId != this.localUser.userId){
+        this.show = true;
+      }
+
+      this.subscriptions.add(
+        this.socialService.getPosts(false, this.userId).subscribe((data) => {
+          this.posts = data;
+          if (this.posts.length > 0) {
+            this.userId = this.posts[0].userId;
+            this.userNickname = this.posts[0].userNickname;
+            this.userImage = this.posts[0].userImage;
+          }
+        })
+      );
+    });
   }
 
-  createPost(){
+  createPost() {
     let newPost: IPost = {
-      userId: this.user.userId,
-      userNickname: this.user.nickname,
-      userImage: this.user.image,
+      userId: this.localUser.userId,
+      userNickname: this.localUser.nickname,
+      userImage: this.localUser.image,
       content: this.value,
-      creationDate: new Date
-    }
+      creationDate: new Date(),
+    };
 
-    this.posts.unshift(newPost)
+    this.posts.unshift(newPost);
 
     this.subscriptions.add(this.socialService.createPost(newPost).subscribe());
   }

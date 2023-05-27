@@ -8000,4 +8000,10 @@
 
 .bi-wikipedia::before {
   content: "\f8cc";
+}
+
+img {
+  border-radius: 50%;
+  max-width: 30px;
+  max-height: 30px;
 }/*# sourceMappingURL=profile.component.css.map */

@@ -12,18 +12,9 @@
             </ng-template>
             <span class="fs-3">{{ friend.friendNickname }}</span>
           </div>
-          <span *ngIf="friend.newMessagesCount != 0">{{friend.newMessagesCount}} <i>{{friend.newMessagesCount! > 1 ? 'NEW MESSAGES' : 'NEW MESSAGE'}}</i> </span>
-          <!--
-          <span class="mt-2" *ngIf="friend.friendshipStatus == 3">INVITED YOU TO BECOME FRIENDS</span>
-          -->
+          <span *ngIf="friend.newMessagesCount != 0">{{friend.newMessagesCount}} <i>{{friend.newMessagesCount! > 1 ? 'SOCIAL.NEW_MESSAGES' : 'SOCIAL.NEW_MESSAGE' | translate}}</i> </span>
+          <i *ngIf="friend.newMessagesCount == 0" class="bi bi-chat-text-fill fs-2"></i>
         </div>
-        <!--
-        <div class="d-flex align-items-center">
-          <span *ngIf="friend.friendshipStatus == 0">INVITATION SEND</span>
-          <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()">INVITE</button>
-          <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 3" (click)="acceptInvitation()">ACCEPT INVITATION</button>
-        </div>
-        -->
       </div>
     </div>
   </div>

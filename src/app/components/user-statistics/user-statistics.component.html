@@ -12,6 +12,9 @@
       <div class="col-10">
         <h2 *ngIf="user" class="col"><b>{{user.nickname}}</b></h2>
         <div class="col">
+          <div *ngIf="user && user.userId != localUser.userId">
+            <a [routerLink]="['/social/profile', user.userId]" class="link-primary">{{ "STATISTICS.SHOW_POSTS" | translate }}</a>
+          </div>
           <div *ngIf="user && user.userId == localUser.userId">
             <a class="link-primary" (click)="profileConfiguration()">{{ "STATISTICS.PROFILE_CONFIGURATION" | translate }}</a>
           </div>

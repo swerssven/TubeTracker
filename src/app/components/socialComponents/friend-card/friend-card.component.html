@@ -9,14 +9,21 @@
           <ng-template #elseTemplate>
             <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
           </ng-template>
-          <span class="fs-3">{{ friend.friendNickname }}</span>
+          <span class="fs-3 align-self-center">{{ friend.friendNickname }}</span>
         </a>
-        <span class="mt-2" *ngIf="friend.friendshipStatus == 3">{{"SOCIAL.INVITED_YOU_TO_BECOME_FRIENDS" | translate}}</span>
+        <span class="mt-2" *ngIf="friend.friendshipStatus == 3">{{"SOCIAL.INVITED_YOU_TO_BECOME_FRIENDS" |
+          translate}}</span>
       </div>
       <div class="d-flex align-items-center">
         <span *ngIf="friend.friendshipStatus == 0">{{"SOCIAL.INVITATION_SEND" | translate}}</span>
-        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()">{{"SOCIAL.INVITE" | translate}}</button>
-        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 3" (click)="acceptInvitation()">{{"SOCIAL.ACCEPT_INVITATION" | translate}}</button>
+        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()">{{"SOCIAL.INVITE"
+          | translate}}</button>
+        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 3"
+          (click)="acceptInvitation()">{{"SOCIAL.ACCEPT_INVITATION" | translate}}</button>
+        <div class="d-flex gap-3" *ngIf="friend.friendshipStatus == 1"> <a class="align-self-center"
+            [routerLink]="['/social/messages', friend.userId]">{{ "SOCIAL.SEND_MESSAGE" | translate }}</a>
+          <i class="bi bi-chat-text-fill fs-2"></i>
+        </div>
       </div>
     </div>
   </div>

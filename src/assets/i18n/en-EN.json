@@ -120,7 +120,12 @@
     "INVITE": "Invite",
     "INVITATION_SEND": "Invitation send",
     "ACCEPT_INVITATION": "Accept invitation",
-    "REVIEW_FOR": "Review for"
+    "REVIEW_FOR": "Review for",
+    "POSTS_FROM": "Posts from",
+    "SEND_MESSAGE": "Send message",
+    "NEW_MESSAGE": "new message",
+    "NEW_MESSAGES": "new messages"
+
   },
 
   "STATISTICS": {
@@ -139,7 +144,8 @@
     "CREATE_NEWS_ARTICLES": "Create news articles",
     "MONTHS": "months",
     "DAYS": "days",
-    "HOURS": "hours"
+    "HOURS": "hours",
+    "SHOW_POSTS": "Show posts"
   },
 
   "NAC": {

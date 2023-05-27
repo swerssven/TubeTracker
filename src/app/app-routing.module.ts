@@ -31,7 +31,7 @@ const routes: Routes = [
     children: [
       {path: '', canActivate: [AuthGardGuard], component: NewsBoardComponent},
       {path: 'news-board', canActivate: [AuthGardGuard], component: NewsBoardComponent},
-      {path: 'profile', canActivate: [AuthGardGuard], component: ProfileComponent},
+      {path: 'profile/:id', canActivate: [AuthGardGuard], component: ProfileComponent},
       {path: 'find-friends', canActivate: [AuthGardGuard], component: FindFriendsComponent},
       {path: 'friends-messages-list', canActivate: [AuthGardGuard], component: FriendsWithMessaggesListComponent},
       {path: 'messages/:id', canActivate: [AuthGardGuard], component: MessagesComponent},
