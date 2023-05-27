@@ -157,5 +157,9 @@
   "ERROR": {
     "NickNameAlreadyExists": "The nickname entered already exists",
     "EmailAlreadyExists": "The email entered already exists"
-    }
+    },
+
+  "ADMIN": {
+    "ADMIN_TOOL": "User administration tool"
+  }
 }

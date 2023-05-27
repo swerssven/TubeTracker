@@ -1,1 +1,18 @@
-<p>admin-users works!</p>
+<div class="modal-header p-0 m-0 d-flex align-items-center">
+  <div>
+    <h6 class="modal-title text-center ms-3">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+  </div>
+  <div>
+    <h6 class="mt-2">{{ "ADMIN.ADMIN_TOOL" | translate }}</h6>
+  </div>
+  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="ag-theme-alpine" style="height: 450px; width: 100%;">
+  <ag-grid-angular class="ag-theme-alpine-dark"
+    [gridOptions]="gridOptions"
+    [rowData]="rowData"
+    style="width: 100%; height: 100%;"
+  ></ag-grid-angular>
+</div>

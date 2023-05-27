@@ -33,6 +33,7 @@ export class ProfileComponent {
   ngOnInit(): void {
     this.subscriptions.add(this.socialService.getPosts(false, this.user.userId).subscribe((data) => {
       this.posts = data;
+      console.log(data)
     }));
   }
 

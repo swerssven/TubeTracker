@@ -2,4 +2,6 @@
 /**{
   background-color: rgb(19, 19, 19);
   color: white;
-}*//*# sourceMappingURL=styles.css.map */
+}*/
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';/*# sourceMappingURL=styles.css.map */

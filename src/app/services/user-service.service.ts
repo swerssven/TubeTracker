@@ -7,6 +7,7 @@ import { IUser } from '../interfaces/i-user';
 import { IUserResponse } from '../interfaces/i-user-response';
 import { IFriend } from '../interfaces/i-friend';
 import { IStatistics } from '../interfaces/i-statistics';
+import { IUserGrid } from '../interfaces/i-user-grid';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,11 @@ export class UserServiceService {
           return resp;
         })
       );
+  }
+
+  // Get list of users for the admin.
+  GetUserList(): Observable<IUserGrid[]>{
+    return this.http.get<IUserGrid[]>(`https://localhost:7203/api/User/GetUserList`);
   }
 
   // Get user statistics.
