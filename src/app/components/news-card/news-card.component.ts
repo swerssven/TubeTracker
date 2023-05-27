@@ -20,11 +20,11 @@ export class NewsCardComponent {
   ) {}
   ngOnInit(): void {
     this.newsArticle.contentEs = this.newsArticle.contentEs.replaceAll(
-      '<img ',
+      '<img',
       '<img class="img-fluid"'
     );
     this.newsArticle.contentEn = this.newsArticle.contentEn.replaceAll(
-      '<img ',
+      '<img',
       '<img class="img-fluid"'
     );
 

@@ -42,7 +42,10 @@ export class PostComponent {
       .getCommentsList(this.post.postId!)
       .subscribe((data) => (this.comments = data)));
 
-    this.post.content = this.post.content.replaceAll("<img ", "<img class=\"img-fluid\"");
+    this.post.content = this.post.content.replaceAll(
+      '<img',
+      '<img class="img-fluid"'
+    )
 
     const date = new Date(
       this.utils.convertDateLocale(this.post.creationDate!)
