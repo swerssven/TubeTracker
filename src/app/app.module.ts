@@ -41,6 +41,7 @@ import { CommentCardComponent } from './components/socialComponents/comment-card
 import { MovieSerieFilterPipePipe } from './pipes/movie-serie-filter-pipe.pipe';
 import { EditUserComponent } from './components/loginComponents/edit-user/edit-user.component';
 import { ShareComponent } from './components/socialComponents/share/share.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -79,7 +80,8 @@ export function HttpLoaderFactory(http: HttpClient){
     CommentCardComponent,
     MovieSerieFilterPipePipe,
     EditUserComponent,
-    ShareComponent
+    ShareComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,

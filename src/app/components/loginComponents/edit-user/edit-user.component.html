@@ -51,7 +51,7 @@
             (change)="changeImage(imageInput)" formControlName="image">
         </div>
         <div class="pt-2">
-          <img src="{{ user.imagen == null || user.imagen.length == 0 ? '../../../../../../assets/default-avatar.png' : user.imagen }}" alt="">
+          <img *ngIf="user" src="{{ user.image == null || user.image.length == 0 ? '../../../../../../assets/default-avatar.png' : user.image }}" alt="">
         </div>
       </div>
       <div class="alert alert-danger"

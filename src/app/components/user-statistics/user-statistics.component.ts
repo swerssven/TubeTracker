@@ -9,6 +9,7 @@ import { SerieServiceService } from 'src/app/services/serie-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
 import { EditUserComponent } from '../loginComponents/edit-user/edit-user.component';
+import { AdminUsersComponent } from '../admin-users/admin-users.component';
 
 @Component({
   selector: 'app-user-statistics',
@@ -80,6 +81,10 @@ export class UserStatisticsComponent {
 
   profileConfiguration(){
     this.modalService.open(EditUserComponent, {centered: true});
+  }
+
+  adminUsers(){
+    this.modalService.open(AdminUsersComponent, {centered: true, size: 'xl'});
   }
 
   logout(): void {

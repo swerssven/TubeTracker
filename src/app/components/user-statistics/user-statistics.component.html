@@ -10,10 +10,14 @@
         </ng-template>
       </div>
       <div class="col-10">
-        <h1 *ngIf="user" class="col"><b>{{user.nickname}}</b></h1>
+        <h2 *ngIf="user" class="col"><b>{{user.nickname}}</b></h2>
         <div class="col">
           <div *ngIf="user && user.userId == localUser.userId">
             <a class="link-primary" (click)="profileConfiguration()">{{ "STATISTICS.PROFILE_CONFIGURATION" | translate }}</a>
+          </div>
+          <div>
+            <a class="link-primary"  *ngIf="user && user.rolId == 0 && user.userId == localUser.userId" (click)="adminUsers()"
+              >{{ "STATISTICS.ADMIN_USERS" | translate}}</a>
           </div>
           <div>
             <a href="" class="link-primary"  *ngIf="user && user.rolId == 0 && user.userId == localUser.userId"

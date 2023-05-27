@@ -8000,12 +8000,4 @@
 
 .bi-wikipedia::before {
   content: "\f8cc";
-}
-
-img {
-  max-height: 100px;
-}
-
-.error {
-  color: red;
-}/*# sourceMappingURL=edit-user.component.css.map */
+}/*# sourceMappingURL=share.component.css.map */
