@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IPost } from 'src/app/interfaces/i-post';
 import { SocialServiceService } from 'src/app/services/social-service.service';
+import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
 @Component({
   selector: 'app-news-board',
@@ -10,6 +11,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
   styleUrls: ['./news-board.component.scss']
 })
 export class NewsBoardComponent {
+  isLoading = false;
   value: string = '';
   user!: any;
   posts: IPost[] = [];
@@ -23,7 +25,7 @@ export class NewsBoardComponent {
     content_css: "dark"
   };
 
-  constructor(public sanitizer: DomSanitizer, private socialService: SocialServiceService) {
+  constructor(public sanitizer: DomSanitizer, private socialService: SocialServiceService, public utils: UtilsServiceService) {
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
@@ -31,8 +33,10 @@ export class NewsBoardComponent {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.subscriptions.add(this.socialService.getPosts(true, this.user.userId).subscribe((data) => {
       this.posts = data;
+      this.isLoading = false;
     }));
   }
 

@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { IMovieSerieCard } from 'src/app/interfaces/i-movie-serie-card';
 import { MovieServiceService } from 'src/app/services/movie-service.service';
 import { SerieServiceService } from 'src/app/services/serie-service.service';
+import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
 @Component({
   selector: 'app-favorites',
@@ -24,10 +25,12 @@ export class FavoritesComponent {
 
   constructor(
     private movieService: MovieServiceService,
-    private serieService: SerieServiceService
+    private serieService: SerieServiceService,
+    public utils: UtilsServiceService
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
@@ -38,6 +41,7 @@ export class FavoritesComponent {
       .subscribe((data) => {
         data.forEach((movie) => {
           movie.type = 'movies';
+          this.isLoading = false;
         });
         this.movies_series.push(...data);
         this.filteredMovies_Series.push(...data);
@@ -48,6 +52,7 @@ export class FavoritesComponent {
       .subscribe((data) => {
         data.forEach((serie) => {
           serie.type = 'series';
+          this.isLoading = false;
         });
         this.movies_series.push(...data);
         this.filteredMovies_Series.push(...data);

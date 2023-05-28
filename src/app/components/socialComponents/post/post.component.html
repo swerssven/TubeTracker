@@ -37,7 +37,7 @@
               <div class="d-flex justify-content-around align-content-center">
                 <div>{{ post && post.likesCount! > 0 ? post.likesCount : ""}}&nbsp;&nbsp;</div>
                 <div *ngIf="post"><i class="bi"
-                    [ngClass]="post.likedByUser ? 'bi-heart-fill' : 'bi-heart' "></i>&nbsp;&nbsp;&nbsp;</div>
+                    [ngClass]="liked ? 'bi-heart-fill' : 'bi-heart' "></i>&nbsp;&nbsp;&nbsp;</div>
                 <div class="pe-1">{{ "SOCIAL.LIKE" | translate }}</div>
               </div>
             </button>
@@ -72,7 +72,15 @@
                   caracteres</div>
               </div>
               <div class="d-flex align-items-start">
-                <input type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+                <ng-container *ngIf="isLoadingComment; else loadingComment">
+                  <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    {{ 'OTHERS.LOADING' | translate }}
+                  </button>
+                </ng-container>
+                <ng-template #loadingComment>
+                  <input type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">
+                </ng-template>
               </div>
             </div>
           </form>

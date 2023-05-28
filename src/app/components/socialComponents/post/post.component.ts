@@ -15,6 +15,8 @@ import { ShareComponent } from '../share/share.component';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent {
+  isLoadingComment: boolean = false;
+  isLoadingLike: boolean = false;
   @Input() post!: IPost;
   Id: number = 0;
   user!: any;
@@ -50,6 +52,8 @@ export class PostComponent {
       '<img class="img-fluid"'
     )
 
+    this.liked = this.post.likedByUser || false;
+
     const date = new Date(
       this.utils.convertDateLocale(this.post.creationDate!)
     );
@@ -58,6 +62,7 @@ export class PostComponent {
 
   // Method to send new comment.
   sendComment() {
+    this.isLoadingComment = true;
     const newComment: IComment = {
       postId: this.post.postId!,
       userId: this.user.userId,
@@ -69,13 +74,15 @@ export class PostComponent {
 
     this.subscriptions.add(this.socialService.createPostComment(newComment).subscribe((data) => {
       this.comments = data;
+      this.isLoadingComment = false;
     }));
 
     this.commentForm.reset();
   }
 
   changeLike(){
-    this.liked = !this.post.likedByUser;
+    this.isLoadingLike = true;
+    this.liked = !this.liked;
     this.subscriptions.add(this.socialService.createPostLike(this.user.userId, this.post.postId!, this.liked).subscribe(
       (data) => {
         this.post.likedByUser = data;
@@ -84,6 +91,7 @@ export class PostComponent {
         }else{
           this.post.likesCount! -= 1;
         }
+        this.isLoadingLike = false;
       }
     ));
   }

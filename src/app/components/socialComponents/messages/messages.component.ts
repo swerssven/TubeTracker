@@ -14,6 +14,7 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent {
+  isLoadingMessages: boolean = false;
   messages!: IMessage[];
   receiverId!: number;
   sender!: any;
@@ -35,6 +36,7 @@ export class MessagesComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoadingMessages = true;
     this.receiverId = +this.route.snapshot.paramMap.get('id')!;
 
     if (localStorage.getItem('user')) {
@@ -49,7 +51,10 @@ export class MessagesComponent {
           this.receiverImage = data.receiverImage;
           this.receiverName = data.receiverName;
           this.subscriptions.add(this.socialService.getNumberUnreadMessages(this.sender.userId).subscribe(
-            (data) => this.dataService.setData(data)
+            (data) => {
+              this.dataService.setData(data);
+              this.isLoadingMessages = false;
+            }
           ))
       }));
   }
@@ -79,7 +84,7 @@ export class MessagesComponent {
 
     this.subscriptions.add(this.socialService.createMessage(newMessage).subscribe(
       () => {
-        this.messages.push(newMessage);
+        this.messages.push(newMessage)
       }
     ));
 

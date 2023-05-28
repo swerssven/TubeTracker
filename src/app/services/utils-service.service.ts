@@ -56,7 +56,17 @@ export class UtilsServiceService {
     return arrayResponse;
   }
 
+  // Helper method for converting minutes method.
   padNumber(value: number, length: number): string {
     return value.toString().padStart(length, '0');
+  }
+
+  // Generate Fake Object Array
+  generateFake(count: number): Array<number> {
+    const indexes = [];
+    for (let i = 0; i < count; i++) {
+      indexes.push(i);
+    }
+    return indexes;
   }
 }

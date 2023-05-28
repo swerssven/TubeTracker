@@ -8,5 +8,16 @@
 </div>
 
 <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
-<input type="button" class="btn btn-primary float-end mt-2 mb-2" value="{{ 'FORM.SEND' | translate }}" (click)="createPost()" data-bs-toggle="collapse"
-  data-bs-target="#tinymce">
+
+<ng-container *ngIf="isLoading; else elseTemplate">
+  <button class="btn btn-primary float-end mt-2 mb-2" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    {{ 'OTHERS.LOADING' | translate }}
+  </button>
+</ng-container>
+<ng-template #elseTemplate>
+  <input type="button" class="btn btn-primary float-end mt-2 mb-2" value="{{ 'FORM.SEND' | translate }}" (click)="createPost()" data-bs-toggle="collapse"
+    data-bs-target="#tinymce">
+</ng-template>
+
+

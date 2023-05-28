@@ -138,16 +138,16 @@
 
   </div>
 
-  <h1>{{"STATISTICS.LAST_WATCHED_MOVIES" | translate}}</h1>
+  <h1 class="text-center">{{"STATISTICS.LAST_WATCHED_MOVIES" | translate}}</h1>
 
-  <div class="row mt-4" *ngIf="movies">
+  <div class="row mt-4 d-flex justify-content-center" *ngIf="movies">
     <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let movie of movies"
       [movie_serie]="movie" [type]="'movies'"></app-movie-card>
   </div>
 
-  <h1>{{"STATISTICS.LAST_WATCHED_SERIES" | translate}}</h1>
+  <h1 class="text-center">{{"STATISTICS.LAST_WATCHED_SERIES" | translate}}</h1>
 
-  <div class="row mt-4" *ngIf="series">
+  <div class="row mt-4 d-flex justify-content-center" *ngIf="series">
     <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let serie of series"
       [movie_serie]="serie" [type]="'series'"></app-movie-card>
   </div>

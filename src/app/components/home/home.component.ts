@@ -9,15 +9,19 @@ import { NewsServiceService } from 'src/app/services/news-service.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+  isLoading = false;
   newsArticles: INews[] = [];
   private subscriptions: Subscription = new Subscription();
 
 constructor(private newsService: NewsServiceService){}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.subscriptions.add(this.newsService.getNewsArticles().subscribe(
-      (data) => this.newsArticles = data
+      (data) => {
+        this.newsArticles = data
+        this.isLoading = false
+      }
     ));
   }
 

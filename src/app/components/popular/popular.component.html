@@ -1,7 +1,15 @@
 <div class="container mt-3">
   <h1>{{"POPULAR.POPULAR_MOVIES" | translate}}</h1>
 
-  <div *ngIf="movies_popular">
+<ng-container *ngIf="isLoading1; else elseTemplate1">
+  <div class="row mt-4">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(6)">
+      <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'320px'}"></ngx-skeleton-loader>
+    </div>
+  </div>
+</ng-container>
+<ng-template #elseTemplate1>
+<div *ngIf="movies_popular">
     <owl-carousel-o [options]="customOptions">
       <ng-container *ngFor="let movie of movies_popular.results">
         <ng-template carouselSlide [id]="movie.id">
@@ -11,43 +19,68 @@
       </ng-container>
     </owl-carousel-o>
   </div>
+</ng-template>
 
   <h1>{{"POPULAR.POPULAR_SERIES" | translate}}</h1>
-
-  <div *ngIf="series_popular">
-    <owl-carousel-o [options]="customOptions">
-      <ng-container *ngFor="let movie of series_popular.results">
-        <ng-template carouselSlide [id]="movie.id">
-          <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
-            [type]="'series'"></app-movie-card>
-        </ng-template>
-      </ng-container>
-    </owl-carousel-o>
-  </div>
+  <ng-container *ngIf="isLoading2; else elseTemplate2">
+    <div class="row mt-4">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(6)">
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'320px'}"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate2>
+    <div *ngIf="series_popular">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let movie of series_popular.results">
+          <ng-template carouselSlide [id]="movie.id">
+            <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
+              [type]="'series'"></app-movie-card>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </ng-template>
 
   <h1>{{"POPULAR.TOP_RATED_MOVIES" | translate}}</h1>
-
-  <div *ngIf="movies_topRated">
-    <owl-carousel-o [options]="customOptions">
-      <ng-container *ngFor="let movie of movies_topRated.results">
-        <ng-template carouselSlide [id]="movie.id">
-          <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
-            [type]="'movies'"></app-movie-card>
-        </ng-template>
-      </ng-container>
-    </owl-carousel-o>
-  </div>
+  <ng-container *ngIf="isLoading3; else elseTemplate3">
+    <div class="row mt-4">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(6)">
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'320px'}"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate3>
+    <div *ngIf="movies_topRated">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let movie of movies_topRated.results">
+          <ng-template carouselSlide [id]="movie.id">
+            <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
+              [type]="'movies'"></app-movie-card>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </ng-template>
 
   <h1>{{"POPULAR.TOP_RATED_SERIES" | translate}}</h1>
-
-  <div *ngIf="series_topRated">
-    <owl-carousel-o [options]="customOptions">
-      <ng-container *ngFor="let movie of series_topRated.results">
-        <ng-template carouselSlide [id]="movie.id">
-          <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
-            [type]="'series'"></app-movie-card>
-        </ng-template>
-      </ng-container>
-    </owl-carousel-o>
-  </div>
+  <ng-container *ngIf="isLoading4; else elseTemplate4">
+    <div class="row mt-4">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(6)">
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'320px'}"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseTemplate4>
+    <div *ngIf="series_topRated">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let movie of series_topRated.results">
+          <ng-template carouselSlide [id]="movie.id">
+            <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-0 p-0" [movie_serie]="movie"
+              [type]="'series'"></app-movie-card>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </ng-template>
 </div>

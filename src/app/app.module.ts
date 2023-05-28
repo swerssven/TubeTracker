@@ -44,6 +44,7 @@ import { ShareComponent } from './components/socialComponents/share/share.compon
 import { AgGridModule } from 'ag-grid-angular';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminUsersActionButtonsComponent } from './components/admin-users-action-buttons/admin-users-action-buttons.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -87,6 +88,7 @@ export function HttpLoaderFactory(http: HttpClient){
     AdminUsersActionButtonsComponent
   ],
   imports: [
+    NgxSkeletonLoaderModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -1,7 +1,15 @@
 <div class="container">
   <div class="row d-flex justify-content-center mt-2">
     <div class="col-lg-10">
-      <app-news-card *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-card>
+      <div class="mt-4" *ngIf="isLoading; else content">
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'200px', 'border-radius':'20px'}"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'100px', 'border-radius':'20px'}"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'250px', 'border-radius':'20px'}"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'400px', 'border-radius':'20px'}"></ngx-skeleton-loader>
+      </div>
+      <ng-template #content>
+        <app-news-card *ngFor="let article of newsArticles" [newsArticle]="article"></app-news-card>
+      </ng-template>
     </div>
   </div>
 </div>

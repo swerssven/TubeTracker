@@ -28,6 +28,7 @@
     "bootstrap-icons": "^1.10.3",
     "jquery": "^3.6.4",
     "ngx-owl-carousel-o": "^15.0.0",
+    "ngx-skeleton-loader": "^7.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
     "tinymce": "^6.4.1",

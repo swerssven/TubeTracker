@@ -11,6 +11,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+  isLoading: boolean = false;
   value: string = '';
   userId!: number;
   userImage!: string;
@@ -35,6 +36,7 @@ export class ProfileComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.localUser = userString ? JSON.parse(userString) : null;
@@ -55,6 +57,7 @@ export class ProfileComponent {
             this.userId = this.posts[0].userId;
             this.userNickname = this.posts[0].userNickname;
             this.userImage = this.posts[0].userImage;
+            this.isLoading = false;
           }
         })
       );

@@ -11,6 +11,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
   styleUrls: ['./find-friends.component.scss'],
 })
 export class FindFriendsComponent {
+  isLoading: boolean = false;
   searchFriendForm: FormGroup = this.formBuilder.group({
     search: ['', Validators.required],
   });
@@ -25,22 +26,26 @@ export class FindFriendsComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
     this.subscriptions.add(this.socialService.getFriends(this.user.userId).subscribe((data) => {
       this.friends = data;
+      this.isLoading = false;
     }));
   }
 
   searchForFriends() {
+    this.isLoading = true;
     this.subscriptions.add(this.socialService
       .GetSearchFriendsList(
         this.user.userId,
         this.searchFriendForm.value.search
       )
       .subscribe((data) => {this.friendsSearchList = data
+        this.isLoading = false;
       this.searchFriendForm.reset()}));
   }
 

@@ -13,6 +13,7 @@ import { SocialServiceService } from 'src/app/services/social-service.service';
 export class ShareComponent {
   @Input() value!: string;
   user!: any;
+  isLoading: boolean = false;
 
   editorConfig = {
     base_url: '/tinymce',
@@ -36,6 +37,7 @@ export class ShareComponent {
   }
 
   createPost(){
+    this.isLoading = true;
     let newPost: IPost = {
       userId: this.user.userId,
       userNickname: this.user.nickname,
@@ -50,6 +52,7 @@ export class ShareComponent {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigateByUrl('/social/news-board');
         });
+        this.isLoading = false;
       }
     ));
   }

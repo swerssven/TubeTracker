@@ -40,13 +40,17 @@
 </div>
 
 <div class="container">
-  <div class="row mt-4 d-flex justify-content-center" *ngIf="isLoading">
-    <div class="spinner-border text-light" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <ng-container *ngIf="isLoading; else elseTemplate">
+    <div class="row mt-4">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(20)">
+        <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'320px'}"></ngx-skeleton-loader>
+      </div>
     </div>
-  </div>
-  <div class="row mt-4" *ngIf="movies_series" >
-      <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of filteredMovies_Series | movieSerieFilterPipe: searchFilter"
-      [movie_serie]="result" [type]="result.type!"></app-movie-card>
-  </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="row mt-4 d-flex justify-content-center" *ngIf="movies_series" >
+        <app-movie-card class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of filteredMovies_Series | movieSerieFilterPipe: searchFilter"
+        [movie_serie]="result" [type]="result.type!"></app-movie-card>
+    </div>
+  </ng-template>
 </div>
