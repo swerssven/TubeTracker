@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,9 +23,14 @@ export class AuthInterceptorService implements HttpInterceptor{
 
     if(token && req.url.includes('api')){
       request = req.clone({
-        setHeaders: {
-          authorization: `Bearer ${token}`
-        }
+        // setHeaders: {
+        //   authorization: `Bearer ${token}`,
+
+        // }
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin':'*',
+          'Authorization':`Bearer ${token}`
+        })
       });
     }
     return next.handle(request).pipe(
