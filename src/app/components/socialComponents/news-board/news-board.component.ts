@@ -8,7 +8,7 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
 @Component({
   selector: 'app-news-board',
   templateUrl: './news-board.component.html',
-  styleUrls: ['./news-board.component.scss']
+  styleUrls: ['./news-board.component.scss'],
 })
 export class NewsBoardComponent {
   isLoading = false;
@@ -21,11 +21,15 @@ export class NewsBoardComponent {
     base_url: '/tinymce',
     suffix: '.min',
     plugins: 'lists link image emoticons table wordcount preview',
-    skin: "oxide-dark",
-    content_css: "dark"
+    skin: 'oxide-dark',
+    content_css: 'dark',
   };
 
-  constructor(public sanitizer: DomSanitizer, private socialService: SocialServiceService, public utils: UtilsServiceService) {
+  constructor(
+    public sanitizer: DomSanitizer,
+    private socialService: SocialServiceService,
+    public utils: UtilsServiceService
+  ) {
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
@@ -34,28 +38,41 @@ export class NewsBoardComponent {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.subscriptions.add(this.socialService.getPosts(true, this.user.userId).subscribe((data) => {
-      this.posts = data;
-      this.isLoading = false;
-    }));
+    this.subscriptions.add(
+      this.socialService.getPosts(true, this.user.userId).subscribe((data) => {
+        this.posts = data;
+        this.isLoading = false;
+      })
+    );
   }
 
-  createPost(){
+  createPost() {
     let newPost: IPost = {
       userId: this.user.userId,
       userNickname: this.user.nickname,
       userImage: this.user.image,
       content: this.value,
-      creationDate: new Date
-    }
+      creationDate: new Date(),
+    };
 
-    this.posts.unshift(newPost)
+    this.posts.unshift(newPost);
 
-    this.subscriptions.add(this.socialService.createPost(newPost).subscribe());
+    this.subscriptions.add(
+      this.socialService.createPost(newPost).subscribe((data) => {
+        this.subscriptions.add(
+          this.socialService
+            .getPosts(true, this.user.userId)
+            .subscribe((data) => {
+              this.posts = data;
+              this.isLoading = false;
+            })
+        );
+      })
+    );
   }
 
-  reloadPosts(post: IPost){
-    this.posts = this.posts.filter(p => p !== post);
+  reloadPosts(post: IPost) {
+    this.posts = this.posts.filter((p) => p !== post);
   }
 
   ngOnDestroy(): void {

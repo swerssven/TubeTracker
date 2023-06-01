@@ -1,4 +1,10 @@
+@import '../../../../../node_modules/bootstrap-icons/font/bootstrap-icons'; // Iconos
 
+.icon:hover{
+  cursor: pointer;
+  text-shadow: 0px 0px 10px rgb(255, 255, 255);
+  color: white;
+}
 
 .bubble {
   --r: 20px; /* the radius */

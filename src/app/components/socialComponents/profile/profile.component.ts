@@ -75,7 +75,9 @@ export class ProfileComponent {
 
     this.posts.unshift(newPost);
 
-    this.subscriptions.add(this.socialService.createPost(newPost).subscribe());
+    this.subscriptions.add(this.socialService.createPost(newPost).subscribe(
+      (data) => this.posts = data
+    ));
   }
 
   reloadPosts(post: IPost){

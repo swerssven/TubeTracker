@@ -123,6 +123,10 @@ export class PostComponent {
       this.reloadPosts.emit(this.post);
   }
 
+  reloadComments(comment: IComment){
+    this.comments = this.comments.filter(p => p !== comment);
+  }
+
   share() {
     const date = new Date(
       this.utils.convertDateLocale(this.post.creationDate!)

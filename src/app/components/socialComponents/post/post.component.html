@@ -83,7 +83,7 @@
       <div id="{{Id}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body ms-5 pt-1 pb-2">
           <div class="mb-2" *ngFor="let comment of comments">
-            <app-comment-card [comment]="comment"></app-comment-card>
+            <app-comment-card [comment]="comment" (reloadComments)="reloadComments($event)"></app-comment-card>
           </div>
           <form [formGroup]="commentForm" (ngSubmit)="sendComment()">
             <div class="col-12 form d-flex gap-2 justify-content-center mt-3 mb-1">

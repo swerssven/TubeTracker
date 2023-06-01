@@ -2,16 +2,22 @@
   <div class="row d-flex flex-nowrap">
     <div class="col-9 mx-0 px-0 border-0 me-3">
       <div class="row d-flex justify-content-end">
+
         <div class="col-4 fs-10 text-end">{{comment.dateString!}}
         </div>
-        <div class="col-8 bubble right">
+        <div class="col-8 bubble right d-flex justify-content-between">
           <div>{{ comment.content }}</div>
+          <div *ngIf="user && user.rolId == 0">
+            <a title="{{ 'ADMIN.DELETE' | translate }}" data-bs-toggle="modal" [attr.data-bs-target]="'#' + comment.postCommnentsId + 'comment'">
+              <i class="bi bi-trash3 icon"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-3 px-1 d-flex justify-content-start gap-2 align-self-end">
       <div>
-        <img class="icon" src="{{ comment.userImage != null ? comment.userImage : '../assets/default-avatar.png' }}"
+        <img class="icon" src="{{ comment.userImage != null ? comment.userImage : 'assets/default-avatar.png' }}"
           alt="">
       </div>
       <div>
@@ -21,4 +27,22 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" [attr.id]="comment.postCommnentsId + 'comment'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title text-center">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+    </div>
+    <div class="modal-body">
+      {{ "ADMIN.SURE_DELETE" | translate }}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "ADMIN.CANCEL" | translate }}</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteComment()">{{ "ADMIN.DELETE" | translate }}</button>
+    </div>
+  </div>
+</div>
 </div>
