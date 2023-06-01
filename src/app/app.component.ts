@@ -28,6 +28,7 @@ export class AppComponent {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
       this.translate.use(this.user.language);
+      this.socialService.getNumberUnreadMessagesInterval(this.user.userId);
     }
 
     this.subscriptions.add(
@@ -37,7 +38,6 @@ export class AppComponent {
           this.dataService.setData(data);
         })
     );
-    this.socialService.getNumberUnreadMessagesInterval(this.user.userId);
 
     this.subscriptions.add(this.dataService.getData().subscribe((data) => this.unreadMessages = data));
 

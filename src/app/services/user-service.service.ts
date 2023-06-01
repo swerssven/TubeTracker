@@ -40,7 +40,7 @@ export class UserServiceService {
   // Send user data to server to register user in DB.
   createUser(userData: IUser): Observable<IUser> {
     return this.http
-      .post<IUser>(`${this.apiUrl}/api/user`, userData)
+      .post<IUser>(`${this.apiUrl}/api/User/CreateUser`, userData)
       .pipe(
         map((resp) => {
           return resp;

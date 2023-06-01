@@ -1,51 +1,53 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
-    <div class="col-4">
+    <div class="col-12 col-lg-4">
       <h2 *ngIf="movie"><b>{{title}}</b></h2>
       <div class="d-flex gap-5">
         <h6 *ngIf="movie">{{movie.premiereDate | date: 'yyyy'}}</h6>
         <h6 *ngIf="movie">{{movie.duration | duration}}</h6>
       </div>
     </div>
-    <div class="col-8 d-flex justify-content-between">
-      <div class="col">
+    <div class="col-12 col-lg-8 d-flex justify-content-between flex-wrap">
+      <div class="col-3 col-lg-auto">
         <h6>{{ "DETAIL.REVIEWS" | translate }}</h6>
         <h6 *ngIf="reviews"><b>{{reviews.numReviews}}</b></h6>
       </div>
-      <div class="col d-flex justify-content-center align-items-center">
+      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
         <i *ngIf="movie" class="bi icon" [ngClass]="movie.watched ? 'bi-eye-fill' : 'bi-eye' " title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
       </div>
-      <div class="col d-flex justify-content-center align-items-center">
+      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
         <i *ngIf="movie" class="bi icon" [ngClass]="movie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' " title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
       </div>
-      <div class="col d-flex justify-content-center align-items-center">
+      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
         <i *ngIf="movie" class="bi bi-share icon"
           title="{{ 'SOCIAL.SHARE' | translate }}" (click)="share()"></i>
       </div>
-      <div class="row">
+      <div class="col-12 col-lg-4 d-flex justify-content-around d-lg-block">
         <div class="row">
-          <h6 class="col text-end">{{ "DETAIL.TT_RATING" | translate }}</h6>
-          <h6 class="col"><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
+          <div class=" d-flex justify-content-lg-center gap-3 text-lg-end">
+            <h6>{{ "DETAIL.TT_RATING" | translate }}</h6>
+            <h6><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
+          </div>
         </div>
         <div class="row">
-          <div class="col text-end">
+          <div class="col d-flex justify-content-lg-center gap-3 text-lg-end">
             <h6>{{ "DETAIL.YOUR_RATING" | translate }}</h6>
-          </div>
-          <div class="star-container col">
-            <i *ngFor="let star of [1,2,3,4,5]" class="bi"
-              [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
-              (mouseenter)="auxRating = star" (click)="setMovieRating()">
-            </i>
+            <div>
+              <i *ngFor="let star of [1,2,3,4,5]" class="bi"
+                [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
+                (mouseenter)="auxRating = star" (click)="setMovieRating()">
+              </i>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-3">
       <img *ngIf="movie" class="img-fluid shadow" src="{{'https://image.tmdb.org/t/p/w400' + movie.poster}}" alt="">
     </div>
-    <div *ngIf="movie" class="col-8">
+    <div *ngIf="movie" class="col-12 col-lg-8 mt-3">
       <iframe class="shadow" width="100%" height="100%" [src]="sanitizeURL()" title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -88,7 +90,7 @@
       <div class="row">
         <form [formGroup]="reviewForm" (ngSubmit)="createMovieReview()">
           <div class="col-12 form d-flex gap-2 justify-content-start mb-4">
-            <div class="col-7">
+            <div class="col-10 col-lg-7">
               <textarea class="form-control" name="review" placeholder="{{ 'DETAIL.WRITE_YOUR_REVIEW' | translate }}" required
                 formControlName="review"></textarea>
               <div class="alert alert-danger"

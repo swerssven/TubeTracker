@@ -122,7 +122,7 @@ export class SocialServiceService {
 
   getNumberUnreadMessagesInterval(userId: number) {
     this.subscriptions.add(
-      interval(60000) // 15 seconds interval to check for new messages.
+      interval(60000) // 60 seconds interval to check for new messages.
         .subscribe(() => {
           this.http
             .get(

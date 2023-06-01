@@ -3,7 +3,7 @@
     <span class="col-1">{{ episode.numEpisode }}</span>
     <span class="col-7">{{ user.language == "en-EN" ? episode.titleEpisodeEn : episode.titleEpisodeEs }}</span>
     <span class="col-2">{{ episode.episodeDuration }} min</span>
-    <span class="col-2">{{episode.premiereDate | date: 'dd-MM-yyyy'}}</span>
+    <span class="col-2 d-none d-sm-block">{{episode.premiereDate | date: 'dd/MM/yyyy'}}</span>
     <i class="bi icon-episode" [ngClass]="episode.watched ? 'bi-eye-fill' : 'bi-eye' " title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
   </div>
 </div>
