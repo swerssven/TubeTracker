@@ -41,7 +41,7 @@
         <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark' [theme]="{'background-color': '#464646', height:'400px', 'border-radius':'20px'}"></ngx-skeleton-loader>
       </ng-container>
       <ng-template #elseTemplate>
-        <app-post *ngFor="let post of posts" [post]="post"></app-post>
+        <app-post *ngFor="let post of posts" [post]="post" (reloadPosts)="reloadPosts($event)"></app-post>
       </ng-template>
     </div>
   </div>

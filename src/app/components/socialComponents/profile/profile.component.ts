@@ -78,6 +78,10 @@ export class ProfileComponent {
     this.subscriptions.add(this.socialService.createPost(newPost).subscribe());
   }
 
+  reloadPosts(post: IPost){
+    this.posts = this.posts.filter(p => p !== post);
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }

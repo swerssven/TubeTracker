@@ -19,17 +19,19 @@ export class AdminUsersComponent {
 
   gridOptions: GridOptions = {
       columnDefs: [
-        { field: 'firstName', headerName: 'Firstname' },
-        { field: 'lastName', headerName: 'Lastname', width: 250 },
-        { field: 'nickname', headerName: 'Nickname', width: 200 },
-        { field: 'email', headerName: 'Email', width: 300 },
-        { field: 'isAdmin', headerName: 'Is admin', width: 150 },
+        { field: 'firstName', headerName: 'Firstname', filter: true, sortable: true },
+        { field: 'lastName', headerName: 'Lastname', width: 250, filter: true, sortable: true },
+        { field: 'nickname', headerName: 'Nickname', width: 200, filter: true, sortable: true },
+        { field: 'email', headerName: 'Email', width: 300, filter: true, sortable: true },
+        { field: 'isAdmin', headerName: 'Is admin', width: 150, filter: true, sortable: true },
         {
-          field: 'blocked',
+          field: 'isActive',
           headerName: 'Blocked',
           width: 150,
+          filter: true,
+          sortable: true,
           cellRenderer: (params: { value: any }) =>
-            params.value ? 'Yes' : 'No',
+            params.value ? 'No' : 'Yes',
         },
         {
           headerName: 'Actions',
@@ -56,7 +58,6 @@ export class AdminUsersComponent {
     this.subscriptions.add(this.userService.GetUserList().subscribe(
       (data) => {
         this.rowData = data;
-        console.log(this.rowData);
       }
     ));
   }

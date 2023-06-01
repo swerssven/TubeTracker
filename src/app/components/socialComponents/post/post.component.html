@@ -12,12 +12,36 @@
           <span *ngIf="post && post.userNickname">{{ post.userNickname }}</span>
         </a>
       </div>
-      <div>
+      <div class="d-flex gap-3">
+        <div *ngIf="user && user.rolId == 0">
+          <a title="{{ 'ADMIN.DELETE' | translate }}" data-bs-toggle="modal" [attr.data-bs-target]="'#' + post.postId">
+            <i class="bi bi-trash3 icon"></i>
+          </a>
+        </div>
         <div *ngIf="post && post.creationDate">{{ post.dateString }}
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+<div class="modal fade" [attr.id]="post.postId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-center">TUBE <i class="bi bi-film"></i> TRACKER</h6>
+      </div>
+      <div class="modal-body">
+        {{ "ADMIN.SURE_DELETE" | translate }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "ADMIN.CANCEL" | translate }}</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deletePost()">{{ "ADMIN.DELETE" | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div class="card-body pb-0">
     <span class="card-text" *ngIf="post && post.content"
       [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.content)"></span>

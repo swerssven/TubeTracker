@@ -90,10 +90,22 @@ export class SocialServiceService {
     );
   }
 
+  deletePost(postId: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/Social/posts/deletePost?postId=${postId}`, null
+    );
+  }
+
   createPostComment(comment: IComment): Observable<IComment[]> {
     return this.http.post<IComment[]>(
       `${this.apiUrl}/api/Social/posts/createPostComment`,
       comment
+    );
+  }
+
+  deletePostComment(postCommentId: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/Social/posts/deletePostComment?postCommentId=${postCommentId}`, null
     );
   }
 

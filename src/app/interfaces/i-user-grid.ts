@@ -5,4 +5,5 @@ export interface IUserGrid {
   nickname:  string;
   email:     string;
   isAdmin:   boolean;
+  isActive:  boolean;
 }

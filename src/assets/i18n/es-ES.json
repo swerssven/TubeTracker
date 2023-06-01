@@ -165,6 +165,9 @@
   },
 
   "ADMIN": {
-    "ADMIN_TOOL": "Herramienta de administración de usuarios"
+    "ADMIN_TOOL": "Herramienta de administración de usuarios",
+    "DELETE": "Eliminar",
+    "SURE_DELETE": "¿Está seguro que quiere eliminar este item?",
+    "CANCEL": "Cancelar"
   }
 }
