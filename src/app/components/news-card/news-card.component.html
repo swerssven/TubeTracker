@@ -20,7 +20,7 @@
       <div class="d-flex gap-3 align-items-center">
         <span>{{"NEWS.PUBLISHED" | translate}}</span>
         <div *ngIf="newsArticle && newsArticle.creationDate">{{ utils.convertDateLocale(newsArticle.creationDate) |
-          date: 'dd-MM-yyyy' }}</div>
+          date: 'dd/MM/yyyy' }}</div>
           <button *ngIf="user" class="collapsed bg-primary btn btn-sm btn-primary rounded-5" type="button" (click)="share()">
             <div class="d-flex justify-content-around align-content-center">
               <div><i class="bi bi-share"></i>&nbsp;&nbsp;&nbsp;</div>

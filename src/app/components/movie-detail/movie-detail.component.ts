@@ -153,6 +153,10 @@ export class MovieDetailComponent {
     modalRef.componentInstance.value = content;
   }
 
+  reloadReviews(review: IReview){
+    this.reviews.reviews = this.reviews.reviews.filter(p => p !== review);
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }

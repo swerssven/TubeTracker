@@ -10,10 +10,10 @@
         <ng-template #elseTemplate>
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODE" | translate}}</h6>
         </ng-template>
-        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumSeasons > 1; else elseTemplate">
+        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumSeasons > 1; else elseTemplate1">
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASONS" | translate}}</h6>
         </ng-container>
-        <ng-template #elseTemplate>
+        <ng-template #elseTemplate1>
           <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASON" | translate}}</h6>
         </ng-template>
       </div>
@@ -127,10 +127,10 @@
         </form>
       </div>
       <div class="container-fluid m-0 p-0">
-        <div *ngIf="reviews" class="row">
+        <div *ngIf="reviews && serie" class="row">
           <!--User reviews component-->
           <ng-container *ngFor="let review of reviews.reviews">
-            <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId" [contentType]="'serie'" [title]="title"></app-movie-review>
+            <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId" [contentType]="'serie'" [title]="title" (reloadReviews)="reloadReviews($event)"></app-movie-review>
           </ng-container>
         </div>
         <div class="mb-5" *ngIf="reviews && reviews.numReviews== 0">{{ "DETAIL.NO_REVIEWS_YET" | translate }}</div>

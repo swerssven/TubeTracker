@@ -1,5 +1,6 @@
 export interface IReview {
   movieReviewId?: number,
+  serieReviewId?: number,
   userId: number,
   userNickname: string,
   userImage: string,

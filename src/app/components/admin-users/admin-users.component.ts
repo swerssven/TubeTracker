@@ -40,8 +40,7 @@ export class AdminUsersComponent {
           cellRendererParams: {
             makeAdmin: this.makeAdmin.bind(this),
             deleteUser: this.deleteUser.bind(this),
-            blockUser: this.blockUser.bind(this),
-            emailUser: this.emailUser.bind(this),
+            blockUser: this.blockUser.bind(this)
           },
         },
       ],
@@ -80,10 +79,6 @@ export class AdminUsersComponent {
     //   return user;
     // });
     // this.gridOptions.api?.refreshCells();
-  }
-
-  emailUser(email: string): void {
-    console.log('Email:', email);
   }
 
   ngOnDestroy(): void {

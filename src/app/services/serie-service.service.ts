@@ -100,6 +100,13 @@ export class SerieServiceService {
     );
   }
 
+  deleteSerieReview(serieReviewId: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/Serie/DeleteSerieReview?serieReviewId=${serieReviewId}`,
+      null
+    );
+  }
+
   setSerieWatched(
     serieApiId: number,
     userId: number,

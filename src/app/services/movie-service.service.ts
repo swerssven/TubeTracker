@@ -90,6 +90,13 @@ export class MovieServiceService {
     );
   }
 
+  deleteMovieReview(movieReviewId: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/Movie/DeleteMovieReview?movieReviewId=${movieReviewId}`,
+      null
+    );
+  }
+
   setMovieWatched(
     movieApiId: number,
     userId: number,
