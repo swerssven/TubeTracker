@@ -17,7 +17,7 @@
           <label for="email">{{"FORM.EMAIL" | translate}}</label>
           <input type="text" class="form-control" email="email"
             placeholder="{{'FORM.EMAIL' | translate}}" required formControlName="email">
-          <div class=".error"
+          <div class="error"
             *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
             {{ "FORM.FIELD_REQUIRED" | translate }}</div>
         </div>
@@ -25,7 +25,7 @@
           <label for="password">{{"FORM.PASSWORD" | translate}}</label>
           <input type="password" class="form-control" name="password"
             placeholder="{{'FORM.PASSWORD' | translate}}" required formControlName="password">
-          <div class=".error"
+          <div class="error"
             *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">{{ "FORM.FIELD_REQUIRED" | translate }}</div>
         </div>
         <div class="d-flex align-items-center justify-content-between">

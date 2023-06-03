@@ -27,6 +27,7 @@ export class SignUpModalComponent {
   };
 
   registerForm!: FormGroup;
+  serverError!: string;
   imagen!: string;
   languages = [{ name: 'English', abbrev: 'en-EN' }, { name: 'Español', abbrev: 'es-ES' }];
   newUser: IUser = {
@@ -98,13 +99,15 @@ export class SignUpModalComponent {
       image: this.imagen
     };
 
-    this.subscriptions.add(this.userService.createUser(this.newUser).subscribe({
-      next: (res) => console.log(res),
-      error:HttpErrorResponse  => console.error(Error),
-      complete: () => {
+    this.subscriptions.add(this.userService.createUser(this.newUser).subscribe(
+      (res) => console.log(res),
+      (error)=>{
+        this.serverError = error.error
+      },
+      () => {
         this.openLoginForm();
       },
-    }));
+    ));
   }
 
   openLoginForm() {

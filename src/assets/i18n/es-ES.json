@@ -63,7 +63,8 @@
     "REGISTER_NOW": "Regístrate ahora",
     "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Crea tu cuenta y ¡disfruta!",
     "LOGIN_AND_HAVE_SOME_FUN!": "Inicia sesión y ¡diviértete!",
-    "LOGOUT": "Cerrar sesión"
+    "LOGOUT": "Cerrar sesión",
+    "INCORRECT": "Correo electrónico o contraseña incorrectos"
   },
 
   "SEARCH": {
