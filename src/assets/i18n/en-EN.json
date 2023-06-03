@@ -50,7 +50,8 @@
     "PASSWORD_CONFIRM_EDIT": "Enter old or change password",
     "EDIT_CONFIGURATION": "Edit profile",
     "DELETE_ACCOUNT": "Delete account",
-    "ACCOUNT_DELETED": "Account successfully deleted! We hope to see you back soon. You will be automatically redirected to the login page"
+    "ACCOUNT_DELETED": "Account successfully deleted! We hope to see you back soon. You will be automatically redirected to the login page",
+    "ACCOUNT_UPDATED": "Account updated successfully, page will reload now..."
   },
 
   "LOGIN":{
@@ -74,7 +75,8 @@
   },
 
   "NEWS":{
-    "PUBLISHED": "Published"
+    "PUBLISHED": "Published",
+    "ARTICLE_UPLOADED": "Article uploaded correctly"
   },
 
   "POPULAR":{

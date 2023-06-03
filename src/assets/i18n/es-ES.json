@@ -50,7 +50,8 @@
     "PASSWORD_CONFIRM_EDIT": "Ingresa contraseña antigua o nueva para editar",
     "EDIT_CONFIGURATION": "Editar perfil",
     "DELETE_ACCOUNT": "Eliminar cuenta",
-    "ACCOUNT_DELETED": "¡Cuenta eliminada correctamente! Esperamos verte pronto de nuevo. Serás redirigido automáticamente a la página de inicio de sesión"
+    "ACCOUNT_DELETED": "¡Cuenta eliminada correctamente! Esperamos verte pronto de nuevo. Serás redirigido automáticamente a la página de inicio de sesión",
+    "ACCOUNT_UPDATED": "Cuenta actualizada correctamente, la página se refrescará ahora..."
   },
 
   "LOGIN": {
@@ -74,7 +75,8 @@
   },
 
   "NEWS": {
-    "PUBLISHED": "Publicado"
+    "PUBLISHED": "Publicado",
+    "ARTICLE_UPLOADED": "Articulo publicado correctamente"
   },
 
   "POPULAR": {

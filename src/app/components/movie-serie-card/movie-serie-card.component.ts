@@ -13,6 +13,7 @@ export class MovieSerieCardComponent {
   @Input() type!: string;
   date!: Date;
   user!: any;
+  isLoading: boolean = false;
   private subscriptions: Subscription = new Subscription();
 
   constructor(
@@ -95,6 +96,10 @@ export class MovieSerieCardComponent {
           this.movie_serie.favorite = data;
         }));
     }
+  }
+
+  loadingDetails(){
+    this.isLoading = true;
   }
 
   ngOnDestroy(): void {

@@ -1,27 +1,38 @@
 <div class="card text-center" title="{{movie_serie.title || movie_serie.name}}">
-  <a [routerLink]="['/movie', movie_serie.id]" *ngIf="type == 'movies'">
-    <ng-container *ngIf="movie_serie.poster_path else elseTemplate">
-      <img src="{{'https://image.tmdb.org/t/p/w400' + movie_serie.poster_path}}" class="card-img-top shadow-hover"
-        alt="{{movie_serie.title || movie_serie.name}}">
-    </ng-container>
-    <ng-template #elseTemplate>
-      <img src="../../../assets/No_poster_available.jpg" class="card-img-top shadow-hover" alt="{{movie_serie.title || movie_serie.name}}">
-    </ng-template>
-  </a>
-  <a [routerLink]="['/serie', movie_serie.id]" *ngIf="type == 'series'">
-    <ng-container *ngIf="movie_serie.poster_path else elseTemplate">
-      <img src="{{'https://image.tmdb.org/t/p/w400' + movie_serie.poster_path}}" class="card-img-top shadow-hover"
-        alt="{{movie_serie.title || movie_serie.name}}">
-    </ng-container>
-    <ng-template #elseTemplate>
-      <img src="../../../assets/No_poster_available.jpg" class="card-img-top shadow-hover" alt="{{movie_serie.title || movie_serie.name}}">
-    </ng-template>
-  </a>
+  <div class="position-relative" (click)="loadingDetails()">
+    <a [routerLink]="['/movie', movie_serie.id]" *ngIf="type == 'movies'">
+      <ng-container *ngIf="movie_serie.poster_path else elseTemplate">
+        <img src="{{'https://image.tmdb.org/t/p/w400' + movie_serie.poster_path}}" class="card-img-top shadow-hover"
+          alt="{{movie_serie.title || movie_serie.name}}">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <img src="../../../assets/No_poster_available.jpg" class="card-img-top shadow-hover"
+          alt="{{movie_serie.title || movie_serie.name}}">
+      </ng-template>
+    </a>
+    <a [routerLink]="['/serie', movie_serie.id]" *ngIf="type == 'series'">
+      <ng-container *ngIf="movie_serie.poster_path else elseTemplate">
+        <img src="{{'https://image.tmdb.org/t/p/w400' + movie_serie.poster_path}}" class="card-img-top shadow-hover"
+          alt="{{movie_serie.title || movie_serie.name}}">
+      </ng-container>
+      <ng-template #elseTemplate>
+        <img src="../../../assets/No_poster_available.jpg" class="card-img-top shadow-hover"
+          alt="{{movie_serie.title || movie_serie.name}}">
+      </ng-template>
+    </a>
+    <div class="spinner-overlay" *ngIf="isLoading">
+      <div class="spinner-grow" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
   <div class="absolute d-flex justify-content-between mt-2">
-    <div class="icon icon-left text-white ms-3" title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()">
+    <div class="icon icon-left text-white ms-3" title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}"
+      (click)="markWatched()">
       <i class="bi" [ngClass]="movie_serie.watched ? 'bi-eye-fill' : 'bi-eye' "></i>
     </div>
-    <div class="icon icon-right text-white me-3" title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()">
+    <div class="icon icon-right text-white me-3" title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}"
+      (click)="markFavorite()">
       <i class="bi" [ngClass]="movie_serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' "></i>
     </div>
   </div>

@@ -12,7 +12,7 @@
             </ng-template>
             <span class="fs-3">{{ friend.friendNickname }}</span>
           </div>
-          <span *ngIf="friend.newMessagesCount != 0">{{friend.newMessagesCount}} <i>{{friend.newMessagesCount! > 1 ? 'SOCIAL.NEW_MESSAGES' : 'SOCIAL.NEW_MESSAGE' | translate}}</i> </span>
+          <span *ngIf="friend.newMessagesCount != 0">{{friend.newMessagesCount}} <i>{{friend.newMessagesCount! > 1 ? ('SOCIAL.NEW_MESSAGES' | translate) : ('SOCIAL.NEW_MESSAGE' | translate)}}</i> </span>
           <i *ngIf="friend.newMessagesCount == 0" class="bi bi-chat-text-fill fs-2"></i>
         </div>
       </div>

@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent {
   expresiones = {
@@ -26,11 +26,16 @@ export class EditUserComponent {
     image: /.(gif|jpeg|jpg|png)$/i, // Only accepts gif, jpeg. jpg y png.
   };
 
+  isLoadingEdit: boolean = false;
+  isLoadingDelete: boolean = false;
   user!: any;
   serverError!: string;
   registerForm!: FormGroup;
   imagen!: string;
-  languages = [{ name: 'English', abbrev: 'en-EN' }, { name: 'Español', abbrev: 'es-ES' }];
+  languages = [
+    { name: 'English', abbrev: 'en-EN' },
+    { name: 'Español', abbrev: 'es-ES' },
+  ];
   newUser: IUser = {
     userId: 0,
     firstname: '',
@@ -39,7 +44,7 @@ export class EditUserComponent {
     password: '',
     email: '',
     language: '',
-    image: ''
+    image: '',
   };
   private subscriptions: Subscription = new Subscription();
 
@@ -67,7 +72,11 @@ export class EditUserComponent {
     return this.fb.group({
       nickname: [
         this.user.nickname,
-        [Validators.required, Validators.maxLength(15), Validators.pattern(this.expresiones.nickname)],
+        [
+          Validators.required,
+          Validators.maxLength(15),
+          Validators.pattern(this.expresiones.nickname),
+        ],
       ],
       password: [
         '',
@@ -82,12 +91,13 @@ export class EditUserComponent {
         [Validators.required, Validators.pattern(this.expresiones.email)],
       ],
       language: [this.user.language, Validators.required],
-      image: null
+      image: null,
     });
   }
 
   // Método para enviar datos a backend.
   editUser() {
+    this.isLoadingEdit = true;
     this.newUser = {
       userId: this.user.userId,
       firstname: this.user.firstName,
@@ -96,18 +106,30 @@ export class EditUserComponent {
       password: this.registerForm.value.password,
       email: this.registerForm.value.email,
       language: this.registerForm.value.language,
-      image: this.user.image
+      image: this.user.image,
     };
 
     this.subscriptions.add(
       this.userService.EditUser(this.newUser).subscribe(
         (data) => {
-          localStorage.setItem('user', JSON.stringify(data))
+          localStorage.setItem('user', JSON.stringify(data));
+          this.toastr.success(
+            this.translate.instant('FORM.ACCOUNT_UPDATED'),
+            'Tube Tracker',
+            {
+              tapToDismiss: true,
+              closeButton: true,
+              positionClass: 'toast-bottom-right',
+            }
+          );
           this.activeModal.close();
-          location.reload();
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+          this.isLoadingEdit = false;
         },
-        (error)=>{
-          this.serverError = error.error
+        (error) => {
+          this.serverError = error.error;
         }
       )
     );
@@ -115,7 +137,11 @@ export class EditUserComponent {
 
   openLoginForm() {
     this.activeModelService.close();
-    this.modalService.open(LoginModalComponent, {backdrop: 'static', keyboard: false, centered: true});
+    this.modalService.open(LoginModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+    });
   }
 
   // Método para leer archivo de campo imagen.
@@ -131,29 +157,34 @@ export class EditUserComponent {
     });
   }
 
-  changeLanguage(){
-    console.log(this.registerForm.value.language)
-    this.translate.use(this.registerForm.value.language)
+  changeLanguage() {
+    console.log(this.registerForm.value.language);
+    this.translate.use(this.registerForm.value.language);
   }
 
   deleteUser(): void {
-    if(confirm(this.translate.instant("ADMIN.SURE_ACTION"))){
-      this.subscriptions.add(this.userService.DeleteUser(this.user.userId).subscribe(
-        (data) => {
-
-        this.toastr.success(this.translate.instant("FORM.ACCOUNT_DELETED"), 'Tube Tracker',{
-          tapToDismiss: true,
-          closeButton: true,
-          positionClass: 'toast-bottom-right'
-        });
-        this.activeModelService.close();
-        this.router.navigateByUrl('home');
-        setTimeout(() => {
-          localStorage.clear();
-          location.reload();
-        }, 6000)
-        }
-      ))
+    if (confirm(this.translate.instant('ADMIN.SURE_ACTION'))) {
+      this.isLoadingDelete = true;
+      this.subscriptions.add(
+        this.userService.DeleteUser(this.user.userId).subscribe((data) => {
+          this.toastr.success(
+            this.translate.instant('FORM.ACCOUNT_DELETED'),
+            'Tube Tracker',
+            {
+              tapToDismiss: true,
+              closeButton: true,
+              positionClass: 'toast-bottom-right',
+            }
+          );
+          this.activeModelService.close();
+          this.router.navigateByUrl('home');
+          setTimeout(() => {
+            localStorage.clear();
+            location.reload();
+          }, 6000);
+          this.isLoadingDelete = false;
+        })
+      );
     }
   }
 

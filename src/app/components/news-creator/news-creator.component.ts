@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { INews } from 'src/app/interfaces/i-news';
 import { NewsServiceService } from 'src/app/services/news-service.service';
@@ -10,6 +12,7 @@ import { NewsServiceService } from 'src/app/services/news-service.service';
   styleUrls: ['./news-creator.component.scss'],
 })
 export class NewsCreatorComponent {
+  isLoading: boolean = false;
   value: string = '';
   user!: any;
   language: string = 'en-EN';
@@ -33,7 +36,9 @@ export class NewsCreatorComponent {
 
   constructor(
     public sanitizer: DomSanitizer,
-    private newsService: NewsServiceService
+    private newsService: NewsServiceService,
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
@@ -45,16 +50,26 @@ export class NewsCreatorComponent {
     if (this.language == 'en-EN') {
       this.article.contentEn = this.value;
       this.language = 'es-ES';
-      console.log(this.article);
       this.value = '';
     } else if (this.language == 'es-ES') {
+      this.isLoading = true;
       this.article.userId = this.user.userId;
       this.article.contentEs = this.value;
-      console.log(this.article);
       this.subscriptions.add(this.newsService.createNewsArticle(this.article).subscribe(
         () => {
-        alert('Article uploaded correctly');
-        location.reload();
+        this.toastr.success(
+          this.translate.instant('NEWS.ARTICLE_UPLOADED'),
+          'Tube Tracker',
+          {
+            tapToDismiss: true,
+            closeButton: true,
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        setTimeout(() => {
+          location.reload();
+          this.isLoading = false;
+        }, 3000);
       }));
     }
   }

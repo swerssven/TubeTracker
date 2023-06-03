@@ -41,3 +41,31 @@
   width: 15%;
   height: 5%;
 }
+
+.position-relative {
+  position: relative;
+}
+
+.card-img {
+  position: relative;
+  z-index: 1;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.spinner-overlay .spinner-grow {
+  color: #646464;
+  height: 100px;
+  width: 100px
+}

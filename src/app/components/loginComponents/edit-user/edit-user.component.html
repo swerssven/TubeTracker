@@ -70,10 +70,26 @@
         {{ "FORM.PASSWORD_FORMAT" | translate }}</div>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-2">
-      <input class="btn btn-primary" type="submit" value="{{'FORM.EDIT_CONFIGURATION' | translate}}"
-        [disabled]="registerForm.invalid">
+      <ng-container *ngIf="isLoadingEdit; else elseTemplateAA">
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          {{ 'OTHERS.LOADING' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #elseTemplateAA>
+        <input class="btn btn-primary" type="submit" value="{{'FORM.EDIT_CONFIGURATION' | translate}}"
+          [disabled]="registerForm.invalid">
+      </ng-template>
+      <ng-container *ngIf="isLoadingDelete; else elseTemplateBB">
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          {{ 'OTHERS.LOADING' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #elseTemplateBB>
         <input class="btn btn-primary" type="button" value="{{'FORM.DELETE_ACCOUNT' | translate}}"
           [disabled]="registerForm.invalid" (click)="deleteUser()">
+      </ng-template>
       <i>{{"FORM.REQUIRED"|translate}}</i>
     </div>
     <div *ngIf="serverError">

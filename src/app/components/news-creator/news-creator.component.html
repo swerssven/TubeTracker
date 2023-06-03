@@ -8,7 +8,15 @@
     <div class="col-10">
       <editor class="shadow" [init]="editorConfig" [(ngModel)]="value"></editor>
       <input *ngIf="language == 'en-EN'" type="button" class="btn btn-primary" value="{{ 'NAC.NEXT_LANG' | translate }}" (click)="createNewsArticle()">
-      <input *ngIf="language == 'es-ES'" type="button" class="btn btn-primary" value="{{ 'NAC.SEND' | translate }}" (click)="createNewsArticle()">
+      <ng-container *ngIf="isLoading; else elseTemplateBB">
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          {{ 'OTHERS.LOADING' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #elseTemplateBB>
+        <input *ngIf="language == 'es-ES'" type="button" class="btn btn-primary" value="{{ 'NAC.SEND' | translate }}" (click)="createNewsArticle()">
+      </ng-template>
     </div>
   </div>
 </div>
