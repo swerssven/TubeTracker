@@ -49,7 +49,8 @@
     "EDIT_TO_YOUR_LIKING!": "¡Edite perfil a su gusto!",
     "PASSWORD_CONFIRM_EDIT": "Ingresa contraseña antigua o nueva para editar",
     "EDIT_CONFIGURATION": "Editar perfil",
-    "DELETE_ACCOUNT": "Eliminar cuenta"
+    "DELETE_ACCOUNT": "Eliminar cuenta",
+    "ACCOUNT_DELETED": "¡Cuenta eliminada correctamente! Esperamos verte pronto de nuevo. Serás redirigido automáticamente a la página de inicio de sesión"
   },
 
   "LOGIN": {
@@ -64,7 +65,8 @@
     "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Crea tu cuenta y ¡disfruta!",
     "LOGIN_AND_HAVE_SOME_FUN!": "Inicia sesión y ¡diviértete!",
     "LOGOUT": "Cerrar sesión",
-    "INCORRECT": "Correo electrónico o contraseña incorrectos"
+    "INCORRECT": "Credenciales incorrectas o su cuenta ha sido bloqueada, intente de nuevo o contacte con un admin",
+    "REGISTER_CORRECT": "Registrado correctamente! Ahora puede iniciar sesión y empezar la diversión!"
   },
 
   "SEARCH": {
@@ -175,6 +177,7 @@
     "ADMIN": "Hacer admin",
     "BLOCK": "Bloquear",
     "BLOCKED": "Bloqueado",
-    "ACTIONS": "Acciones"
+    "ACTIONS": "Acciones",
+    "ACTION_COMPLETED": "Acción completada correctamente"
   }
 }

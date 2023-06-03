@@ -9,6 +9,7 @@ import { SignUpModalComponent } from '../sign-up-modal/sign-up-modal.component';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-modal',
@@ -16,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./login-modal.component.scss'],
 })
 export class LoginModalComponent {
+  isLoading: boolean = false;
   loginForm!: FormGroup;
   private subscriptions: Subscription = new Subscription();
 
@@ -28,7 +30,8 @@ export class LoginModalComponent {
     private userService: UserServiceService,
     private modalService: NgbModal,
     private dataService: DataServiceService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private toastr: ToastrService
   ) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.required],
@@ -39,33 +42,57 @@ export class LoginModalComponent {
   ngOnInit(): void {}
 
   Login() {
+    this.isLoading = true;
     const userLogin: ILogin = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
 
-    this.subscriptions.add(this.userService.getToken(userLogin).subscribe(
-      (res) => {
-      localStorage.setItem('token', res.token);
-      let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
+    this.subscriptions.add(
+      this.userService.getToken(userLogin).subscribe(
+        {
+          next: (res) => {
+            localStorage.setItem('token', res.token);
+            let decodedJWT = JSON.parse(window.atob(res.token.split('.')[1]));
 
-      this.subscriptions.add(this.userService.getUser(decodedJWT.userId/*, res.tokenType, res.token*/).subscribe({
-        next: (user) => {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.translate.use(user.language);
-        },
-        error: (error) => console.log(error.status),
-        complete: () => {
-          this.activeModelService.close();
-          window.location.reload();
-        },
-      }));
-    }));
+            this.subscriptions.add(
+              this.userService
+                .getUser(decodedJWT.userId /*, res.tokenType, res.token*/)
+                .subscribe({
+                  next: (user) => {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    this.translate.use(user.language);
+                    this.isLoading = false;
+                  },
+                  error: (error) => {
+                    console.log(error.status);
+                  },
+                  complete: () => {
+                    this.activeModelService.close();
+                    window.location.reload();
+                  },
+                })
+            );
+          },
+          error: (error) => {
+            this.toastr.error(this.translate.instant("LOGIN.INCORRECT"), 'Tube Tracker',{
+              tapToDismiss: true,
+              closeButton: true,
+              positionClass: 'toast-bottom-right'
+            });
+          }
+        }
+      )
+    );
   }
 
   openRegisterForm(): void {
     this.activeModelService.close();
-    this.modalService.open(SignUpModalComponent, {backdrop: 'static', keyboard: false, centered: true});
+    this.modalService.open(SignUpModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+    });
   }
 
   ngOnDestroy(): void {

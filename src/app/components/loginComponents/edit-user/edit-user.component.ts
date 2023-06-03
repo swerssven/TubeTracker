@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/interfaces/i-user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-user',
@@ -49,7 +50,8 @@ export class EditUserComponent {
     private activeModelService: NgbActiveModal,
     private router: Router,
     private userService: UserServiceService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -138,8 +140,18 @@ export class EditUserComponent {
     if(confirm(this.translate.instant("ADMIN.SURE_ACTION"))){
       this.subscriptions.add(this.userService.DeleteUser(this.user.userId).subscribe(
         (data) => {
+
+        this.toastr.success(this.translate.instant("FORM.ACCOUNT_DELETED"), 'Tube Tracker',{
+          tapToDismiss: true,
+          closeButton: true,
+          positionClass: 'toast-bottom-right'
+        });
+        this.activeModelService.close();
+        this.router.navigateByUrl('home');
+        setTimeout(() => {
           localStorage.clear();
           location.reload();
+        }, 6000)
         }
       ))
     }

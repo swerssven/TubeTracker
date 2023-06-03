@@ -45,6 +45,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminUsersActionButtonsComponent } from './components/admin-users-action-buttons/admin-users-action-buttons.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ToastrModule } from 'ngx-toastr';
 
 // Función para cargar archivo de traducción del proyecto.
 export function HttpLoaderFactory(http: HttpClient){
@@ -97,6 +98,7 @@ export function HttpLoaderFactory(http: HttpClient){
     EditorModule,
     CarouselModule,
     AgGridModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {

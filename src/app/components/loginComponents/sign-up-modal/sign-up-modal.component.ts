@@ -8,6 +8,7 @@ import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up-modal',
@@ -26,6 +27,7 @@ export class SignUpModalComponent {
     image: /.(gif|jpeg|jpg|png)$/i, // Only accepts gif, jpeg. jpg y png.
   };
 
+  isLoading: boolean = false;
   registerForm!: FormGroup;
   serverError!: string;
   imagen!: string;
@@ -48,7 +50,8 @@ export class SignUpModalComponent {
     private activeModelService: NgbActiveModal,
     private router: Router,
     private userService: UserServiceService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -89,6 +92,7 @@ export class SignUpModalComponent {
 
   // Método para enviar datos a backend.
   registerUser() {
+    this.isLoading = true;
     this.newUser = {
       firstname: this.registerForm.value.firstname,
       lastname: this.registerForm.value.lastname,
@@ -100,12 +104,17 @@ export class SignUpModalComponent {
     };
 
     this.subscriptions.add(this.userService.createUser(this.newUser).subscribe(
-      (res) => console.log(res),
+      (res) => this.isLoading = false,
       (error)=>{
         this.serverError = error.error
       },
       () => {
         this.openLoginForm();
+        this.toastr.success(this.translate.instant("LOGIN.REGISTER_CORRECT"), 'Tube Tracker',{
+          tapToDismiss: true,
+          closeButton: true,
+          positionClass: 'toast-bottom-right'
+        });
       },
     ));
   }

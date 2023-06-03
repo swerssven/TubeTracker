@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from '../components/loginComponents/login-modal/login-modal.component';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class AuthInterceptorService implements HttpInterceptor{
 
   constructor(private router: Router,
-    private modalService: NgbModal, private translate: TranslateService) { }
+    private modalService: NgbModal, private translate: TranslateService,
+    private toastr: ToastrService) { }
 
   // Interceptor includes token in each http request.
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -29,7 +29,15 @@
             *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">{{ "FORM.FIELD_REQUIRED" | translate }}</div>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <input class="btn btn-primary mt-3" type="submit" value="{{'LOGIN.LOGIN' | translate}}" [disabled]="loginForm.invalid">
+          <ng-container *ngIf="isLoading; else elseTemplateBB">
+            <button class="btn btn-primary mt-3" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              {{ 'OTHERS.LOADING' | translate }}
+            </button>
+          </ng-container>
+          <ng-template #elseTemplateBB>
+            <input class="btn btn-primary mt-3" type="submit" value="{{'LOGIN.LOGIN' | translate}}" [disabled]="loginForm.invalid">
+          </ng-template>
         </div>
         <div>
           <p>{{"LOGIN.DON'T HAVE AN ACCOUNT?" | translate}} <a class="link-primary" (click)="openRegisterForm()">{{"LOGIN.SIGN_UP_HERE" | translate}}</a>

@@ -49,7 +49,8 @@
     "EDIT_TO_YOUR_LIKING!": "Edit profile to your liking!",
     "PASSWORD_CONFIRM_EDIT": "Enter old or change password",
     "EDIT_CONFIGURATION": "Edit profile",
-    "DELETE_ACCOUNT": "Delete account"
+    "DELETE_ACCOUNT": "Delete account",
+    "ACCOUNT_DELETED": "Account successfully deleted! We hope to see you back soon. You will be automatically redirected to the login page"
   },
 
   "LOGIN":{
@@ -64,7 +65,8 @@
     "CREATE_YOUR_ACCOUNT_AND_ENJOY!": "Create your account and enjoy!",
     "LOGIN_AND_HAVE_SOME_FUN!": "Login and have some fun!",
     "LOGOUT": "Logout",
-    "INCORRECT": "Incorrect email or password"
+    "INCORRECT": "Incorrect credentials or your account has been blocked, try again or contact with admin",
+    "REGISTER_CORRECT": "Registered correctly! Now you can login and have fun!"
   },
 
   "SEARCH":{
@@ -176,6 +178,7 @@
     "ADMIN": "Make admin",
     "BLOCK": "Block",
     "BLOCKED": "Blocked",
-    "ACTIONS": "Actions"
+    "ACTIONS": "Actions",
+    "ACTION_COMPLETED": "Action completed correctly"
   }
 }

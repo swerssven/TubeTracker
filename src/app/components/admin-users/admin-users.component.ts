@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { IUserGrid } from 'src/app/interfaces/i-user-grid';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-users',
@@ -52,6 +53,7 @@ export class AdminUsersComponent {
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserServiceService,
+    private toastr: ToastrService,
     private translate: TranslateService) {}
 
   ngOnInit(): void {
@@ -60,19 +62,40 @@ export class AdminUsersComponent {
 
   makeAdmin(userId: number, isAdmin: boolean): void {
     this.subscriptions.add(this.userService.MakeUserAdmin(userId, !isAdmin).subscribe(
-      (data) => this.getUserList()
+      (data) => {
+        this.getUserList();
+        this.toastr.success(this.translate.instant("ADMIN.ACTION_COMPLETED"), 'Tube Tracker',{
+          tapToDismiss: true,
+          closeButton: true,
+          positionClass: 'toast-bottom-right'
+        });
+      }
     ))
   }
 
   deleteUser(userId: number): void {
     this.subscriptions.add(this.userService.DeleteUser(userId).subscribe(
-      (data) => this.getUserList()
+      (data) => {
+        this.getUserList();
+        this.toastr.success(this.translate.instant("ADMIN.ACTION_COMPLETED"), 'Tube Tracker',{
+          tapToDismiss: true,
+          closeButton: true,
+          positionClass: 'toast-bottom-right'
+        });
+      }
     ))
   }
 
   blockUser(userId: number, isActive:boolean): void {
     this.subscriptions.add(this.userService.ChangeUserState(userId, !isActive).subscribe(
-      (data) => this.getUserList()
+      (data) => {
+        this.getUserList();
+        this.toastr.success(this.translate.instant("ADMIN.ACTION_COMPLETED"), 'Tube Tracker',{
+          tapToDismiss: true,
+          closeButton: true,
+          positionClass: 'toast-bottom-right'
+        });
+      }
     ))
   }
 
