@@ -8,6 +8,7 @@ import { IUser } from 'src/app/interfaces/i-user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { ToastrService } from 'ngx-toastr';
+import { MD5 } from 'crypto-js';
 
 @Component({
   selector: 'app-edit-user',
@@ -103,7 +104,7 @@ export class EditUserComponent {
       firstname: this.user.firstName,
       lastname: this.user.lastName,
       nickname: this.registerForm.value.nickname,
-      password: this.registerForm.value.password,
+      password: MD5(this.registerForm.value.password).toString(),
       email: this.registerForm.value.email,
       language: this.registerForm.value.language,
       image: this.user.image,

@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { MD5 } from 'crypto-js';
 
 @Component({
   selector: 'app-sign-up-modal',
@@ -97,7 +98,7 @@ export class SignUpModalComponent {
       firstname: this.registerForm.value.firstname,
       lastname: this.registerForm.value.lastname,
       nickname: this.registerForm.value.nickname,
-      password: this.registerForm.value.password,
+      password: MD5(this.registerForm.value.password).toString(),
       email: this.registerForm.value.email,
       language: this.registerForm.value.language,
       image: this.imagen

@@ -10,6 +10,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { MD5 } from 'crypto-js';
 
 @Component({
   selector: 'app-login-modal',
@@ -45,7 +46,7 @@ export class LoginModalComponent {
     this.isLoading = true;
     const userLogin: ILogin = {
       email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
+      password: MD5(this.loginForm.value.password).toString(),
     };
 
     this.subscriptions.add(
