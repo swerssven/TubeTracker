@@ -72,6 +72,8 @@
     <div class="d-flex align-items-center justify-content-between mt-2">
       <input class="btn btn-primary" type="submit" value="{{'FORM.EDIT_CONFIGURATION' | translate}}"
         [disabled]="registerForm.invalid">
+        <input class="btn btn-primary" type="button" value="{{'FORM.DELETE_ACCOUNT' | translate}}"
+          [disabled]="registerForm.invalid" (click)="deleteUser()">
       <i>{{"FORM.REQUIRED"|translate}}</i>
     </div>
     <div *ngIf="serverError">

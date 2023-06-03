@@ -23,7 +23,7 @@ export class FriendsWithMessaggesListComponent {
       this.user = userString ? JSON.parse(userString) : null;
     }
     this.subscriptions.add(this.socialService.getFriendsWithMessagesList(this.user.userId).subscribe((data) => {
-      this.friendsMessageList = data;
+      this.friendsMessageList = data.reverse();
       this.isLoading = false;
     }));
   }

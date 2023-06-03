@@ -48,7 +48,8 @@
     "EDIT_USER": "Editar información de usuario",
     "EDIT_TO_YOUR_LIKING!": "¡Edite perfil a su gusto!",
     "PASSWORD_CONFIRM_EDIT": "Ingresa contraseña antigua o nueva para editar",
-    "EDIT_CONFIGURATION": "Editar perfil"
+    "EDIT_CONFIGURATION": "Editar perfil",
+    "DELETE_ACCOUNT": "Eliminar cuenta"
   },
 
   "LOGIN": {
@@ -168,6 +169,11 @@
     "ADMIN_TOOL": "Herramienta de administración de usuarios",
     "DELETE": "Eliminar",
     "SURE_DELETE": "¿Está seguro que quiere eliminar este item?",
-    "CANCEL": "Cancelar"
+    "CANCEL": "Cancelar",
+    "SURE_ACTION": "¿Está seguro que quiere realizar esta acción?",
+    "ADMIN": "Hacer admin",
+    "BLOCK": "Bloquear",
+    "BLOCKED": "Bloqueado",
+    "ACTIONS": "Acciones"
   }
 }

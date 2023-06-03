@@ -5,6 +5,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { Subscription } from 'rxjs';
 import { IUserGrid } from 'src/app/interfaces/i-user-grid';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-users',
@@ -19,14 +20,14 @@ export class AdminUsersComponent {
 
   gridOptions: GridOptions = {
       columnDefs: [
-        { field: 'firstName', headerName: 'Firstname', filter: true, sortable: true },
-        { field: 'lastName', headerName: 'Lastname', width: 250, filter: true, sortable: true },
-        { field: 'nickname', headerName: 'Nickname', width: 200, filter: true, sortable: true },
-        { field: 'email', headerName: 'Email', width: 300, filter: true, sortable: true },
-        { field: 'isAdmin', headerName: 'Is admin', width: 150, filter: true, sortable: true },
+        { field: 'firstName', headerName: this.translate.instant("FORM.FIRSTNAME"), filter: true, sortable: true },
+        { field: 'lastName', headerName: this.translate.instant("FORM.LASTNAME"), width: 250, filter: true, sortable: true },
+        { field: 'nickname', headerName: this.translate.instant("FORM.NICKNAME"), width: 200, filter: true, sortable: true },
+        { field: 'email', headerName: this.translate.instant("FORM.EMAIL"), width: 300, filter: true, sortable: true },
+        { field: 'isAdmin', headerName: 'Admin', width: 150, filter: true, sortable: true },
         {
           field: 'isActive',
-          headerName: 'Blocked',
+          headerName: this.translate.instant("ADMIN.BLOCKED"),
           width: 150,
           filter: true,
           sortable: true,
@@ -34,13 +35,14 @@ export class AdminUsersComponent {
             params.value ? 'No' : 'Yes',
         },
         {
-          headerName: 'Actions',
+          headerName: this.translate.instant("ADMIN.ACTIONS"),
           width: 350,
-          cellRendererFramework: AdminUsersActionButtonsComponent,
+          cellRenderer: AdminUsersActionButtonsComponent,
           cellRendererParams: {
             makeAdmin: this.makeAdmin.bind(this),
             deleteUser: this.deleteUser.bind(this),
-            blockUser: this.blockUser.bind(this)
+            blockUser: this.blockUser.bind(this),
+            context: this
           },
         },
       ],
@@ -49,36 +51,37 @@ export class AdminUsersComponent {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private userService: UserServiceService) {}
+    private userService: UserServiceService,
+    private translate: TranslateService) {}
 
   ngOnInit(): void {
+    this.getUserList()
+  }
 
+  makeAdmin(userId: number, isAdmin: boolean): void {
+    this.subscriptions.add(this.userService.MakeUserAdmin(userId, !isAdmin).subscribe(
+      (data) => this.getUserList()
+    ))
+  }
 
+  deleteUser(userId: number): void {
+    this.subscriptions.add(this.userService.DeleteUser(userId).subscribe(
+      (data) => this.getUserList()
+    ))
+  }
+
+  blockUser(userId: number, isActive:boolean): void {
+    this.subscriptions.add(this.userService.ChangeUserState(userId, !isActive).subscribe(
+      (data) => this.getUserList()
+    ))
+  }
+
+  getUserList(){
     this.subscriptions.add(this.userService.GetUserList().subscribe(
       (data) => {
         this.rowData = data;
       }
     ));
-  }
-
-  makeAdmin(userId: number): void {
-    // this.users = this.users.filter((user) => user.id !== userId);
-    // this.gridOptions.api?.setRowData(this.users);
-  }
-
-  deleteUser(userId: number): void {
-    // this.users = this.users.filter((user) => user.id !== userId);
-    // this.gridOptions.api?.setRowData(this.users);
-  }
-
-  blockUser(userId: number): void {
-    // this.users = this.users.map((user) => {
-    //   if (user.id === userId) {
-    //     return { ...user, blocked: true };
-    //   }
-    //   return user;
-    // });
-    // this.gridOptions.api?.refreshCells();
   }
 
   ngOnDestroy(): void {

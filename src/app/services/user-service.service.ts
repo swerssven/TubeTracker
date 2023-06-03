@@ -84,4 +84,28 @@ export class UserServiceService {
       userData
     );
   }
+
+  // Delete user from database.
+  DeleteUser(userId: number): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/User/DeleteUser?userId=${userId}`,
+      null
+    );
+  }
+
+  // Make user admin.
+  MakeUserAdmin(userId: number, isAdmin: boolean): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/User/MakeUserAdmin?userId=${userId}&isAdmin=${isAdmin}`,
+      null
+    );
+  }
+
+  // Change user state.
+  ChangeUserState(userId: number, isActive: boolean): Observable<boolean> {
+    return this.http.post<boolean>(
+      `${this.apiUrl}/api/User/ChangeUserState?userId=${userId}&isActive=${isActive}`,
+      null
+    );
+  }
 }

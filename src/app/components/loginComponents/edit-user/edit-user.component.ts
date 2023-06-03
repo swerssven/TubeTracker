@@ -134,6 +134,17 @@ export class EditUserComponent {
     this.translate.use(this.registerForm.value.language)
   }
 
+  deleteUser(): void {
+    if(confirm(this.translate.instant("ADMIN.SURE_ACTION"))){
+      this.subscriptions.add(this.userService.DeleteUser(this.user.userId).subscribe(
+        (data) => {
+          localStorage.clear();
+          location.reload();
+        }
+      ))
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }

@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row mt-5 d-flex justify-content-center">
+  <div class="row mt-4 d-flex justify-content-center">
     <div class="col-8 d-flex gap-3">
-      <div *ngIf="user" class="col-2">
+      <div *ngIf="user" class="col-2 pt-2">
         <ng-container *ngIf="user.image == null || user.image.length == 0; else elseTemplate">
           <img class="img-fluid shadow" src="../../../assets/default-avatar.png" alt="Avatar">
         </ng-container>
