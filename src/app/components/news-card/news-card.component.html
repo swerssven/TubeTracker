@@ -13,7 +13,7 @@
           <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
         </ng-template>
         <span *ngIf="newsArticle && newsArticle.creatorNickname">
-          <a class="d-flex gap-3 align-items-center" [routerLink]="['/statistics', newsArticle.userId]">
+          <a class="d-flex gap-3 align-items-center link" [routerLink]="['/statistics', newsArticle.userId]">
             {{ newsArticle.creatorNickname }}
           </a></span>
       </div>

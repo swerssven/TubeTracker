@@ -8016,4 +8016,16 @@ img {
   cursor: pointer;
   text-shadow: 0px 0px 10px rgb(255, 255, 255);
   color: white;
+}
+
+a, .link-primary {
+  color: rgb(173, 173, 255);
+  text-shadow: 0px 0px 20px rgb(104, 104, 104);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  cursor: pointer;
 }/*# sourceMappingURL=post.component.css.map */

@@ -4,4 +4,16 @@
 
 .link-primary {
   cursor: pointer;
+}
+
+a, .link-primary {
+  color: rgb(173, 173, 255);
+  text-shadow: 0px 0px 20px rgb(104, 104, 104);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  cursor: pointer;
 }/*# sourceMappingURL=user-statistics.component.css.map */

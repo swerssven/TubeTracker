@@ -1,140 +1,170 @@
 <div class="container mt-3">
   <div class="row d-flex align-items-end">
-    <div class="col-4">
-      <h2 *ngIf="serie"><b>{{title}}</b></h2>
-      <div class="d-flex gap-5">
-        <h6 *ngIf="serie">{{serie.premiereDate | date: 'yyyy'}}</h6>
-        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumEpisodes > 1; else elseTemplate">
-          <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODES" | translate}}</h6>
-        </ng-container>
-        <ng-template #elseTemplate>
-          <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODE" | translate}}</h6>
-        </ng-template>
-        <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumSeasons > 1; else elseTemplate1">
-          <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASONS" | translate}}</h6>
-        </ng-container>
-        <ng-template #elseTemplate1>
-          <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASON" | translate}}</h6>
-        </ng-template>
-      </div>
-    </div>
-    <div class="col-12 col-lg-8 d-flex justify-content-between flex-wrap">
-      <div class="col-3 col-lg-auto">
-        <h6>{{ "DETAIL.REVIEWS" | translate }}</h6>
-        <h6 *ngIf="reviews"><b>{{reviews.numReviews}}</b></h6>
-      </div>
-      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
-        <i *ngIf="serie" class="bi icon" [ngClass]="serie.watched ? 'bi-eye-fill' : 'bi-eye' " title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
-      </div>
-      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
-        <i *ngIf="serie" class="bi icon" [ngClass]="serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' " title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
-      </div>
-      <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center">
-        <i *ngIf="serie" class="bi bi-share icon"
-          title="{{ 'SOCIAL.SHARE' | translate }}" (click)="share()"></i>
-      </div>
-      <div class="col-12 col-lg-4 d-flex justify-content-around d-lg-block">
-        <div class="row">
-          <div class=" d-flex justify-content-lg-center gap-3 text-lg-end">
-            <h6>{{ "DETAIL.TT_RATING" | translate }}</h6>
-            <h6><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col d-flex justify-content-lg-center gap-3 text-lg-end">
-            <h6>{{ "DETAIL.YOUR_RATING" | translate }}</h6>
-            <div>
-              <i *ngFor="let star of [1,2,3,4,5]" class="bi"
-                [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
-                (mouseenter)="auxRating = star" (click)="setSerieRating()">
-              </i>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-3">
-      <img *ngIf="serie" class="img-fluid shadow" src="{{'https://image.tmdb.org/t/p/w400' + serie.poster}}" alt="">
-    </div>
-    <!--Episodes Component-->
-    <div class="col-12 col-lg-8 mt-3">
-      <div class="row">
-        <div class="col-auto col-lg-6 ms-0 ps-1" *ngIf="seasonEpisodes">
-          <select class="form-select episode-hover" (change)="seleccionarTemporada($event)" title="{{ 'DETAIL.SEASONS' | translate}}">
-            <option *ngFor="let season of seasonEpisodes.seasonsList" [value]="season.numSeason">{{ "DETAIL.SEASON" |
-              translate}} {{ season.numSeason }} &nbsp; &nbsp; &nbsp; &nbsp; {{season.episodesList[0].premiereDate |
-              date: 'yyyy'}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="row mt-2 p-1 overflow-auto episode-list" *ngIf="temporadaSeleccionada">
-        <div class="card bg-darker mb-1 episode-hover" *ngFor="let episode of temporadaSeleccionada.episodesList">
-          <app-episode-card [episode]="episode"
-            (checkWatchedEpisodeParent)="checkWatchedEpisodeParent($event)"></app-episode-card>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div *ngIf="serie" class="col d-flex gap-3 align-items-center">
-      <div class="badge rounded-pill bg-primary p-2" *ngFor="let genre of genres">{{genre}}</div>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col-12">
-      <h3><b>{{ "DETAIL.DESCRIPTION" | translate }}</b></h3>
-      <p *ngIf="serie">{{description}}</p>
-    </div>
-    <div class="col-12">
-      <div class="d-flex align-items-center gap-3">
-        <ng-container *ngIf="serie && serie.creators.includes(', '); else elseTemplate">
-          <h6><b>{{ "DETAIL.DIRECTORS" | translate }}</b></h6>
-        </ng-container>
-        <ng-template #elseTemplate>
-          <h6><b>{{ "DETAIL.DIRECTOR" | translate }}</b></h6>
-        </ng-template>
-        <h6 *ngIf="serie">{{serie.creators}}</h6>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="d-flex gap-3">
-        <h6><b>{{ "DETAIL.ACTORS" | translate }}</b></h6>
-        <h6 *ngIf="serie">{{serie.actors}}</h6>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="row mt-4">
-    <div class="col-12">
-      <h3><b>{{ "DETAIL.USER_REVIEWS" | translate }}</b></h3>
-      <div class="row">
-        <form [formGroup]="reviewForm" (ngSubmit)="createSerieReview()">
-          <div class="col-12 form d-flex gap-2 justify-content-start mb-4">
-            <div class="col-10 col-lg-7">
-              <textarea class="form-control" name="review" placeholder="{{ 'DETAIL.WRITE_YOUR_REVIEW' | translate }}"
-                required formControlName="review"></textarea>
-              <div class="alert alert-danger"
-                *ngIf="reviewForm.get('review')?.touched && reviewForm.get('review')?.errors?.['minlength']">{{
-                "FORM.MIN_CARACTERS" | translate }}</div>
-            </div>
-            <div class="d-flex align-items-start">
-              <input type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid"
-                value="{{ 'FORM.SEND' | translate }}">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="container-fluid m-0 p-0">
-        <div *ngIf="reviews && serie" class="row">
-          <!--User reviews component-->
-          <ng-container *ngFor="let review of reviews.reviews">
-            <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId" [contentType]="'serie'" [title]="title" (reloadReviews)="reloadReviews($event)"></app-movie-review>
+    <ng-container *ngIf="isLoadingDetails; else elseTemplateDD">
+      <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark'
+        [theme]="{'background-color': '#464646', height:'75px'}"></ngx-skeleton-loader>
+    </ng-container>
+    <ng-template #elseTemplateDD>
+      <div class="col-4">
+        <h2 *ngIf="serie"><b>{{title}}</b></h2>
+        <div class="d-flex gap-5 mb-2">
+          <h6 *ngIf="serie">{{serie.premiereDate | date: 'yyyy'}}</h6>
+          <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumEpisodes > 1; else elseTemplate">
+            <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODES" | translate}}</h6>
           </ng-container>
+          <ng-template #elseTemplate>
+            <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumEpisodes}} {{ "DETAIL.EPISODE" | translate}}</h6>
+          </ng-template>
+          <ng-container *ngIf="seasonEpisodes && seasonEpisodes.totalNumSeasons > 1; else elseTemplate1">
+            <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASONS" | translate}}</h6>
+          </ng-container>
+          <ng-template #elseTemplate1>
+            <h6 *ngIf="seasonEpisodes">{{seasonEpisodes.totalNumSeasons}} {{ "DETAIL.SEASON" | translate}}</h6>
+          </ng-template>
         </div>
-        <div class="mb-5" *ngIf="reviews && reviews.numReviews== 0">{{ "DETAIL.NO_REVIEWS_YET" | translate }}</div>
+      </div>
+      <div class="col-12 col-lg-8 d-flex justify-content-between flex-wrap">
+        <div class="col-12 col-lg-auto d-flex d-lg-block gap-3 align-items-center order-3 order-lg-0 mt-3">
+          <h6>{{ "DETAIL.REVIEWS" | translate }}</h6>
+          <h6 *ngIf="reviews"><b>{{reviews.numReviews}}</b></h6>
+        </div>
+        <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center order-lg-0">
+          <i *ngIf="serie" class="bi icon" [ngClass]="serie.watched ? 'bi-eye-fill' : 'bi-eye' "
+            title="{{ 'MOVIE_SERIE_CARD.WATCHED' | translate }}" (click)="markWatched()"></i>
+        </div>
+        <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center order-lg-1">
+          <i *ngIf="serie" class="bi icon" [ngClass]="serie.favorite ? 'bi-camera-reels-fill' : 'bi-camera-reels' "
+            title="{{ 'MOVIE_SERIE_CARD.FAVORITE' | translate }}" (click)="markFavorite()"></i>
+        </div>
+        <div class="col-3 col-lg-auto d-flex justify-content-center align-items-center order-lg-2">
+          <i *ngIf="serie" class="bi bi-share icon" title="{{ 'SOCIAL.SHARE' | translate }}" (click)="share()"></i>
+        </div>
+        <div class="col-12 col-lg-4 d-flex justify-content-sm-start flex-wrap justify-content-lg-around d-lg-block order-4">
+          <div class="row col-12">
+            <div class="d-flex justify-content-sm-start justify-content-lg-center gap-3 text-lg-end">
+              <h6>{{ "DETAIL.TT_RATING" | translate }}</h6>
+              <h6><b>{{ttRating > 0 ? ttRating : 0}}</b></h6>
+            </div>
+          </div>
+          <div class="row col-12">
+            <div class="d-flex justify-content-sm-start justify-content-lg-center gap-3 text-lg-end">
+              <h6>{{ "DETAIL.YOUR_RATING" | translate }}</h6>
+              <div>
+                <i *ngFor="let star of [1,2,3,4,5]" class="bi"
+                  [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
+                  (mouseenter)="auxRating = star" (click)="setSerieRating()">
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-3">
+        <ng-container *ngIf="isLoadingDetails; else elseTemplateGG">
+          <ngx-skeleton-loader count="1" appearance="line" animation='progress-dark'
+            [theme]="{'background-color': '#464646', height:'550px'}"></ngx-skeleton-loader>
+        </ng-container>
+        <ng-template #elseTemplateGG>
+          <img *ngIf="serie" class="img-fluid shadow" src="{{'https://image.tmdb.org/t/p/w400' + serie.poster}}" alt="">
+        </ng-template>
+      </div>
+      <!--Episodes Component-->
+      <div class="col-12 col-lg-8 mt-3">
+        <div class="row">
+          <div class="col-auto col-lg-6 ms-0 ps-1">
+            <div *ngIf="seasonEpisodes">
+              <select class="form-select episode-hover" (change)="seleccionarTemporada($event)"
+                title="{{ 'DETAIL.SEASONS' | translate}}">
+                <option *ngFor="let season of seasonEpisodes.seasonsList" [value]="season.numSeason">{{ "DETAIL.SEASON" |
+                  translate}} {{ season.numSeason }} &nbsp; &nbsp; &nbsp; &nbsp; {{season.episodesList[0].premiereDate |
+                  date: 'yyyy'}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 p-1 overflow-auto episode-list">
+          <ng-container *ngIf="isLoadingDetails || isLoadingEpisodes; else elseTemplateCC">
+            <ngx-skeleton-loader count="15" appearance="line" animation='progress-dark'
+              [theme]="{'background-color': '#464646', height:'30px'}"></ngx-skeleton-loader>
+          </ng-container>
+          <ng-template #elseTemplateCC>
+            <div *ngIf="temporadaSeleccionada">
+              <div class="card bg-darker mb-1 episode-hover" *ngFor="let episode of temporadaSeleccionada.episodesList">
+                <app-episode-card [episode]="episode"
+                  (checkWatchedEpisodeParent)="checkWatchedEpisodeParent($event)"></app-episode-card>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="isLoadingDetails;">
+      <ngx-skeleton-loader count="10" appearance="line" animation='progress-dark'
+        [theme]="{'background-color': '#464646', height:'20px'}"></ngx-skeleton-loader>
+    </ng-container>
+    <div class="row mt-3">
+      <div *ngIf="serie" class="col d-flex gap-3 align-items-center">
+        <div class="badge rounded-pill bg-primary p-2" *ngFor="let genre of genres">{{genre}}</div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <h3><b>{{ "DETAIL.DESCRIPTION" | translate }}</b></h3>
+        <p *ngIf="serie">{{description}}</p>
+      </div>
+      <div class="col-12">
+        <div class="d-flex align-items-center gap-3">
+          <ng-container *ngIf="serie && serie.creators.includes(', '); else elseTemplate">
+            <h6><b>{{ "DETAIL.DIRECTORS" | translate }}</b></h6>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <h6><b>{{ "DETAIL.DIRECTOR" | translate }}</b></h6>
+          </ng-template>
+          <h6 *ngIf="serie">{{serie.creators}}</h6>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex gap-3">
+          <h6><b>{{ "DETAIL.ACTORS" | translate }}</b></h6>
+          <h6 *ngIf="serie">{{serie.actors}}</h6>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <h3><b>{{ "DETAIL.USER_REVIEWS" | translate }}</b></h3>
+        <div class="row">
+          <form [formGroup]="reviewForm" (ngSubmit)="createSerieReview()">
+            <div class="col-12 form d-flex gap-2 justify-content-start mb-4">
+              <div class="col-10 col-lg-7">
+                <textarea class="form-control" name="review" placeholder="{{ 'DETAIL.WRITE_YOUR_REVIEW' | translate }}"
+                  required formControlName="review"></textarea>
+                <div class="alert alert-danger"
+                  *ngIf="reviewForm.get('review')?.touched && reviewForm.get('review')?.errors?.['minlength']">{{
+                  "FORM.MIN_CARACTERS" | translate }}</div>
+              </div>
+              <div class="d-flex align-items-start">
+                <input type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid"
+                  value="{{ 'FORM.SEND' | translate }}">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="container-fluid m-0 p-0">
+          <div *ngIf="reviews && serie" class="row">
+            <!--User reviews component-->
+            <ng-container *ngFor="let review of reviews.reviews">
+              <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId"
+                [contentType]="'serie'" [title]="title" (reloadReviews)="reloadReviews($event)"></app-movie-review>
+            </ng-container>
+          </div>
+          <div class="mb-5" *ngIf="reviews && reviews.numReviews== 0">{{ "DETAIL.NO_REVIEWS_YET" | translate }}</div>
+        </div>
       </div>
     </div>
   </div>
-</div>

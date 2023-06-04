@@ -20,6 +20,8 @@ import { ShareComponent } from '../socialComponents/share/share.component';
   styleUrls: ['./serie-detail.component.scss'],
 })
 export class SerieDetailComponent {
+  isLoadingDetails: boolean = false;
+  isLoadingEpisodes: boolean = false;
   serieApiId!: number;
   serie!: ISerieDetail;
   title!: string;
@@ -49,6 +51,8 @@ export class SerieDetailComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoadingDetails = true;
+    this.isLoadingEpisodes = true;
     this.serieApiId = +this.route.snapshot.paramMap.get('id')!;
 
     //this.restoreMovieRating();
@@ -71,6 +75,7 @@ export class SerieDetailComponent {
           this.genres = data.genresEn!.split(', ');
           this.description = data.descriptionEn!;
         }
+        this.isLoadingDetails = false;
       }));
 
       this.subscriptions.add(this.serieService
@@ -78,6 +83,7 @@ export class SerieDetailComponent {
       .subscribe((data) => {
         this.seasonEpisodes = data;
         this.temporadaSeleccionada = data.seasonsList[0];
+        this.isLoadingEpisodes = false;
       }));
 
       this.subscriptions.add(this.serieService

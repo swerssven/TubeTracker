@@ -16,6 +16,7 @@ import { ShareComponent } from '../socialComponents/share/share.component';
   styleUrls: ['./movie-detail.component.scss'],
 })
 export class MovieDetailComponent {
+  isLoading: boolean = false;
   movieApiId!: number;
   movie!: IMovieDetail;
   trailerURL!: SafeResourceUrl;
@@ -43,6 +44,7 @@ export class MovieDetailComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.movieApiId = +this.route.snapshot.paramMap.get('id')!;
 
     //this.restoreMovieRating();
@@ -67,6 +69,7 @@ export class MovieDetailComponent {
           this.description = data.descriptionEn!;
           this.trailer = data.trailerEn!;
         }
+        this.isLoading = false;
       }));
 
     this.subscriptions.add(this.movieService.getMovieReviews(this.movieApiId).subscribe((data) => {

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4 d-flex justify-content-center">
     <div class="col-8 d-flex gap-3">
-      <div *ngIf="user" class="col-2 pt-2">
+      <div *ngIf="user" class="col-5 col-sm-5 col-md-4 col-lg-2 pt-2">
         <ng-container *ngIf="user.image == null || user.image.length == 0; else elseTemplate">
           <img class="img-fluid shadow" src="../../../assets/default-avatar.png" alt="Avatar">
         </ng-container>
@@ -36,98 +36,110 @@
   </div>
   <!--Statistics-->
   <div class="row text-center d-flex justify-content-center">
-    <div class="col-8">
+    <div class="col-12 col-lg-8">
       <div class="row d-flex justify-content-around mt-5">
-        <div class="col-6">
+        <div class="col-12 col-lg-6 order-0">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.TOTAL_TIME_SERIES" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.TOTAL_TIME_SERIES" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <div class="row d-flex justify-content-center">
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursSeries[0] }}</h1>
                   <h6>{{ "STATISTICS.MONTHS" | translate }}</h6>
                 </div>
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursSeries[1] }}</h1>
                   <h6>{{ "STATISTICS.DAYS" | translate }}</h6>
                 </div>
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursSeries[2] }}</h1>
                   <h6>{{ "STATISTICS.HOURS" | translate }}</h6>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-2">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.EPISODES_WATCHED" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.EPISODES_WATCHED" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.watchedEpisodes }}</h1>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-4">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.POSTS" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.POSTS" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.posts }}</h1>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-5">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.LIKES" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.LIKES" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.likesPosts }}</h1>
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-lg-6 order-1">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.TOTAL_TIME_MOVIES" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.TOTAL_TIME_MOVIES" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <div class="row d-flex justify-content-center">
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursMovies[0] }}</h1>
                   <h6>{{ "STATISTICS.MONTHS" | translate }}</h6>
                 </div>
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursMovies[1] }}</h1>
                   <h6>{{ "STATISTICS.DAYS" | translate }}</h6>
                 </div>
-                <div class="col-3">
+                <div class="col-3 p-0">
                   <h1 *ngIf="statistics">{{ hoursMovies[2] }}</h1>
                   <h6>{{ "STATISTICS.HOURS" | translate }}</h6>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-3">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.MOVIES_WATCHED" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.MOVIES_WATCHED" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.watchedMovies }}</h1>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-4">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.COMMENTS" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.COMMENTS" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.postComments }}</h1>
             </div>
           </div>
+        </div>
+        <div class="col-6 order-4">
           <div class="card mb-4">
-            <div class="card-header">
-              <h5 class="card-title">{{ "STATISTICS.FRIENDS" | translate }}</h5>
+            <div class="card-header p-0">
+              <h5 class="card-title p-1 m-0">{{ "STATISTICS.FRIENDS" | translate }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
               <h1 *ngIf="statistics">{{ statistics.friends }}</h1>
             </div>
           </div>
