@@ -17,6 +17,7 @@ import { AdminUsersComponent } from '../admin-users/admin-users.component';
   styleUrls: ['./user-statistics.component.scss'],
 })
 export class UserStatisticsComponent {
+  isLoading: boolean = false;
   user!: any;
   userId!: number;
   localUser!: any;
@@ -31,13 +32,14 @@ export class UserStatisticsComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: UserServiceService,
-    private utils: UtilsServiceService,
+    public utils: UtilsServiceService,
     private movieService: MovieServiceService,
     private serieService: SerieServiceService,
     private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.userId = +this.route.params.subscribe((params) => {
       // Accede al nuevo valor del ID
       this.userId = +params['id'];
@@ -58,6 +60,7 @@ export class UserStatisticsComponent {
                   this.hoursSeries = this.utils.formatTimeStatistics(
                     data.totalHoursSeries
                   );
+                  this.isLoading = false;
                 })
             );
 

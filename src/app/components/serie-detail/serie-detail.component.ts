@@ -55,8 +55,6 @@ export class SerieDetailComponent {
     this.isLoadingEpisodes = true;
     this.serieApiId = +this.route.snapshot.paramMap.get('id')!;
 
-    //this.restoreMovieRating();
-
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
@@ -99,7 +97,12 @@ export class SerieDetailComponent {
   }
 
   restoreSerieRating() {
-    this.auxRating = this.rating;
+    this.subscriptions.add(this.serieService
+      .getSerieRatings(this.serieApiId, this.user.userId)
+      .subscribe((data) => {
+        this.auxRating = data.userRating;
+        this.ttRating = data.averageRating;
+      }));
   }
 
   setSerieRating() {

@@ -3,15 +3,14 @@
     <a class="nav-link link-primary" (click)="openLoginForm()">{{ "LOGIN.LOGIN" | translate }}</a>
   </ng-container>
   <ng-template #elseTemplate>
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-1">
       <div>
         <ng-container *ngIf="user.image; else elseTemplate">
           <img class="img-fluid mt-1" src="{{ user.image }}" alt="avatar">
         </ng-container>
         <ng-template #elseTemplate>
-          <img class="img-fluid" src="../../../assets/default-avatar.png" alt="avatar">
+          <img class="img-fluid mt-1" src="../../../assets/default-avatar.png" alt="avatar">
         </ng-template>
-
       </div>
       <div>
         <a class="nav-link" [routerLink]="['/statistics', user.userId]">{{user.nickname}}</a>

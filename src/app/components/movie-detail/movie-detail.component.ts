@@ -47,8 +47,6 @@ export class MovieDetailComponent {
     this.isLoading = true;
     this.movieApiId = +this.route.snapshot.paramMap.get('id')!;
 
-    //this.restoreMovieRating();
-
     if (localStorage.getItem('user')) {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
@@ -85,7 +83,12 @@ export class MovieDetailComponent {
   }
 
   restoreMovieRating() {
-    this.auxRating = this.rating;
+    this.subscriptions.add(this.movieService
+      .getMovieRatings(this.movieApiId, this.user.userId)
+      .subscribe((data) => {
+        this.auxRating = data.userRating;
+        this.ttRating = data.averageRating;
+      }));
   }
 
   setMovieRating() {

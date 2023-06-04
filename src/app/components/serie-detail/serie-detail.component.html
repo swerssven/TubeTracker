@@ -49,7 +49,7 @@
           <div class="row col-12">
             <div class="d-flex justify-content-sm-start justify-content-lg-center gap-3 text-lg-end">
               <h6>{{ "DETAIL.YOUR_RATING" | translate }}</h6>
-              <div>
+              <div (mouseleave)="restoreSerieRating()">
                 <i *ngFor="let star of [1,2,3,4,5]" class="bi"
                   [ngClass]="{'bi-star-fill': star <= auxRating, 'bi-star': star > auxRating}"
                   (mouseenter)="auxRating = star" (click)="setSerieRating()">
