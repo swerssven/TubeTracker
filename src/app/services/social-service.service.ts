@@ -32,9 +32,9 @@ export class SocialServiceService {
     );
   }
 
-  getFriends(userId: number): Observable<IFriend[]> {
+  getFriends(userId: number, suggestions: boolean): Observable<IFriend[]> {
     return this.http.get<IFriend[]>(
-      `${this.apiUrl}/api/Social/friends/getFriendsList?userId=${userId}`
+      `${this.apiUrl}/api/Social/friends/getFriendsList?userId=${userId}&suggestions=${suggestions}`
     );
   }
 
@@ -70,9 +70,9 @@ export class SocialServiceService {
     );
   }
 
-  acceptInvitation(userId: number, friendUserId: number): Observable<IFriend> {
+  acceptInvitation(userId: number, friendUserId: number, accept: boolean): Observable<IFriend> {
     return this.http.post<IFriend>(
-      `${this.apiUrl}/api/Social/friends/acceptFriendship?userId=${userId}&friendUserId=${friendUserId}`,
+      `${this.apiUrl}/api/Social/friends/acceptFriendship?userId=${userId}&friendUserId=${friendUserId}&accept=${accept}`,
       null
     );
   }

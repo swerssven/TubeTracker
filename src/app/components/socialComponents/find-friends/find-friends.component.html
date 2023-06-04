@@ -29,10 +29,18 @@
             <app-friend-card *ngIf="friendSearch.userId != user.userId" [friend]="friendSearch"></app-friend-card>
           </div>
         </div>
-        <div *ngIf="friends && !friendsSearchList">
+        <div *ngIf="friends && friends.length > 0 && !friendsSearchList">
           <h6 class="mt-3">{{"SOCIAL.FRIENDS" | translate}}</h6>
           <div *ngFor="let friend of friends">
-            <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend"></app-friend-card>
+            <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend" (reloadFriends)="reloadFriends($event)"></app-friend-card>
+          </div>
+        </div>
+        <div>
+          <div *ngIf="friendsSuggestions && friendsSuggestions.length > 0 && !friendsSearchList">
+            <h6 class="mt-3">{{"SOCIAL.SUGGESTIONS" | translate}}</h6>
+            <div *ngFor="let friend of friendsSuggestions">
+              <app-friend-card *ngIf="friendsSuggestions" [friend]="friend"></app-friend-card>
+            </div>
           </div>
         </div>
       </ng-template>

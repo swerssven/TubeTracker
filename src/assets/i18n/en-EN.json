@@ -79,6 +79,12 @@
     "ARTICLE_UPLOADED": "Article uploaded correctly"
   },
 
+  "FAVORITES": {
+    "NO_RESULTS": "You don´t have any favorites yet",
+    "FIND_CONTENT": "Find interesting content",
+    "HERE": "here"
+  },
+
   "POPULAR":{
     "RECOMMENDED_MOVIES": "Recommended movies",
     "RECOMMENDED_SERIES": "Recommended series",
@@ -125,13 +131,19 @@
     "INVITED_YOU_TO_BECOME_FRIENDS": "Invited you to become friends",
     "INVITE": "Invite",
     "INVITATION_SEND": "Invitation send",
-    "ACCEPT_INVITATION": "Accept invitation",
+    "ACCEPT_INVITATION": "Accept",
+    "DECLINE": "Decline",
+    "INVITATION_DECLINED": "Declined",
+    "DELETE_FRIEND": "Delete friend",
     "REVIEW_FOR": "Review for",
     "POSTS_FROM": "Posts from",
     "SEND_MESSAGE": "Send message",
     "NEW_MESSAGE": "new message",
-    "NEW_MESSAGES": "new messages"
-
+    "NEW_MESSAGES": "new messages",
+    "NO_RESULTS": "No posts available",
+    "FIND_CONTENT": "Do you want to be the first to share something with the world?",
+    "HERE": "here",
+    "SUGGESTIONS": "Suggestions"
   },
 
   "STATISTICS": {

@@ -41,10 +41,10 @@ export class FavoritesComponent {
       .subscribe((data) => {
         data.forEach((movie) => {
           movie.type = 'movies';
-          this.isLoading = false;
         });
         this.movies_series.push(...data);
         this.filteredMovies_Series.push(...data);
+        this.isLoading = false;
       }));
 
     this.subscriptions.add(this.serieService
@@ -52,11 +52,13 @@ export class FavoritesComponent {
       .subscribe((data) => {
         data.forEach((serie) => {
           serie.type = 'series';
-          this.isLoading = false;
         });
         this.movies_series.push(...data);
         this.filteredMovies_Series.push(...data);
+        this.isLoading = false;
       }));
+
+      console.log(this.movies_series)
   }
 
   // Filter method, filter by string, watched, type and order.

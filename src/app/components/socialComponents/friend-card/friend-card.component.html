@@ -16,13 +16,20 @@
       </div>
       <div class="d-flex align-items-center">
         <span *ngIf="friend.friendshipStatus == 0">{{"SOCIAL.INVITATION_SEND" | translate}}</span>
-        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()">{{"SOCIAL.INVITE"
-          | translate}}</button>
-        <button class="btn btn-primary" *ngIf="friend.friendshipStatus == 3"
-          (click)="acceptInvitation()">{{"SOCIAL.ACCEPT_INVITATION" | translate}}</button>
-        <div class="d-flex gap-3" *ngIf="friend.friendshipStatus == 1"> <a class="align-self-center"
-            [routerLink]="['/social/messages', friend.userId]">{{ "SOCIAL.SEND_MESSAGE" | translate }}</a>
-          <i class="bi bi-chat-text-fill fs-2"></i>
+        <span *ngIf="friend.friendshipStatus == 4">{{"SOCIAL.INVITATION_DECLINED" | translate}}</span>
+        <a class="align-self-center" *ngIf="friend.friendshipStatus == 2" (click)="inviteFriend()" title="{{'SOCIAL.INVITE'
+        | translate}}"><i class="bi bi-person-plus-fill fs-2"></i></a>
+        <div class="d-flex gap-4">
+          <a class="text-success" *ngIf="friend.friendshipStatus == 3"
+            (click)="acceptInvitation(true)" title="{{'SOCIAL.ACCEPT_INVITATION' | translate}}"><i class="bi bi-person-fill-check fs-2 icon"></i></a>
+            <a class="text-danger" *ngIf="friend.friendshipStatus == 3"
+            (click)="acceptInvitation(false)" title="{{'SOCIAL.DECLINE' | translate}}"><i class="bi bi-person-fill-x fs-2 icon"></i></a>
+        </div>
+        <div class="d-flex gap-4" *ngIf="friend.friendshipStatus == 1"> <a class="align-self-center"
+            [routerLink]="['/social/messages', friend.userId]" title="{{ 'SOCIAL.SEND_MESSAGE' | translate }}">
+            <i class="bi bi-chat-text-fill fs-2"></i></a>
+            <a class="align-self-center" title="{{ 'SOCIAL.DELETE_FRIEND' | translate }}" (click)="acceptInvitation(false)">
+            <i class="bi bi-person-x-fill fs-2"></i></a>
         </div>
       </div>
     </div>

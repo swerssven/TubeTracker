@@ -18,6 +18,7 @@ export class FindFriendsComponent {
   user!: any;
   friends!: IFriend[];
   friendsSearchList!: IFriend[];
+  friendsSuggestions!: IFriend[];
   private subscriptions: Subscription = new Subscription();
 
   constructor(
@@ -31,22 +32,24 @@ export class FindFriendsComponent {
       let userString = localStorage.getItem('user');
       this.user = userString ? JSON.parse(userString) : null;
     }
-    this.subscriptions.add(this.socialService.getFriends(this.user.userId).subscribe((data) => {
-      this.friends = data;
-      this.isLoading = false;
-    }));
+
+    this.loadFriends();
   }
 
   searchForFriends() {
     this.isLoading = true;
-    this.subscriptions.add(this.socialService
-      .GetSearchFriendsList(
-        this.user.userId,
-        this.searchFriendForm.value.search
-      )
-      .subscribe((data) => {this.friendsSearchList = data
-        this.isLoading = false;
-      this.searchFriendForm.reset()}));
+    this.subscriptions.add(
+      this.socialService
+        .GetSearchFriendsList(
+          this.user.userId,
+          this.searchFriendForm.value.search
+        )
+        .subscribe((data) => {
+          this.friendsSearchList = data;
+          this.isLoading = false;
+          this.searchFriendForm.reset();
+        })
+    );
   }
 
   emptyFriendSearchList() {
@@ -54,7 +57,31 @@ export class FindFriendsComponent {
     this.friendsSearchList = SearchList;
   }
 
+  reloadFriends(friend: IFriend) {
+      this.loadFriends();
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  loadFriends(){
+    this.subscriptions.add(
+      this.socialService
+        .getFriends(this.user.userId, false)
+        .subscribe((data) => {
+          this.friends = data;
+          this.isLoading = false;
+        })
+    );
+
+    this.subscriptions.add(
+      this.socialService
+        .getFriends(this.user.userId, true)
+        .subscribe((dataa) => {
+          this.friendsSuggestions = dataa;
+          this.isLoading = false;
+        })
+    );
   }
 }

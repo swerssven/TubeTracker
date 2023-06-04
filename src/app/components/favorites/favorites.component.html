@@ -40,6 +40,15 @@
 </div>
 
 <div class="container">
+  <div class="row d-flex justify-content-center text-center gap-2" *ngIf="!isLoading && movies_series.length == 0">
+    <i class="bi bi-search fs-1 mt-5 pt-5"></i>
+    <span class="fs-2">{{ "FAVORITES.NO_RESULTS" | translate }}</span>
+    <div class="d-flex gap-2 justify-content-center fs-2 mb-5 pb-5">
+      <span>{{"FAVORITES.FIND_CONTENT" | translate}}</span>
+      <a class="nav-link" [routerLink]="['/explore']" [routerLinkActive]="['active']">{{"FAVORITES.HERE" | translate}}!</a>
+    </div>
+  </div>
+
   <ng-container *ngIf="isLoading; else elseTemplate">
     <div class="row mt-4">
       <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2 " *ngFor="let result of utils.generateFake(20)">

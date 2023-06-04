@@ -57,8 +57,8 @@ export class ProfileComponent {
             this.userId = this.posts[0].userId;
             this.userNickname = this.posts[0].userNickname;
             this.userImage = this.posts[0].userImage;
-            this.isLoading = false;
           }
+          this.isLoading = false;
         })
       );
     });

@@ -58,7 +58,11 @@
           </ng-template>
         </div>
         <div class="col-10">
-          <h2 *ngIf="user" class="col"><b>{{user.nickname}}</b></h2>
+          <div class="d-flex gap-3">
+            <h2 *ngIf="user"><b>{{user.nickname}}</b></h2>
+            <a class="align-self-center" *ngIf="user && user.userId != localUser.userId"
+              [routerLink]="['/social/messages', user.userId]" title="{{ 'SOCIAL.SEND_MESSAGE' | translate }}">
+              <i class="bi bi-chat-text-fill fs-2"></i></a></div>
           <div class="col">
             <div *ngIf="user && user.userId != localUser.userId">
               <a [routerLink]="['/social/profile', user.userId]" class="link-primary">{{ "STATISTICS.SHOW_POSTS" | translate }}</a>

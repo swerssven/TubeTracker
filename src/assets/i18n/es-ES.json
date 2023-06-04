@@ -79,6 +79,12 @@
     "ARTICLE_UPLOADED": "Articulo publicado correctamente"
   },
 
+  "FAVORITES": {
+    "NO_RESULTS": "No tienes favoritos todavía.",
+    "FIND_CONTENT": "Encuentra contenido interesante",
+    "HERE": "aquí"
+  },
+
   "POPULAR": {
     "RECOMMENDED_MOVIES": "Películas recomendadas",
     "RECOMMENDED_SERIES": "Series recomendadas",
@@ -125,12 +131,19 @@
     "INVITED_YOU_TO_BECOME_FRIENDS": "Te ha invitado a ser amigos",
     "INVITE": "Invitar",
     "INVITATION_SEND": "Invitación enviada",
-    "ACCEPT_INVITATION": "Aceptar invitación",
+    "ACCEPT_INVITATION": "Aceptar",
+    "DECLINE": "Rechazar",
+    "INVITATION_DECLINED": "Rechazado",
+    "DELETE_FRIEND": "Eliminar amigo",
     "REVIEW_FOR": "Reseña para",
     "POSTS_FROM": "Posts de",
     "SEND_MESSAGE": "Mandar mensaje",
     "NEW_MESSAGE": "nuevo mensaje",
-    "NEW_MESSAGES": "nuevos mensajes"
+    "NEW_MESSAGES": "nuevos mensajes",
+    "NO_RESULTS": "No hay posts disponibles",
+    "FIND_CONTENT": "¿Quieres ser el primero en compartir algo con el mundo?",
+    "HERE": "aquí",
+    "SUGGESTIONS": "Recomendaciones"
   },
 
   "STATISTICS": {
