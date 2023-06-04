@@ -67,6 +67,7 @@ export class NewsBoardComponent {
               this.isLoading = false;
             })
         );
+        this.value = "";
       })
     );
   }

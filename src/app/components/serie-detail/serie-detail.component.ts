@@ -132,6 +132,7 @@ export class SerieDetailComponent {
 
     this.subscriptions.add(this.serieService.createSerieReview(newReview).subscribe((data) => {
       this.reviews = data;
+      this.reviewForm.reset();
     }));
 
     this.review = '';

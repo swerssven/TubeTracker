@@ -116,6 +116,7 @@ export class MovieDetailComponent {
 
     this.subscriptions.add(this.movieService.createMovieReview(newReview).subscribe((data) => {
       this.reviews = data;
+      this.reviewForm.reset();
     }));
   }
 

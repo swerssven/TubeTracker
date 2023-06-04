@@ -159,7 +159,7 @@
           <div *ngIf="reviews && serie" class="row">
             <!--User reviews component-->
             <ng-container *ngFor="let review of reviews.reviews">
-              <app-movie-review class="col-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId"
+              <app-movie-review class="col-12 col-md-12 col-lg-12 col-xl-6 mt-2 mb-3" [review]="review" [contentId]="serie.serieApiId"
                 [contentType]="'serie'" [title]="title" (reloadReviews)="reloadReviews($event)"></app-movie-review>
             </ng-container>
           </div>
