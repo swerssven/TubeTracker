@@ -102,7 +102,7 @@ export class AdminUsersComponent {
   getUserList(){
     this.subscriptions.add(this.userService.GetUserList().subscribe(
       (data) => {
-        this.rowData = data;
+        this.rowData = data.filter(p => p.userId !== 26); // All but Tubetracker account.
       }
     ));
   }

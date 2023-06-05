@@ -13,7 +13,7 @@
     </div>
     <div class="col-11 mx-0 px-0 card border-0">
       <div class="col order-1 bubble" [ngClass]="message.senderUserId != sender.userId ? 'left' : 'right'">
-        <div>{{ message.content }}</div>
+        <div *ngIf="message && message.content" [innerHTML]="sanitizer.bypassSecurityTrustHtml(message.content)"></div>
         <div class="fs-10" [ngClass]="message.senderUserId != sender.userId ? 'text-light' : 'text-black float-end'">{{utils.convertDateLocale(message.creationDate!) | date: 'HH:mm'}}</div>
       </div>
     </div>

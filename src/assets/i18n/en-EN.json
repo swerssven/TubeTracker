@@ -143,12 +143,14 @@
     "NO_RESULTS": "No posts available",
     "FIND_CONTENT": "Do you want to be the first to share something with the world?",
     "HERE": "here",
-    "SUGGESTIONS": "Suggestions"
+    "SUGGESTIONS": "Suggestions",
+    "NO_FRIENDS": "No friends? Don't worry, check out the suggestions we have for you!"
   },
 
   "STATISTICS": {
     "LAST_WATCHED_MOVIES": "Last movies watched",
     "LAST_WATCHED_SERIES": "Last series watched",
+    "NOT_WATCHED_YET": "Not watched anything yet...",
     "TOTAL_TIME_MOVIES": "Total time watching movies",
     "TOTAL_TIME_SERIES": "Total time watching series",
     "EPISODES_WATCHED": "Episodes watched",

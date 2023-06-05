@@ -8,4 +8,11 @@ a:hover {
   color: rgb(255, 255, 255);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.icon:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 10px rgb(255, 255, 255);
+  color: white;
+  cursor: pointer;
 }/*# sourceMappingURL=friends-with-messagges-list.component.css.map */

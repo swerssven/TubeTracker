@@ -26,15 +26,16 @@
         <div *ngIf="friendsSearchList && friendsSearchList.length > 0">
           <h6 class="mt-3">{{"SOCIAL.YOUR_SEARCH" | translate}}</h6>
           <div *ngFor="let friendSearch of friendsSearchList">
-            <app-friend-card *ngIf="friendSearch.userId != user.userId" [friend]="friendSearch"></app-friend-card>
+            <app-friend-card *ngIf="friendSearch.userId != user.userId && friendSearch.userId != 26" [friend]="friendSearch"></app-friend-card>
           </div>
         </div>
-        <div *ngIf="friends && friends.length > 0 && !friendsSearchList">
+        <div *ngIf="friends && friends.length > 1 && !friendsSearchList">
           <h6 class="mt-3">{{"SOCIAL.FRIENDS" | translate}}</h6>
           <div *ngFor="let friend of friends">
-            <app-friend-card *ngIf="friend.userId != user.userId" [friend]="friend" (reloadFriends)="reloadFriends($event)"></app-friend-card>
+            <app-friend-card *ngIf="friend.userId != user.userId && friend.userId != 26" [friend]="friend" (reloadFriends)="reloadFriends($event)"></app-friend-card>
           </div>
         </div>
+        <P class="text-center mt-5" *ngIf="friends && friends.length == 1 && !friendsSearchList">{{"SOCIAL.NO_FRIENDS" | translate}}</P>
         <div>
           <div *ngIf="friendsSuggestions && friendsSuggestions.length > 0 && !friendsSearchList">
             <h6 class="mt-3">{{"SOCIAL.SUGGESTIONS" | translate}}</h6>
