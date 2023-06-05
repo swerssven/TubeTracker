@@ -8,6 +8,7 @@ export interface IReview {
   serieApiId?: number,
   content: string,
   creationDate: Date
+  rating?: number
 }
 
 export interface IReviewDto{

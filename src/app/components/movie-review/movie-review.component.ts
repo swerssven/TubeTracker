@@ -18,6 +18,7 @@ export class MovieReviewComponent {
   @Input() title!: string;
   @Input() contentId!: number;
   @Input() contentType!: string;
+  auxRating!: number;
   user!: any;
   @Output() reloadReviews = new EventEmitter<IReview>();
   private subscriptions: Subscription = new Subscription();

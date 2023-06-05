@@ -28,7 +28,12 @@
       </div>
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body pt-2">
+    <div class="d-flex justify-content-end">
+      <i *ngFor="let star of [1,2,3,4,5]" class="bi"
+        [ngClass]="{'bi-star-fill': star <= review.rating!, 'bi-star': star > review.rating!}">
+      </i>
+    </div>
     <p class="card-text">{{ review.content }}</p>
   </div>
 </div>
